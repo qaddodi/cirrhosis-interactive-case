@@ -668,17 +668,16 @@ DEEP_DIVES.forEach(dd=>{
   if(s.imagePos===undefined) s.imagePos=anchor.imagePos;
   SLIDES.splice(at+1,0,s);
 });
-const terlipressinEvidenceIndex=SLIDES.findIndex(s=>s.section==='Evidence and Warning');
-if(terlipressinEvidenceIndex!==-1){
-  SLIDES.splice(terlipressinEvidenceIndex+1,0,{
-    ch:'hrs',
-    type:'background-only',
-    layout:'wide',
-    image:'terlipressin-albumin-treatment-algorithm.jpg',
-    imagePos:'center center',
-    backgroundOnly:true
-  });
-}
+SLIDES.splice(49,0,{
+  ch:'hrs',
+  type:'background-only',
+  layout:'wide',
+  section:'Terlipressin + Albumin Treatment Algorithm',
+  image:'terlipressin-albumin-treatment-algorithm.jpg',
+  imagePos:'center center',
+  imageSize:'contain',
+  backgroundOnly:true
+});
 const NEW_BACKGROUND_RANGES=[
   {start:32,end:34,image:'tips-procedure-interventional-radiology.jpg',contentSide:'left'},
   {start:35,end:38,image:'large-volume-paracentesis.jpg',contentSide:'right'},
@@ -754,7 +753,7 @@ let activeBgLayer=bgLayerA;
 let inactiveBgLayer=bgLayerB;
 let bgSwapToken=0;
 let hasAppliedInitialBackground=false;
-const currentBackground={bg:null,image:null,pos:null};
+const currentBackground={bg:null,image:null,pos:null,size:null};
 function meta(s){return CHAPTERS[s.ch]||CHAPTERS.title}
 function backgroundImageFor(slideIndex){
   const s=SLIDES[slideIndex];
@@ -764,8 +763,12 @@ function backgroundPosFor(slideIndex){
   const s=SLIDES[slideIndex];
   return s&&s.imagePos?s.imagePos:'center';
 }
+function backgroundSizeFor(slideIndex){
+  const s=SLIDES[slideIndex];
+  return s&&s.imageSize?s.imageSize:'cover';
+}
 function backgroundKeyFor(slideIndex){
-  return `${backgroundImageFor(slideIndex)}|${backgroundPosFor(slideIndex)}`;
+  return `${backgroundImageFor(slideIndex)}|${backgroundPosFor(slideIndex)}|${backgroundSizeFor(slideIndex)}`;
 }
 function preloadBackgroundImages(){
   [...new Set(SLIDES.map(s=>s.image).filter(Boolean))].forEach(src=>{
@@ -793,31 +796,34 @@ function waitForBackground(src){
     new Promise(resolve=>setTimeout(()=>resolve(false),1200))
   ]);
 }
-function setLayerBackground(layer,image,pos){
+function setLayerBackground(layer,image,pos,size){
   layer.style.backgroundImage=image ? `url("${image}")` : 'linear-gradient(120deg,#e8e1d3,#d5d1c8)';
   layer.style.backgroundPosition=pos||'center';
+  layer.style.backgroundSize=size||'cover';
 }
 function applyStageBackground(s,c,{instant=false}={}){
   const image=s.image||'';
   const pos=s.imagePos||'center';
+  const size=s.imageSize||'cover';
   if(currentBackground.bg!==c.bg){
     stage.style.setProperty('--bg',c.bg);
     currentBackground.bg=c.bg;
   }
-  if(hasAppliedInitialBackground&&currentBackground.image===image&&currentBackground.pos===pos) return;
+  if(hasAppliedInitialBackground&&currentBackground.image===image&&currentBackground.pos===pos&&currentBackground.size===size) return;
   const token=++bgSwapToken;
   if(instant||prefersReducedMotion||!hasAppliedInitialBackground){
-    setLayerBackground(activeBgLayer,image,pos);
+    setLayerBackground(activeBgLayer,image,pos,size);
     activeBgLayer.classList.add('is-active');
     inactiveBgLayer.classList.remove('is-active');
     currentBackground.image=image;
     currentBackground.pos=pos;
+    currentBackground.size=size;
     hasAppliedInitialBackground=true;
     return;
   }
   waitForBackground(image).then(()=>{
     if(token!==bgSwapToken) return;
-    setLayerBackground(inactiveBgLayer,image,pos);
+    setLayerBackground(inactiveBgLayer,image,pos,size);
     inactiveBgLayer.classList.remove('is-active');
     inactiveBgLayer.offsetHeight;
     requestAnimationFrame(()=>{
@@ -829,6 +835,7 @@ function applyStageBackground(s,c,{instant=false}={}){
       inactiveBgLayer=oldActive;
       currentBackground.image=image;
       currentBackground.pos=pos;
+      currentBackground.size=size;
     });
   });
 }
