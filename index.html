@@ -42,30 +42,35 @@ body{
   box-shadow:none;
 }
 .topbar{
-  height:60px;
-  flex:0 0 60px;
+  height:59px;
+  flex:0 0 59px;
   background:#fff;
-  border-bottom:1px solid #262626;
+  border-bottom:1px solid #dad6ce;
   display:flex;
   align-items:center;
-  padding:0 12px 0 3.05rem;
-  color:#111;
+  padding:0 28px;
+  color:var(--ink);
   position:relative;
   z-index:3;
 }
 .brand-lockup{display:flex;align-items:center;min-width:0}
-.case-title{font-size:19px;line-height:1;white-space:nowrap;letter-spacing:0;text-transform:uppercase}
-.act-tag,.brand-mark{display:none}
-.top-reset{
-  margin-left:auto;
-  width:38px;height:38px;padding:0;
-  display:grid;place-items:center;
-  border:0;background:transparent;color:#111;
-  font:400 27px/1 Arial,sans-serif;
-  cursor:pointer;
-  transition:background .15s ease;
+.case-title{font-size:19px;line-height:1;white-space:nowrap;letter-spacing:.14em;text-transform:uppercase}
+.act-tag{
+  margin-left:18px;padding-left:18px;border-left:1px solid #e6e1d8;
+  color:#6f685f;font-size:12px;line-height:1;letter-spacing:.16em;text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-.top-reset:hover{background:#f1f0ed}
+.topbar-actions{margin-left:auto;display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.topbar-credit{margin-right:4px;color:var(--purple);font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.topbar-btn{
+  height:30px;padding:0 12px;
+  border:1px solid #d4cec2;background:#fff;color:#34322f;
+  font:700 11px/1 Georgia,"Times New Roman",Times,serif;
+  letter-spacing:.10em;text-transform:uppercase;
+  cursor:pointer;
+  transition:background .14s ease,border-color .14s ease,color .14s ease;
+}
+.topbar-btn:hover{background:#f5f2ec;border-color:#aaa397}
 .stage{
   position:relative;
   flex:1 1 auto;
@@ -217,6 +222,24 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .qstem{font-size:22px;line-height:1.5;margin:0 0 18px}.qstem .bigline{display:block;font-size:34px;line-height:1.12;color:var(--purple2);margin-bottom:10px}.emphasis-q{font-size:29px!important;line-height:1.22!important;color:var(--purple2);margin-top:18px!important}.options{display:flex;flex-direction:column;gap:9px}.opt{width:100%;display:flex;gap:12px;align-items:flex-start;text-align:left;border:1px solid rgba(93,83,68,.24);background:rgba(255,255,255,.34);font-family:inherit;font-size:19px;color:var(--ink);padding:15px 17px;cursor:pointer;transition:.17s;text-shadow:0 1px 0 rgba(255,255,255,.82), 0 0 12px rgba(250,248,241,.88)}.opt:hover:not(.locked){background:#fff;border-color:var(--chapter,#6d7186)}.opt .mark{height:27px;min-width:27px;border-radius:50%;border:1px solid #bdb4a5;background:#fff;color:#7d7568;display:grid;place-items:center;font-size:13px;font-weight:bold}.opt.correct{border-color:var(--green);background:rgba(62,121,84,.12)}.opt.correct .mark{background:var(--green);border-color:var(--green);color:#fff}.opt.wrong{border-color:var(--red);background:rgba(168,69,69,.10)}.opt.wrong .mark{background:var(--red);border-color:var(--red);color:#fff}.opt.dim{opacity:.58}.opt.locked{cursor:default}
 .reveal-btn{margin-top:3px;border:1px solid var(--chapter,#6d7186);background:rgba(255,255,255,.34);color:var(--purple2);font-family:inherit;font-size:14px;font-weight:bold;letter-spacing:.14em;text-transform:uppercase;padding:10px 18px;cursor:pointer;text-shadow:0 1px 0 rgba(255,255,255,.84), 0 0 12px rgba(250,248,241,.86)}.reveal-btn:hover{background:var(--purple2);color:white;border-color:var(--purple2)}
 .answer{margin-top:15px;padding-top:14px;border-top:1px solid rgba(93,83,68,.22);animation:appear .32s}.answer .tag{display:inline-flex;align-items:center;background:var(--purple2);color:#fff;border:1px solid rgba(255,255,255,.24);border-radius:99px;padding:5px 12px;font-size:11.5px;line-height:1.15;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;font-weight:bold;text-shadow:none!important;box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 3px 9px rgba(43,37,28,.16)}.answer .big{font-size:30px;color:var(--purple2);line-height:1.1;margin:0 0 9px}
+.he-answer .big{font-size:clamp(32px,2.35vw,42px);line-height:1.1;margin-bottom:14px}
+.he-answer .he-interpret{margin:0 0 15px;padding:12px 0;border-top:1px solid rgba(93,83,68,.18);border-bottom:1px solid rgba(93,83,68,.18)}
+.he-answer .he-interpret p{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;font-size:clamp(19px,1.35vw,23px);line-height:1.28;margin:0 0 9px}
+.he-answer .he-interpret p:last-child{margin-bottom:0}
+.he-answer .he-interpret b{color:var(--purple2)}
+.he-answer .he-interpret .he-normal b{color:#8b7133}
+.he-answer .he-action{
+  padding:14px 17px 13px;
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:16px;
+  background:linear-gradient(135deg,rgba(255,255,255,.58),rgba(247,243,235,.40));
+  backdrop-filter:blur(15px) saturate(.88);
+  -webkit-backdrop-filter:blur(15px) saturate(.88);
+  box-shadow:0 12px 30px rgba(43,37,28,.12),0 0 0 1px rgba(135,105,154,.12) inset,0 1px 0 rgba(255,255,255,.78) inset;
+}
+.he-answer .he-label{display:block;margin-bottom:6px;color:var(--chapter,#87699a);font-size:14px;font-weight:bold;letter-spacing:.17em;text-transform:uppercase}
+.he-answer .he-action p{font-size:clamp(19px,1.3vw,22px);line-height:1.34;margin:0 0 9px}
+.he-answer .he-tips{color:#49443d}
 .gtable{border-collapse:separate;border-spacing:6px;margin:4px 0 8px}.gtable th{font-size:14px;color:#564f47;font-weight:bold;line-height:1.22;text-align:center;padding:5px 6px}.gtable .rowh{text-align:right;width:120px}.cell{width:180px;min-height:82px;height:auto;background:rgba(255,255,255,.28);border:1px dashed #a89f91;display:grid;place-items:center;text-align:center;padding:9px;cursor:pointer;text-shadow:0 1px 0 rgba(255,255,255,.65);transition:border-color .22s ease,background .22s ease,box-shadow .22s ease,transform .22s ease}.cell:hover:not(.revealed){background:rgba(255,255,255,.52);border-color:var(--chapter,#6d7186);transform:translateY(-1px)}.cell .q{font-size:25px;color:#aea696}.cell.revealed{border-style:solid;background:#fff;cursor:default}.cell.revealed.target{border-color:var(--chapter,#6d7186);background:rgba(84,127,146,.16);box-shadow:0 0 0 1px rgba(84,127,146,.28) inset,0 0 28px rgba(249,247,241,.95)}.cell.revealed.target .name{color:var(--purple2)}.cell .name{display:block;font-weight:bold;color:#161512;font-size:16.5px}.cell .sub{display:block;color:#544e47;font-size:13.7px;line-height:1.28;margin-top:4px}.cell.treat{background:rgba(62,121,84,.13);border-color:var(--green)}.cell.notreat{background:rgba(168,69,69,.09);border-color:var(--red)}.cell .tx{display:none;text-transform:uppercase;letter-spacing:.11em;font-size:11.5px;font-weight:bold;margin-top:4px}.cell.treat .tx{display:block;color:var(--green)}.cell.notreat .tx{display:block;color:var(--red)}.table-tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:7px}
 .table-focus .qstem{font-size:20px;line-height:1.38;margin-bottom:10px}
 .case-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 10px}
@@ -274,71 +297,74 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .checklist-blur{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(255,255,255,.82);border-radius:14px;background:rgba(249,247,241,.10);backdrop-filter:blur(12px) saturate(.96);-webkit-backdrop-filter:blur(12px) saturate(.96);box-shadow:0 18px 46px rgba(43,37,28,.16),0 1px 0 rgba(255,255,255,.94) inset,0 -1px 0 rgba(255,255,255,.30) inset}.checklist-blur::before{content:"";position:absolute;inset:-36px;z-index:0;pointer-events:none;background-image:var(--checklist-bg-image);background-size:var(--checklist-bg-size);background-position:var(--checklist-bg-position);background-repeat:no-repeat;filter:blur(34px) saturate(.76) contrast(.90);opacity:.98}.checklist-blur::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.48),rgba(249,247,241,.25) 54%,rgba(229,237,239,.22))}.checklist-table{position:relative;z-index:1;margin:0;background:transparent}.checklist-table th:nth-child(1){width:34%}.checklist-table th:nth-child(2){width:54%}.checklist-table th:nth-child(3){width:12%}.checklist-result{padding:0!important}.checklist-result-btn{width:100%;min-height:46px;border:0;background:transparent;color:var(--ink);font:inherit;text-align:left;padding:10px 11px;cursor:pointer;transition:background .18s ease,color .18s ease}.checklist-result-btn:hover:not(.is-revealed),.checklist-result-btn:focus-visible:not(.is-revealed){background:rgba(255,255,255,.34);outline:1px solid rgba(93,83,68,.24);outline-offset:-2px}.checklist-result-btn.is-revealed{cursor:default}.checklist-prompt{font-size:12px;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;color:var(--chapter,#5d6e8c)}.checklist-answer[hidden],.checklist-status[hidden]{display:none}.checklist-status{display:inline-block;animation:checklistPop .28s cubic-bezier(.2,.8,.2,1);font-size:22px;line-height:1;color:var(--green)}.checklist-status.pending{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}@keyframes checklistPop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
 .checklist-table th:first-child{font-size:19px;font-weight:700;letter-spacing:.025em;color:var(--purple2)}.checklist-table td:first-child{border-left:0;padding-left:11px;font-size:19.6px;font-weight:700;line-height:1.18;color:var(--purple2);text-shadow:0 1px 0 rgba(255,255,255,.96),0 0 13px rgba(250,248,241,.96),0 0 24px rgba(250,248,241,.82)}
 .timeline{list-style:none;margin:4px 0 0;padding:0}.timeline li{position:relative;margin:0 0 13px;padding:0 0 0 23px;font-size:18.8px}.timeline li::before{content:"";position:absolute;left:4px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--chapter,#6d7186)}.timeline li::after{content:"";position:absolute;left:8px;top:16px;bottom:-12px;width:1px;background:rgba(93,83,68,.18)}.timeline li:last-child::after{display:none}.pillrow{display:flex;gap:7px;flex-wrap:wrap}.pill{background:rgba(255,255,255,.28);border:1px solid rgba(93,83,68,.17);border-radius:99px;padding:5px 11px;font-size:14px;color:#36332d}.ref{font-size:16.5px;color:#403c37;line-height:1.52}.ref li{font-size:16.5px}
-.slide.final-recap{align-items:flex-start;justify-content:center;padding:27px clamp(38px,4.5vw,82px) 20px}
-.slide.final-recap .stack{width:100%;max-width:1680px;margin:0}
-.slide.final-recap h1.section{font-size:clamp(3rem,4.1vw,4.15rem);line-height:.95;margin:0 0 4px}
+.slide.final-recap{align-items:center;justify-content:center;padding:20px clamp(38px,4.5vw,82px)}
+.slide.final-recap .stack{width:100%;max-width:1500px;margin:auto}
+.slide.final-recap h1.section{text-align:center;font-size:clamp(3.2rem,4.4vw,4.6rem);line-height:.95;margin:0 0 16px}
+.slide.final-recap .panel{width:100%}
 .slide.final-recap .panel .lead{max-width:980px;font-size:18px;line-height:1.28;margin:0 0 8px}
 .slide.final-recap .timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px 24px;margin:0}
 .slide.final-recap .timeline li{margin:0;padding:4px 0 4px 15px;font-size:14.5px;line-height:1.27}
 .slide.final-recap .timeline li::before{left:1px;top:10px;width:6px;height:6px}
 .slide.final-recap .timeline li::after{display:none}
+.slide.final-recap .takeaway-list{column-count:1;width:max-content;max-width:100%;margin:0 auto;padding-left:42px;text-align:left}
+.slide.final-recap .takeaway-list li{font-size:clamp(22px,1.55vw,30px);line-height:1.16;margin:0 0 4px;padding-left:9px}
 .nav{
-  height:75px;flex:0 0 75px;
+  height:62px;flex:0 0 62px;
   background:#fff;
-  border-top:1px solid #e0dfdc;
-  display:grid;grid-template-columns:90px minmax(120px,1fr) auto;align-items:center;gap:22px;
-  padding:0 18px;
+  border-top:1px solid #dad6ce;
+  display:grid;grid-template-columns:minmax(0,1fr) 1px auto auto;align-items:center;gap:16px;
+  padding:10px 22px;
   position:relative;z-index:4;
 }
-.reset-control,.navbtn{
+.navbtn{
   height:36px;border-radius:0;
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  border:1px solid #d6d5d2;background:#fff;color:#111;
+  border:1px solid #d4cec2;background:#fff;color:#34322f;
   font:700 12px/1 Georgia,"Times New Roman",Times,serif;
-  letter-spacing:.06em;text-transform:uppercase;
+  letter-spacing:.12em;text-transform:uppercase;
   cursor:pointer;
   transition:background .14s ease,border-color .14s ease;
 }
-.reset-control{width:90px;padding:0 14px}
-.reset-control:hover,.navbtn:hover:not(:disabled){background:#f4f3f0;border-color:#aaa8a3}
-.control-icon{display:none}
-.progress-card{position:relative;min-width:0;height:48px;padding:0 1px;--counter-position:0%}
-.progress-copy{position:absolute;inset:0;pointer-events:none;z-index:2}
-.progress-labels{display:none}
+.navbtn:hover:not(:disabled){background:#f4f1eb;border-color:#aaa397}
+.progress-card{position:relative;min-width:0;height:24px}
+.progress-copy{display:none}
 .counter{
-  position:absolute;left:clamp(28px,var(--counter-position),calc(100% - 28px));top:50%;
-  width:56px;height:38px;transform:translate(-50%,-50%);
+  width:78px;height:30px;
   display:grid;place-items:center;
-  border:1px solid #d6d5d2;background:#fff;color:#262626;
-  font:700 12px/1 Georgia,"Times New Roman",Times,serif;
+  border:1px solid #d4cec2;background:#fff;color:#403d38;
+  font:400 13px/1 Georgia,"Times New Roman",Times,serif;
   font-variant-numeric:tabular-nums;
 }
-.progress{position:absolute;left:0;right:0;top:50%;height:12px;transform:translateY(-50%);display:flex;align-items:center;gap:3px;min-width:0}
+.nav-divider{width:1px;height:24px;background:#e6e1d8}
+.progress{height:24px;display:flex;align-items:center;gap:3px;min-width:0}
 .seg{
   appearance:none;-webkit-appearance:none;
-  position:relative;height:12px;min-width:2px;flex:1 1 0;
+  position:relative;height:18px;min-width:2px;flex:1 1 0;
   border:0;padding:0;background:transparent;cursor:pointer;
 }
+.seg.unit-start{margin-left:8px}
+.seg.unit-start:first-child{margin-left:0}
 .seg::before{
-  content:"";position:absolute;left:0;right:0;top:50%;height:6px;
-  background:color-mix(in srgb,var(--seg-color,#777b97) 42%,#d7d5d0);transform:translateY(-50%);
+  content:"";position:absolute;left:0;right:0;top:50%;height:7px;border-radius:3px;
+  background:color-mix(in srgb,var(--seg-color,#777b97) 55%,#ddd9d1);transform:translateY(-50%);
   transition:height .14s ease,background .14s ease;
 }
-.seg.done::before,.seg.current::before{background:#242424}
-.seg:hover::before{height:10px;background:var(--seg-color,#777b97)}
-.nav-actions{display:flex;align-items:center;gap:10px}
-.navbtn{width:90px;padding:0 12px}
+.seg.done::before{background:color-mix(in srgb,var(--seg-color,#777b97) 78%,#6f6a62)}
+.seg.current::before{height:16px;background:var(--seg-color,#777b97)}
+.seg:hover::before{height:13px;background:var(--seg-color,#777b97)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.navbtn{width:96px;padding:0 14px;font-size:13px}
 .navbtn:disabled{opacity:.35;cursor:default;transform:none}
 .navbtn-next.is-complete{background:#fff;border-color:#d6d5d2;color:#111;opacity:.55}
-.navbtn:focus-visible,.reset-control:focus-visible,.top-reset:focus-visible,.seg:focus-visible,.reveal-btn:focus-visible,.opt:focus-visible,.cell:focus-visible,.am-body:focus-visible,.sm-body:focus-visible{outline:2px solid var(--chapter,#777b97);outline-offset:2px}
-.nav-icon{display:none}
+.navbtn:focus-visible,.topbar-btn:focus-visible,.seg:focus-visible,.reveal-btn:focus-visible,.opt:focus-visible,.cell:focus-visible,.am-body:focus-visible,.sm-body:focus-visible{outline:2px solid var(--chapter,#777b97);outline-offset:2px}
+.nav-icon{display:inline;font-size:16px;font-weight:400;letter-spacing:0}
 @media(max-width:760px){
-  .topbar{height:56px;flex-basis:56px;padding:0 18px}.case-title{font-size:16px}.top-reset{width:34px;height:34px}
+  .topbar{height:56px;flex-basis:56px;padding:0 14px}.case-title{font-size:15px}.act-tag,.topbar-credit{display:none}.topbar-actions{gap:6px}.topbar-btn{height:32px;padding:0 9px;font-size:9.5px}
   .slide{padding:25px 20px 34px}.title-slide{padding-left:25px}.panel{padding:0}.titlebox h1{font-size:clamp(3.25rem,14vw,4.7rem)}.grid2,.grid3,.case-strip{grid-template-columns:1fr}.gtable{font-size:12px}.cell{width:130px;min-height:78px;height:auto}.table-stage{display:block}
-  .nav{height:72px;flex-basis:72px;grid-template-columns:64px minmax(54px,1fr) auto;gap:8px;padding:0 10px calc(env(safe-area-inset-bottom))}.reset-control,.navbtn{width:64px;height:38px;padding:0 6px;font-size:10.5px}.nav-actions{gap:6px}.progress{gap:1px}.seg::before{height:4px}.counter{width:50px;height:36px;font-size:10.5px}.progress-card{--counter-position:0%}
-  .slide.final-recap{padding:22px 20px 34px}.slide.final-recap h1.section{font-size:2.8rem}.slide.final-recap .panel .lead{font-size:17px}.slide.final-recap .timeline{grid-template-columns:1fr;gap:2px}.slide.final-recap .timeline li{font-size:14px;padding-top:3px;padding-bottom:3px}
+  .nav{height:68px;flex-basis:68px;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}.nav-divider,.counter{display:none}.navbtn{width:62px;height:38px;padding:0 6px;font-size:10.5px}.nav-actions{gap:6px}.progress{gap:1px}.seg.unit-start{margin-left:3px}.seg::before{height:5px}.seg.current::before{height:13px}
+  .slide.final-recap{align-items:flex-start;padding:22px 20px 34px}.slide.final-recap h1.section{font-size:2.8rem;margin-bottom:12px}.slide.final-recap .panel .lead{font-size:17px}.slide.final-recap .timeline{grid-template-columns:1fr;gap:2px}.slide.final-recap .timeline li{font-size:14px;padding-top:3px;padding-bottom:3px}.slide.final-recap .takeaway-list{width:auto;padding-left:30px}.slide.final-recap .takeaway-list li{font-size:20px;line-height:1.18;margin-bottom:5px;padding-left:6px}
 }
-@media(max-width:390px){.topbar{padding:0 14px}.case-title{font-size:14px}.nav{grid-template-columns:56px minmax(44px,1fr) auto;gap:6px;padding-left:7px;padding-right:7px}.reset-control,.navbtn{width:56px}.nav-actions{gap:5px}.counter{width:46px}}
+@media(max-width:430px){.case-title{font-size:13.5px}.topbar-btn{padding:0 7px;font-size:9px}.navbtn{width:56px}.nav-actions{gap:5px}}
 @media print{body{background:white}.app{height:auto;max-width:none;box-shadow:none}.nav,.topbar{display:none}.stage,.slide{position:static;height:auto;overflow:visible}.slide{page-break-after:always}.stage::before,.stage::after,.bg-layer{display:none}}
 
 /* ---- Deep-dive trial slides: seamless, glow only, no boxes ---- */
@@ -432,8 +458,6 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 
 /* ---- Projector edition: stronger hierarchy without hiding the artwork ---- */
 @media (min-width:761px){
-  .topbar{height:52px;flex-basis:52px;padding-left:2.4rem}
-  .case-title{font-size:20px;font-weight:700;letter-spacing:.06em}
   .slide{padding:34px clamp(42px,5.2vw,92px) 26px}
   .stack{max-width:760px}.stack.wide{max-width:900px}.stack.narrow{max-width:650px}
   .slide .stack{position:relative;isolation:isolate}
@@ -497,8 +521,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
   .ref,.ref li{font-size:clamp(18px,1.22vw,21px);line-height:1.38}
   .reveal-btn{font-size:16px;padding:12px 20px}
   .answer .big{font-size:36px}
-  .nav{height:70px;flex-basis:70px}
-  .navbtn,.reset-control{font-size:13px;font-weight:700}
+  .navbtn{font-size:13px;font-weight:700}
   .progress-title,.progress-chapter,.counter{font-size:13px}
   .slide.boost .panel p{font-size:clamp(21px,1.5vw,25px)}
   .slide.boost .callout p{font-size:clamp(19px,1.32vw,23px)}
@@ -514,16 +537,21 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
   <header class="topbar">
     <div class="brand-lockup"><span class="case-title">Cirrhosis</span></div>
     <span class="act-tag" id="actTag"></span>
-    <button id="resetTop" class="top-reset" title="Restart case" aria-label="Restart case">×</button>
+    <div class="topbar-actions">
+      <span class="topbar-credit">Mohammad Almeqdadi, MD</span>
+      <button id="reset" class="topbar-btn" title="Restart case">Reset</button>
+      <button id="fullscreen" class="topbar-btn" aria-label="Enter fullscreen">Fullscreen</button>
+    </div>
   </header>
   <main class="stage" id="stage"><div class="bg-layer is-active" id="bgLayerA" aria-hidden="true"></div><div class="bg-layer" id="bgLayerB" aria-hidden="true"></div><section class="slide" id="slide"></section></main>
   <footer class="nav" aria-label="Case navigation">
-    <button class="reset-control" id="reset" title="Restart case" aria-label="Restart case"><span class="control-label">Reset</span></button>
     <div class="progress-card">
-      <div class="progress-copy" aria-live="polite"><div class="progress-labels"><span class="progress-chapter" id="progressChapter"></span><span class="progress-title" id="progressTitle"></span></div><span class="counter" id="counter"></span></div>
+      <div class="progress-copy" aria-live="polite"><div class="progress-labels"><span class="progress-chapter" id="progressChapter"></span><span class="progress-title" id="progressTitle"></span></div></div>
       <div class="progress" id="progress" aria-label="Case progress"></div>
     </div>
-    <div class="nav-actions"><button class="navbtn navbtn-back" id="prev" aria-label="Previous slide"><span class="nav-label">Prev</span></button><button class="navbtn navbtn-next" id="next" aria-label="Next slide"><span class="nav-label" id="nextLabel">Next</span><span class="nav-icon" id="nextIcon" aria-hidden="true">→</span></button></div>
+    <span class="nav-divider" aria-hidden="true"></span>
+    <span class="counter" id="counter" aria-live="polite"></span>
+    <div class="nav-actions"><button class="navbtn navbtn-back" id="prev" aria-label="Previous slide"><span class="nav-icon" aria-hidden="true">‹</span><span class="nav-label">Prev</span></button><button class="navbtn navbtn-next" id="next" aria-label="Next slide"><span class="nav-label" id="nextLabel">Next</span><span class="nav-icon" id="nextIcon" aria-hidden="true">›</span></button></div>
   </footer>
 </div>
 <script>
@@ -540,6 +568,22 @@ const CHAPTERS={
   txp:{label:"Transplant",color:"#61724c",bg:"linear-gradient(120deg,#e6e4d4,#d7dccd)"},
   post:{label:"After",color:"#6a6b71",bg:"linear-gradient(120deg,#e9e6df,#d4d1ca)"}
 };
+const NAV_GROUPS=[
+  {start:1,end:1,label:"Title",color:"#4b4a78"},
+  {start:2,end:5,label:"Pathophysiology",color:"#5d6e8c"},
+  {start:6,end:8,label:"Initial Presentation",color:"#777b97"},
+  {start:9,end:18,label:"Ascites",color:"#547f92"},
+  {start:19,end:23,label:"SBP",color:"#b49a55"},
+  {start:24,end:29,label:"Variceal Bleed",color:"#9b4b4b"},
+  {start:30,end:35,label:"Hepatic Encephalopathy",color:"#87699a"},
+  {start:36,end:41,label:"PPCD",color:"#7a8084"},
+  {start:42,end:56,label:"HRS-AKI",color:"#61724c"},
+  {start:57,end:57,label:"Conclusion",color:"#6a6b71"}
+];
+function navGroupFor(slideIndex){
+  const slideNumber=slideIndex+1;
+  return NAV_GROUPS.find(group=>slideNumber>=group.start&&slideNumber<=group.end)||NAV_GROUPS[0];
+}
 const SLIDES=[
 {ch:"title",type:"title",layout:"title-slide",kicker:"Interactive Clinical Case",title:"Cirrhosis",sub:"A case-based approach to ascites, spontaneous bacterial peritonitis, variceal bleeding, hepatic encephalopathy, TIPS, MELD 3.0, and HRS-AKI.",byline:"For incoming Internal Medicine interns · Mohammad Almeqdadi, MD",hint:"Use Next or → to advance"},
 {ch:"found",type:"text",layout:"left",section:"Two Ways Cirrhosis Causes Harm",wide:true,body:`<p class="lead">Cirrhosis is diffuse hepatic fibrosis with regenerative nodules. Its complications arise from <span class="hl">two related processes</span>.</p><h3>Loss of hepatic function</h3><p>The liver becomes less effective at bilirubin handling, albumin synthesis, clotting-factor synthesis, ammonia clearance, drug metabolism, and immune surveillance.</p><h3>Portal hypertension</h3><p>Fibrosis and sinusoidal resistance impede portal flow. The resulting pressure produces ascites, varices, splenomegaly, thrombocytopenia, and collateral vessels.</p><div class="callout"><span class="lab">Clinical framework</span><p>Most complications reflect impaired hepatic function, portal hypertension, or both.</p></div>`},
@@ -564,7 +608,7 @@ const SLIDES=[
 {ch:"var",type:"question-mc",layout:"right",section:"GI Bleeding in Cirrhosis",hideTitle:true,softThird:true,compactAnswer:true,answerTag:"Answer",stem:`<b>Which intervention has the clearest mortality benefit in acute variceal bleeding?</b>`,options:[{t:"High dose PPI"},{t:"Octreotide"},{t:"Ceftriaxone",correct:true},{t:"FFP to correct INR"},{t:"Platelets to correct thrombocytopenia"},{t:"Endoscopy within 6 hours of bleed"},{t:"Emergent TIPS referral"},{t:"Blakemore"},{t:"Esophageal stenting"}],rationale:`<p><b>Ceftriaxone</b> reduces infection, rebleeding, and mortality; start it at presentation. Octreotide and urgent endoscopy are also standard. Balloon tamponade or stenting are rescue measures; use TIPS early in selected high-risk patients or as rescue for uncontrolled bleeding.</p>`},
 {ch:"var",type:"question-open",layout:"left",section:"How Does Octreotide Help?",stem:`<b>Why does octreotide help in suspected variceal bleeding?</b>`,reveal:`<span class="tag">Mechanism</span><p>Portal hypertension is driven by high intrahepatic resistance plus high splanchnic inflow.</p><p>Octreotide reduces splanchnic blood flow. Less gut inflow means less portal inflow, lower variceal pressure, and less bleeding.</p><div class="callout"><span class="lab">Physiologic sequence</span><p>Less splanchnic inflow → less portal pressure → less variceal wall tension.</p></div>`},
 {ch:"var",type:"question-open",layout:"right",section:"Endoscopy Findings",boost:true,blur:true,stem:`<span class="bigline">Urgent endoscopy</span>Large esophageal varices with red wale signs and active oozing are controlled with band ligation. His CTP is class C, score 11.<br><br><b>What should you consider before he rebleeds?</b>`,reveal:`<span class="tag">Consider early TIPS</span><p class="big">Pre-emptive TIPS within 24 to 72 hours.</p><p>High-risk patients, especially Child–Pugh C below 14 or Child–Pugh B with active bleeding at endoscopy, may benefit from early TIPS. The landmark trial showed reduced failure to control bleeding, reduced rebleeding, and improved survival.</p><div class="callout"><span class="lab">After placement</span><p>Get a baseline Doppler ultrasound so later velocities can be compared against a known functioning shunt.</p></div>`},
-{ch:"enc",type:"question-open",layout:"left",section:"Adam Is Not Himself",stem:`<p class="lead">One week after TIPS, his wife brings him back. He is drowsy, disoriented to date, and has asterixis.</p><b>Should you check ammonia levels?</b>`,reveal:`<span class="tag">Answer</span><p><b>No.</b> In chronic cirrhosis, HE is a clinical diagnosis of exclusion. Ammonia often fails to change management.</p><p>The work is to treat and find the precipitant: infection, GI bleeding, constipation, dehydration, electrolyte abnormalities, sedatives, renal failure, and in Adam, the new TIPS.</p><p>Ammonia is a different conversation in acute liver failure, where high arterial ammonia can inform cerebral-edema risk.</p>`},
+{ch:"enc",type:"question-open",layout:"left",section:"Adam Is Not Himself",stem:`<p class="lead">One week after TIPS, his wife brings him back. He is drowsy, disoriented to date, and has asterixis.</p><b>What role should an ammonia level play in his evaluation?</b>`,reveal:`<div class="he-answer"><span class="tag">Bottom line</span><p class="big">Do not use an elevated ammonia level to diagnose or grade HE.</p><div class="he-interpret"><p><b>Elevated</b><span>Does not confirm HE.</span></p><p class="he-normal"><b>Normal</b><span>Reconsider HE and search for another cause.</span></p><p><b>Serial</b><span>Do not trend ammonia to judge treatment response.</span></p></div><div class="he-action"><span class="he-label">Act in parallel</span><p>Check for infection or SBP, GI bleeding, constipation, volume depletion, electrolyte or glucose abnormalities, AKI, and sedating medications.</p><p class="he-tips"><b>Recent TIPS is a strong clue—but still look for reversible triggers.</b></p></div></div>`},
 {ch:"enc",type:"question-open",layout:"right",section:"How Do You Treat This?",stem:`Adam has overt hepatic encephalopathy after TIPS.<br><br><b>What is the next step in management?</b>`,reveal:`<span class="tag">Treatment sequence</span><p><b>Start lactulose</b> and titrate to 2 to 3 soft stools daily.</p><p>If he remains encephalopathic or has recurrence, <b>add rifaximin</b>.</p><p>At the same time, identify and treat the precipitating cause: infection, GI bleeding, constipation, dehydration, electrolyte abnormalities, sedatives, renal failure, or the new TIPS.</p>`},
 {ch:"enc",type:"question-open",layout:"right",section:"Hepatic Encephalopathy",stem:`He remains confused despite lactulose, rifaximin, infection workup, electrolyte correction, and medication review.<br><br><b>What do you do now?</b>`,reveal:`<span class="tag">Call IR</span><p class="big">Discuss TIPS reduction.</p><p>A TIPS is a deliberate portosystemic shunt. It sends portal blood around the liver, which helps portal hypertension but can worsen encephalopathy. Refractory post-TIPS HE may require shunt reduction or, rarely, occlusion.</p>`},
 {ch:"hrs",type:"text",layout:"left",section:"TIPS Reduction",wide:true,body:`<p class="lead">Adam undergoes TIPS reduction because his encephalopathy remains refractory despite lactulose, rifaximin, infection workup, electrolyte correction, and medication review.</p><div class="scorebox"><div class="tile"><div class="n">3</div><div class="l">PSG before</div></div><div class="tile"><div class="n">9</div><div class="l">PSG after</div></div><div class="tile"><div class="n">Less</div><div class="l">Shunt flow</div></div></div><p>The intervention deliberately raises the portosystemic gradient. Less portal blood bypasses the liver, so encephalopathy can improve, but portal-hypertension complications can return.</p>`},
@@ -587,10 +631,10 @@ const SLIDES=[
 {ch:"hrs",type:"text",layout:"left",section:"How Sick Is Adam Now?",wide:true,body:`<p class="lead">Adam becomes newly encephalopathic with a rising bilirubin while the creatinine continues to climb.</p><table class="scoretable"><tr><th>CLIF organ system</th><th>Adam now</th><th>Counts?</th></tr><tr><td>Kidney</td><td>Creatinine 2.7 mg/dL</td><td class="points">Failure</td></tr><tr><td>Liver</td><td>Total bilirubin 13.1 mg/dL</td><td class="points">Failure</td></tr><tr><td>Brain</td><td>West Haven grade III encephalopathy</td><td class="points">Failure</td></tr></table><div class="scorebox"><div class="tile"><div class="n">3</div><div class="l">Organ failures</div></div><div class="tile"><div class="n">ACLF-3</div><div class="l">Grade</div></div></div><p class="em">The new encephalopathy is the third organ failure that changes the terlipressin decision.</p>`},
 {ch:"icu",type:"question-open",layout:"right",section:"When Terlipressin Is Unsafe",stem:`Adam is now ACLF grade 3.<br><br><b>What would you do next?</b>`,reveal:`<span class="tag">ICU path</span><p class="big">Norepinephrine, with or without vasopressin.</p><p>If terlipressin is unsafe, use ICU vasopressor support plus albumin and close monitoring. The aim is to restore organ perfusion, not simply normalize the blood pressure.</p>`},
 {ch:"icu",type:"text",layout:"left",section:"What MAP Should You Target?",body:`<p class="lead">His MAP is <b>70</b>.</p><div class="scorebox"><div class="tile"><div class="n">70</div><div class="l">Current MAP</div></div><div class="tile"><div class="n">+10</div><div class="l">Target rise</div></div><div class="tile"><div class="n">80</div><div class="l">Working goal</div></div></div><p>Try to raise the MAP by about 10 mm Hg and watch the creatinine and urine output. Creatinine and urine output provide practical measures of the perfusion response.</p>`},
-{ch:"icu",type:"text",layout:"right",section:"Prognosis",wide:true,body:`<p class="lead">HRS-AKI indicates advanced circulatory dysfunction and carries a poor prognosis.</p><ul><li>Older natural-history cohorts of type 1 HRS showed very short survival without reversal or transplant.</li><li>Modern vasoconstrictors can reverse creatinine in a subset, but transplant-free survival remains poor when ACLF, infection, respiratory failure, or multiorgan failure dominate.</li><li>Dialysis changes potassium, acid, volume, and uremia. It does not fix portal hypertension or liver failure.</li></ul><div class="callout"><span class="lab">Clinical implication</span><p>HRS-AKI should prompt urgent assessment of transplant candidacy alongside renal support decisions.</p></div>`},
+{ch:"icu",type:"text",layout:"right",section:"Prognosis",wide:true,body:`<p class="lead">HRS-AKI indicates advanced circulatory dysfunction and carries a poor prognosis.</p><ul><li>Older natural-history cohorts of type 1 HRS showed very short survival without reversal or transplant.</li><li>Modern vasoconstrictors can reverse creatinine in a subset, but transplant-free survival remains poor when ACLF, infection, respiratory failure, or multiorgan failure dominate.</li><li>Dialysis changes potassium, acid, volume, and uremia. It does not fix portal hypertension or liver failure.</li></ul>`},
 {ch:"txp",type:"question-open",layout:"left",section:"A Critical Decision Point",stem:`Adam has HRS-AKI and ACLF grade 3.<br><br><b>So what do you want to do next?</b>`,reveal:`<span class="tag">Priority</span><p class="big">Check transplant candidacy urgently.</p><p>Clarify sobriety and treatment engagement, infection control, cardiopulmonary risk, malignancy screening, social support, frailty, goals of care, and whether the transplant center would consider him a candidate if his kidneys worsen.</p>`},
 {ch:"txp",type:"question-open",layout:"right",section:"When Dialysis Is Appropriate",stem:`His creatinine keeps rising and he becomes oliguric.<br><br><b>Would you start dialysis?</b>`,reveal:`<span class="tag">Role of dialysis</span><p class="big">When it provides a bridge to transplant or recovery from a reversible insult.</p><p>Dialysis can buy time for transplant evaluation, organ offer, or recovery from a reversible insult. If he is not a candidate and liver failure is the driver, dialysis often adds burden without changing the outcome. That should trigger a direct goals-of-care conversation.</p>`},
-{ch:"post",type:"recap",layout:"center",wide:true,section:"Take-Home Points",body:`<ol class="takeaway-list"><li>Suspect cirrhosis early → <b>low platelets, splenomegaly, AST &gt; ALT.</b></li><li>New ascites → <b>tap.</b></li><li>Ascitic fluid → <b>PMNs, albumin/SAAG, protein, and culture.</b></li><li>PMN ≥250 → <b>treat as SBP.</b></li><li>SBP → <b>antibiotics + albumin.</b></li><li>SBP response → <b>re-tap at 48 h; PMNs should fall ≥25%.</b></li><li>Prior SBP → <b>secondary antibiotic prophylaxis.</b></li><li>Variceal bleeding → <b>ceftriaxone + octreotide + urgent endoscopy.</b></li><li>High-risk variceal bleeding → <b>pre-emptive TIPS within 24–72 h.</b></li><li>Hepatic encephalopathy → <b>treat clinically; don’t chase ammonia.</b></li><li>Overt HE → <b>lactulose, correct precipitants, then rifaximin.</b></li><li>Refractory HE after TIPS → <b>consider TIPS reduction.</b></li><li>Paracentesis → <b>albumin 6–8 g/L removed.</b></li><li>HRS-AKI → <b>exclude other causes, albumin, vasoconstrictor, transplant evaluation.</b></li></ol>`}
+{ch:"post",type:"recap",layout:"center",wide:true,finalRecap:true,section:"Take-Home Points",body:`<ol class="takeaway-list"><li>Suspect cirrhosis early → <b>low platelets, splenomegaly, AST &gt; ALT.</b></li><li>New ascites → <b>tap.</b></li><li>Ascitic fluid → <b>PMNs, albumin/SAAG, protein, and culture.</b></li><li>PMN ≥250 → <b>treat as SBP.</b></li><li>SBP → <b>antibiotics + albumin.</b></li><li>SBP response → <b>re-tap at 48 h; PMNs should fall ≥25%.</b></li><li>Prior SBP → <b>secondary antibiotic prophylaxis.</b></li><li>Variceal bleeding → <b>ceftriaxone + octreotide + urgent endoscopy.</b></li><li>High-risk variceal bleeding → <b>pre-emptive TIPS within 24–72 h.</b></li><li>Hepatic encephalopathy → <b>treat clinically; don’t chase ammonia.</b></li><li>Overt HE → <b>lactulose, correct precipitants, then rifaximin.</b></li><li>Refractory HE after TIPS → <b>consider TIPS reduction.</b></li><li>Paracentesis → <b>albumin 6–8 g/L removed.</b></li><li>HRS-AKI → <b>exclude other causes, albumin, vasoconstrictor, transplant evaluation.</b></li></ol>`}
 ];
 const BACKGROUND_IMAGE_BASE_PATH="";
 
@@ -872,7 +916,7 @@ function render(direction=0){
   slideEl.style.setProperty('--content-bg-position',s.imagePos||'center center');
   actTag.textContent=c.label;
   const darkTipsClass=idx>=32&&idx<=34?' tips-dark':'';
-  slideEl.className='slide '+(s.layout||'left')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.closing?' closing-slide':'')+darkTipsClass+enterClass;
+  slideEl.className='slide '+(s.layout||'left')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+darkTipsClass+enterClass;
   slideEl.innerHTML=htmlFor(s);
   wire(s);
   updateChrome();
@@ -1065,23 +1109,26 @@ function wire(s){
 }
 function updateChrome(){
   const s=SLIDES[idx], c=meta(s), atEnd=idx===SLIDES.length-1;
-  progressChapter.textContent=c.label;
+  const navGroup=navGroupFor(idx);
+  progressChapter.textContent=navGroup.label;
   progressTitle.textContent=s.section||s.title||'Case slide';
-  counter.textContent=`${idx+1}/${SLIDES.length}`;
-  progressCard.style.setProperty('--counter-position',`${SLIDES.length>1?(idx/(SLIDES.length-1))*100:0}%`);
+  actTag.textContent=navGroup.label;
+  counter.textContent=`${idx+1} / ${SLIDES.length}`;
   document.getElementById('prev').disabled=idx===0||isTransitioning;
   const next=document.getElementById('next');
   next.disabled=isTransitioning||atEnd;
   next.classList.toggle('is-complete',atEnd);
   nextLabel.textContent=atEnd?'Complete':'Next';
-  nextIcon.textContent=atEnd?'✓':'→';
+  nextIcon.textContent=atEnd?'✓':'›';
   next.setAttribute('aria-label',atEnd?'Case complete':'Next slide');
   progress.innerHTML='';
   SLIDES.forEach((slide,i)=>{
     const seg=document.createElement('button');
     seg.type='button';
-    seg.className='seg'+(i<idx?' done':'')+(i===idx?' current':'');
-    seg.style.setProperty('--seg-color',meta(slide).color);
+    const group=navGroupFor(i);
+    const startsChapter=i===group.start-1;
+    seg.className='seg'+(startsChapter?' unit-start':'')+(i<idx?' done':'')+(i===idx?' current':'');
+    seg.style.setProperty('--seg-color',group.color);
     seg.title=`${i+1}. ${slide.section||slide.title}`;
     seg.setAttribute('aria-label',`Go to slide ${i+1}: ${slide.section||slide.title}`);
     if(i===idx) seg.setAttribute('aria-current','step');
@@ -1111,6 +1158,21 @@ function transitionTo(target,direction=0){
 function go(d){transitionTo(idx+d,d)}
 document.getElementById('next').addEventListener('click',()=>go(1));
 document.getElementById('prev').addEventListener('click',()=>go(-1));
+const fullscreenButton=document.getElementById('fullscreen');
+function updateFullscreenButton(){
+  const isFullscreen=Boolean(document.fullscreenElement);
+  fullscreenButton.textContent=isFullscreen?'Exit Fullscreen':'Fullscreen';
+  fullscreenButton.setAttribute('aria-label',isFullscreen?'Exit fullscreen':'Enter fullscreen');
+}
+fullscreenButton.addEventListener('click',async()=>{
+  try{
+    if(document.fullscreenElement) await document.exitFullscreen();
+    else await document.documentElement.requestFullscreen();
+  }catch(error){
+    console.warn('Fullscreen is unavailable in this browser.',error);
+  }
+});
+document.addEventListener('fullscreenchange',updateFullscreenButton);
 function resetAll(){
   SLIDES.forEach(s=>{delete s._done;delete s._answered;delete s._revealed;delete s._chosen;delete s._txShown;delete s._revealedCells;delete s._matrixHighlighted;delete s._matrixRevealed;delete s._syndromeRevealed;delete s._syndromeTx;delete s._checklistRevealed});
   isTransitioning=false;
@@ -1120,7 +1182,6 @@ function resetAll(){
   render(0);
 }
 document.getElementById('reset').addEventListener('click',resetAll);
-document.getElementById('resetTop').addEventListener('click',resetAll);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'){go(1);e.preventDefault()} if(e.key==='ArrowLeft'||e.key==='PageUp'){go(-1);e.preventDefault()}});
 let gestureStart=null;
 stage.addEventListener('touchstart',e=>{
