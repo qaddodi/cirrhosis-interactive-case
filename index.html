@@ -377,6 +377,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .navbtn-next.is-complete{background:#fff;border-color:#d6d5d2;color:#111;opacity:.55}
 .navbtn:focus-visible,.topbar-btn:focus-visible,.seg:focus-visible,.reveal-btn:focus-visible,.opt:focus-visible,.cell:focus-visible,.am-body:focus-visible,.sm-body:focus-visible{outline:2px solid var(--chapter,#777b97);outline-offset:2px}
 .nav-icon{display:inline;font-size:16px;font-weight:400;letter-spacing:0}
+.background-only-image{display:none}
 @media(max-width:760px){
   .topbar{height:56px;flex-basis:56px;padding:0 14px}.case-title{font-size:15px}.act-tag,.topbar-credit{display:none}.topbar-actions{gap:6px}.topbar-btn{height:32px;padding:0 9px;font-size:9.5px}
   .slide{padding:25px 20px 34px}.title-slide{padding-left:25px}.panel{padding:0}.titlebox h1{font-size:clamp(3.25rem,14vw,4.7rem)}.grid2,.grid3,.case-strip{grid-template-columns:1fr}.gtable{font-size:12px}.cell{width:130px;min-height:78px;height:auto}.table-stage{display:block}
@@ -569,11 +570,37 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
   }
   .bg-layer{display:none}
   .stage::after{display:none}
+  .slide.background-only{
+    inset:0;
+    padding:0;
+    overflow:auto;
+    align-items:stretch;
+    justify-content:stretch;
+    touch-action:pan-x pan-y pinch-zoom;
+    -webkit-overflow-scrolling:touch;
+  }
+  .background-only-image{
+    display:block;
+    width:100%;
+    height:100%;
+    min-width:100%;
+    object-fit:contain;
+    object-position:center;
+    background:var(--paper);
+    touch-action:pan-x pan-y pinch-zoom;
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
+  }
   .slide,
   .slide.title-slide.right{
     align-items:flex-start;
     justify-content:flex-start;
-    padding:24px max(18px,env(safe-area-inset-right)) 36px max(18px,env(safe-area-inset-left));
+    padding:
+      24px
+      max(22px,calc(env(safe-area-inset-right) + 12px))
+      36px
+      max(28px,calc(env(safe-area-inset-left) + 14px));
     -webkit-overflow-scrolling:touch;
     scrollbar-gutter:stable;
   }
@@ -1061,7 +1088,7 @@ function render(direction=0){
   slideEl.style.setProperty('--content-bg-position',visual.pos);
   actTag.textContent=c.label;
   const darkTipsClass=idx>=33&&idx<=35?' tips-dark':'';
-  slideEl.className='slide '+(s.layout||'left')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+darkTipsClass+enterClass;
+  slideEl.className='slide '+(s.layout||'left')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+darkTipsClass+enterClass;
   slideEl.innerHTML=htmlFor(s);
   wire(s);
   updateChrome();
@@ -1075,7 +1102,7 @@ function render(direction=0){
 function head(s){return `${s.kicker?`<div class="kicker">${s.kicker}</div>`:''}${s.section&&!s.hideTitle?`<h1 class="section">${s.section}</h1>`:''}`}
 function shell(s,inner){const wide=s.wide?' wide':'';const narrow=s.narrow?' narrow':'';const focus=s.focusTable?' focus-shell':'';return `<div class="stack${wide}${narrow}${focus}">${head(s)}${inner}</div>`}
 function htmlFor(s){
-  if(s.type==='background-only') return '';
+  if(s.type==='background-only') return `<img class="background-only-image" src="${s.image}" alt="${s.section||'Clinical case diagram'}" draggable="false">`;
   if(s.type==='title') return `<div class="titlebox">${s.kicker?`<div class="kicker">${s.kicker}</div>`:''}<h1>${s.title}</h1>${s.sub?`<p class="sub">${s.sub}</p>`:''}${s.byline?`<p class="byline">${s.byline}</p>`:''}${s.hint?`<p class="hint">${s.hint}</p>`:''}</div>`;
   if(s.type==='closing') return `<div class="closing-content"><h1>${s.title}</h1><p class="closing-sub">${s.sub}</p><div class="closing-actions">${s.actions.map(a=>`<span>${a}</span>`).join('')}</div></div>`;
   if(s.titleOnly) return shell(s,'');
@@ -1341,7 +1368,7 @@ document.getElementById('reset').addEventListener('click',resetAll);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'){go(1);e.preventDefault()} if(e.key==='ArrowLeft'||e.key==='PageUp'){go(-1);e.preventDefault()}});
 let gestureStart=null;
 stage.addEventListener('touchstart',e=>{
-  if(e.touches.length!==1||e.target.closest('button,a,input,select,textarea')){gestureStart=null;return}
+  if(e.touches.length!==1||e.target.closest('button,a,input,select,textarea,.background-only-image')){gestureStart=null;return}
   gestureStart={x:e.touches[0].clientX,y:e.touches[0].clientY};
 },{passive:true});
 stage.addEventListener('touchend',e=>{
