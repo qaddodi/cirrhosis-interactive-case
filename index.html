@@ -610,6 +610,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
     touch-action:pan-y;
     overscroll-behavior:contain;
   }
+  .stage.mobile-dark-stage{background:#292746}
   .bg-layer{display:none}
   .stage::after{display:none}
   .slide.background-only{
@@ -770,6 +771,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
     transform:none!important;
     filter:none!important;
   }
+  .slide{inset:0!important;width:auto!important;transition:opacity .18s ease!important;will-change:opacity}
   .slide.title-slide{
     align-items:center;
     justify-content:center;
@@ -1282,7 +1284,8 @@ function syncChecklistBackdrop(s){
 function render(direction=0){
   const s=SLIDES[idx], c=meta(s);
   const visual=visualStateFor(s);
-  const enterClass=direction>0?' enter-next':direction<0?' enter-prev':' enter-fade';
+  const isMobileView=window.matchMedia('(max-width:760px)').matches;
+  const enterClass=isMobileView?'':direction>0?' enter-next':direction<0?' enter-prev':' enter-fade';
   applyStageBackground(s,c,{instant:!hasAppliedInitialBackground});
   document.querySelector('.app').style.setProperty('--chapter',c.color);
   slideEl.style.setProperty('--chapter',c.color);
@@ -1291,6 +1294,7 @@ function render(direction=0){
   actTag.textContent=c.label;
   const darkTipsClass=idx>=34&&idx<=36?' tips-dark':'';
   const mobileDarkClass=MOBILE_DARK_SECTIONS.has(s.section)?' mobile-dark':'';
+  stage.classList.toggle('mobile-dark-stage',Boolean(mobileDarkClass));
   slideEl.className='slide '+(s.layout||'left')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+darkTipsClass+mobileDarkClass+enterClass;
   slideEl.innerHTML=htmlFor(s);
   wire(s);
@@ -1298,6 +1302,7 @@ function render(direction=0){
   slideEl.scrollTop=0;stage.scrollTop=0;
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     slideEl.classList.add('is-visible');
+    slideEl.classList.remove('enter-next','enter-prev','enter-fade');
     syncChecklistBackdrop(s);
     setTimeout(()=>{if(SLIDES[idx]===s) syncChecklistBackdrop(s)},460);
   }));
