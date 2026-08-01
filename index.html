@@ -101,6 +101,10 @@ body{
   opacity:1;
   transform:scale(1);
 }
+.bg-layer.fade-sides{
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.16) 3%,rgba(0,0,0,.62) 8%,#000 14%,#000 86%,rgba(0,0,0,.62) 92%,rgba(0,0,0,.16) 97%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.16) 3%,rgba(0,0,0,.62) 8%,#000 14%,#000 86%,rgba(0,0,0,.62) 92%,rgba(0,0,0,.16) 97%,transparent 100%);
+}
 .stage::after{
   content:"";
   position:absolute;inset:0;
@@ -233,7 +237,19 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .callout p{font-size:18px;margin:0;line-height:1.45}
 .fileflag{font-size:13px;text-transform:uppercase;letter-spacing:.16em;color:#6f685f;margin-top:13px}
 .title-slide{justify-content:flex-start;align-items:center;padding-left:clamp(48px,8vw,130px)}
-.titlebox{max-width:780px;text-shadow:0 1px 0 rgba(255,255,255,.95),0 0 18px rgba(250,248,241,.98),0 0 36px rgba(250,248,241,.96),0 0 56px rgba(250,248,241,.84)}.titlebox h1{font-size:clamp(4.4rem,9vw,7.2rem);line-height:.93;color:var(--purple2);font-weight:normal;margin:0 0 18px}.titlebox .sub{font-size:24px;line-height:1.52;color:var(--muted);max-width:740px}.byline{margin-top:24px;color:#777166;font-size:16px;font-style:italic}.hint{margin-top:28px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#557b8d;font-weight:bold}
+.titlebox{max-width:780px;text-shadow:0 1px 0 rgba(255,255,255,.95),0 0 18px rgba(250,248,241,.98),0 0 36px rgba(250,248,241,.96),0 0 56px rgba(250,248,241,.84)}.titlebox h1{font-size:clamp(4.4rem,9vw,7.2rem);line-height:.93;color:var(--purple2);font-weight:normal;margin:0 0 18px}.titlebox .sub{font-size:24px;line-height:1.52;color:var(--muted);max-width:740px}.byline{margin-top:20px;color:#777166;font-size:15px;letter-spacing:.04em;text-transform:uppercase}.title-credits{display:grid;gap:5px;margin-top:14px}.title-presenter,.title-social,.title-art-credit{margin:0}.title-presenter{color:#5f5a52;font-size:20px;font-style:italic}.title-social{font-size:17px}.title-social a{color:var(--purple2);text-decoration:none;border-bottom:1px solid rgba(52,52,94,.35)}.title-social a:hover,.title-social a:focus-visible{color:#25254c;border-bottom-color:currentColor}.title-art-credit{color:#706a61;font-size:13px}.hint{margin-top:22px;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#557b8d;font-weight:bold}
+.title-slide .titlebox{position:relative;isolation:isolate;padding:26px 30px 28px}
+.title-slide .titlebox::before{content:"";position:absolute;inset:0;z-index:-1;border:1px solid rgba(255,255,255,.68);border-radius:20px;background:linear-gradient(135deg,rgba(249,247,241,.88),rgba(244,240,231,.72));box-shadow:0 22px 58px rgba(43,37,28,.14),0 1px 0 rgba(255,255,255,.92) inset;backdrop-filter:blur(8px) saturate(.92);-webkit-backdrop-filter:blur(8px) saturate(.92)}
+.title-slide .titlebox h1{color:#292750;text-shadow:0 1px 0 #fff,0 0 18px rgba(255,255,255,.92)}
+.title-slide .titlebox .sub{color:#2e2a27;font-size:26px;font-weight:bold;line-height:1.3}
+.title-slide .byline{color:#4c4860;font-weight:bold;text-shadow:0 1px 0 #fff}
+.title-slide .title-presenter{color:#373349;font-weight:bold}
+.title-slide .title-social a{color:#302d6b;font-weight:bold}
+.title-slide .title-art-credit{color:#4c4842;font-size:14px;font-weight:bold}
+.title-slide .hint{display:inline-block;margin-top:20px;padding:9px 13px;border-radius:5px;background:rgba(75,74,120,.92);color:#fff;text-shadow:none;box-shadow:0 7px 18px rgba(43,37,74,.18)}
+.slide.return-gap{align-items:center;justify-content:center;text-align:center}
+.slide.return-gap .stack{max-width:1180px;margin:auto}
+.return-gap-line{margin:0;color:var(--purple2);font-size:clamp(3.1rem,5vw,5.3rem)!important;font-weight:normal;line-height:1.08!important;text-wrap:balance;text-shadow:0 1px 0 #fff,0 0 18px rgba(250,248,241,.98),0 0 42px rgba(250,248,241,.90)}
 .takeaway-list{margin:0;padding-left:30px}.takeaway-list li{font-size:18px;line-height:1.28;margin:0 0 7px;padding-left:5px}.takeaway-list li::marker{color:var(--purple2);font-weight:bold}.takeaway-list b{color:var(--purple2)}
 .vitals{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 13px}
 .vital{background:rgba(255,255,255,.38);border:1px solid rgba(93,83,68,.18);min-width:102px;padding:9px 12px;box-shadow:0 1px 0 rgba(255,255,255,.52) inset}.vital .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6f685f}.vital .v{font-size:20px;font-weight:bold;color:#1a1815}.vital.flag .v{color:var(--red)}
@@ -296,6 +312,11 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .am-body .am-content{display:none}.am-body .am-question{display:grid;place-items:center;width:46px;height:46px;border:1px dashed rgba(93,83,68,.36);border-radius:50%;background:rgba(255,255,255,.52);font-size:24px;color:#857b6f}.am-body.is-revealed .am-content{display:block}.am-body.is-revealed .am-question{display:none}
 .am-target.is-highlighted{background:rgba(237,226,211,.94);box-shadow:inset 0 0 0 3px rgba(174,136,69,.62);position:relative}.am-target.is-highlighted::after{content:"Adam";position:absolute;right:8px;top:7px;background:#87699a;color:#fff;font:700 10.5px Georgia,"Times New Roman",Times,serif;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px}
 .am-note{grid-column:3/5;grid-row:5;background:rgba(250,248,242,.74);font-size:15.5px;color:#5a544d;justify-content:flex-start;text-align:left;padding:7px 11px;font-style:italic}
+.stack.focus-shell{max-width:920px;width:min(920px,100%)}
+.ascites-panel .qstem{max-width:880px;margin-bottom:10px;font-size:clamp(22px,1.5vw,26px);line-height:1.3}
+.matrix-strip{max-width:760px;margin-bottom:9px;gap:9px}.matrix-strip .case-chip{padding:7px 10px}.matrix-strip .case-chip .k{font-size:12px}.matrix-strip .case-chip .v{font-size:21px}.matrix-strip .case-chip .s{font-size:14px}
+.ascites-matrix{grid-template-columns:88px 140px 1fr 1fr;grid-template-rows:42px 62px 116px 138px 38px;width:860px}
+.am-ascites{font-size:33px}.am-saag{font-size:28px}.am-side{font-size:22px}.am-protein{font-size:23px}.am-protein span{font-size:17.5px}.am-head{font-size:24px}.am-head span{font-size:16.5px}.am-body{font-size:18px}.am-body li{font-size:18px;line-height:1.17}.am-note{font-size:17px}
 .syndrome-panel,.syndrome-panel *{filter:none!important}
 .syndrome-panel .qstem{font-size:20px;line-height:1.34;margin-bottom:13px;max-width:820px}
 .syndrome-matrix{width:min(820px,100%);display:grid;grid-template-columns:160px 1fr 1fr;grid-template-rows:54px 132px 132px;background:rgba(126,114,96,.28);border:1px solid rgba(126,114,96,.34);gap:1px;box-shadow:0 12px 30px rgba(43,37,28,.10);text-shadow:none!important}
@@ -327,6 +348,15 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .slide.final-recap .timeline li::after{display:none}
 .slide.final-recap .takeaway-list{column-count:1;width:max-content;max-width:100%;margin:0 auto;padding-left:42px;text-align:left}
 .slide.final-recap .takeaway-list li{font-size:clamp(22px,1.55vw,30px);line-height:1.16;margin:0 0 4px;padding-left:9px}
+.final-recap-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,390px);gap:clamp(28px,3vw,54px);align-items:center}
+.slide.final-recap .final-recap-grid .takeaway-list{width:auto;margin:0;padding-left:38px}
+.slide.final-recap .final-recap-grid .takeaway-list li{font-size:clamp(18px,1.16vw,23px);line-height:1.15;margin-bottom:3px;padding-left:7px}
+.case-qr-card{padding:18px 20px 16px;border:1px solid rgba(75,74,120,.20);border-radius:18px;background:rgba(249,247,241,.78);box-shadow:0 18px 48px rgba(43,37,28,.12),0 1px 0 rgba(255,255,255,.92) inset;text-align:center}
+.case-qr-kicker{margin:0 0 10px;color:#557b8d;font-size:14px;font-weight:bold;letter-spacing:.17em;text-transform:uppercase}
+.case-qr-link{display:block;color:var(--purple2);text-decoration:none}
+.case-qr-svg{display:block;width:min(34vh,340px);max-width:100%;height:auto;margin:0 auto;color:var(--purple2);background:#f7f3eb;border-radius:10px}
+.case-qr-label{display:block;margin-top:9px;color:#4f4a42;font-size:17px;font-weight:bold}
+.case-qr-url{display:block;margin-top:4px;color:#777166;font-size:11px;letter-spacing:.015em;overflow-wrap:anywhere}
 .nav{
   height:62px;flex:0 0 62px;
   background:#fff;
@@ -380,9 +410,10 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .background-only-image{display:none}
 @media(max-width:760px){
   .topbar{height:56px;flex-basis:56px;padding:0 14px}.case-title{font-size:15px}.act-tag,.topbar-credit{display:none}.topbar-actions{gap:6px}.topbar-btn{height:32px;padding:0 9px;font-size:9.5px}
-  .slide{padding:25px 20px 34px}.title-slide{padding-left:25px}.panel{padding:0}.titlebox h1{font-size:clamp(3.25rem,14vw,4.7rem)}.grid2,.grid3,.case-strip{grid-template-columns:1fr}.gtable{font-size:12px}.cell{width:130px;min-height:78px;height:auto}.table-stage{display:block}
+  .slide{padding:25px 20px 34px}.title-slide{padding-left:25px}.panel{padding:0}.titlebox h1{font-size:clamp(3.25rem,14vw,4.7rem)}.title-slide .titlebox{padding:18px 19px 20px}.title-slide .titlebox .sub{font-size:22px}.return-gap-line{font-size:2.6rem!important}.grid2,.grid3,.case-strip{grid-template-columns:1fr}.gtable{font-size:12px}.cell{width:130px;min-height:78px;height:auto}.table-stage{display:block}
   .nav{height:68px;flex-basis:68px;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}.nav-divider,.counter{display:none}.navbtn{width:62px;height:38px;padding:0 6px;font-size:10.5px}.nav-actions{gap:6px}.progress{gap:1px}.seg.unit-start{margin-left:3px}.seg::before{height:5px}.seg.current::before{height:13px}
-  .slide.final-recap{align-items:flex-start;padding:22px 20px 34px}.slide.final-recap h1.section{font-size:2.8rem;margin-bottom:12px}.slide.final-recap .panel .lead{font-size:17px}.slide.final-recap .timeline{grid-template-columns:1fr;gap:2px}.slide.final-recap .timeline li{font-size:14px;padding-top:3px;padding-bottom:3px}.slide.final-recap .takeaway-list{width:auto;padding-left:30px}.slide.final-recap .takeaway-list li{font-size:20px;line-height:1.18;margin-bottom:5px;padding-left:6px}
+  .slide.final-recap{align-items:flex-start;padding:22px 20px 34px}.slide.final-recap h1.section{font-size:2.8rem;margin-bottom:12px}.slide.final-recap .panel .lead{font-size:17px}.slide.final-recap .timeline{grid-template-columns:1fr;gap:2px}.slide.final-recap .timeline li{font-size:14px;padding-top:3px;padding-bottom:3px}.slide.final-recap .takeaway-list{width:auto;padding-left:30px}.slide.final-recap .takeaway-list li{font-size:20px;line-height:1.18;margin-bottom:5px;padding-left:6px}.final-recap-grid{grid-template-columns:1fr}.case-qr-card{width:min(360px,100%);margin:18px auto 0}.case-qr-svg{width:min(70vw,280px)}
+  .slide.spiral-slide{align-items:flex-start;padding:32px 20px}.slide.spiral-slide .stack{max-width:92%;transform:none}.slide.spiral-slide h1.section{font-size:2.9rem}.spiral-final-line{font-size:22px!important}
 }
 @media(max-width:430px){.case-title{font-size:13.5px}.topbar-btn{padding:0 7px;font-size:9px}.navbtn{width:56px}.nav-actions{gap:5px}}
 @media print{body{background:white}.app{height:auto;max-width:none;box-shadow:none}.nav,.topbar{display:none}.stage,.slide{position:static;height:auto;overflow:visible}.slide{page-break-after:always}.stage::before,.stage::after,.bg-layer{display:none}}
@@ -430,6 +461,11 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
   color:#f5f0e8;
   --dark-slide-shadow:0 2px 2px rgba(17,20,43,.88),0 0 8px rgba(20,23,51,.72),0 0 18px rgba(24,27,58,.48);
 }
+.slide.spiral-slide{align-items:center;padding-left:clamp(70px,6vw,118px)}
+.slide.spiral-slide .stack{max-width:min(620px,39vw);margin-left:0;transform:translateY(-2%)}
+.slide.spiral-slide h1.section{max-width:600px;margin:0 0 22px;color:var(--purple2);font-size:clamp(3.9rem,5.25vw,5.4rem);line-height:.96}
+.slide.spiral-slide .panel{max-width:580px}
+.spiral-final-line{margin:0;color:#302d45;font-size:clamp(25px,1.8vw,32px)!important;font-weight:bold;line-height:1.32!important;text-shadow:0 1px 0 rgba(255,255,255,.96),0 0 12px rgba(250,248,241,.98),0 0 28px rgba(250,248,241,.92)}
 .slide.tips-dark h1.section{
   color:#fbf5eb;
   text-shadow:0 2px 2px rgba(15,17,39,.94),0 0 10px rgba(18,21,48,.78),0 0 24px rgba(25,28,62,.58)!important;
@@ -735,27 +771,27 @@ const CHAPTERS={
 const NAV_GROUPS=[
   {start:1,end:1,label:"Title",color:"#4b4a78"},
   {start:2,end:6,label:"Pathophysiology",color:"#5d6e8c"},
-  {start:7,end:9,label:"Initial Presentation",color:"#777b97"},
-  {start:10,end:19,label:"Ascites",color:"#547f92"},
-  {start:20,end:24,label:"SBP",color:"#b49a55"},
-  {start:25,end:30,label:"Variceal Bleed",color:"#9b4b4b"},
-  {start:31,end:36,label:"Hepatic Encephalopathy",color:"#87699a"},
-  {start:37,end:42,label:"PPCD",color:"#7a8084"},
-  {start:43,end:57,label:"HRS-AKI",color:"#61724c"},
-  {start:58,end:58,label:"Conclusion",color:"#6a6b71"}
+  {start:7,end:10,label:"Initial Presentation",color:"#777b97"},
+  {start:11,end:20,label:"Ascites",color:"#547f92"},
+  {start:21,end:25,label:"SBP",color:"#b49a55"},
+  {start:26,end:31,label:"Variceal Bleed",color:"#9b4b4b"},
+  {start:32,end:37,label:"Hepatic Encephalopathy",color:"#87699a"},
+  {start:38,end:43,label:"PPCD",color:"#7a8084"},
+  {start:44,end:58,label:"HRS-AKI",color:"#61724c"},
+  {start:59,end:60,label:"Conclusion",color:"#6a6b71"}
 ];
 function navGroupFor(slideIndex){
   const slideNumber=slideIndex+1;
   return NAV_GROUPS.find(group=>slideNumber>=group.start&&slideNumber<=group.end)||NAV_GROUPS[0];
 }
 const SLIDES=[
-{ch:"title",type:"title",layout:"title-slide",kicker:"Interactive Clinical Case",title:"Cirrhosis",sub:"A case-based approach to ascites, spontaneous bacterial peritonitis, variceal bleeding, hepatic encephalopathy, TIPS, MELD 3.0, and HRS-AKI.",byline:"For incoming Internal Medicine interns · Mohammad Almeqdadi, MD",hint:"Use Next or → to advance"},
-{ch:"found",type:"text",layout:"left",section:"Two Ways Cirrhosis Causes Harm",wide:true,body:`<p class="lead">Cirrhosis is diffuse hepatic fibrosis with regenerative nodules. Its complications arise from <span class="hl">two related processes</span>.</p><h3>Loss of hepatic function</h3><p>The liver becomes less effective at bilirubin handling, albumin synthesis, clotting-factor synthesis, ammonia clearance, drug metabolism, and immune surveillance.</p><h3>Portal hypertension</h3><p>Fibrosis and sinusoidal resistance impede portal flow. The resulting pressure produces ascites, varices, splenomegaly, thrombocytopenia, and collateral vessels.</p><div class="callout"><span class="lab">Clinical framework</span><p>Most complications reflect impaired hepatic function, portal hypertension, or both.</p></div>`},
-{ch:"found",type:"question-open",layout:"left",section:"The Portal Vein",revealImage:"portal-system-capillary-beds.jpg",revealImagePos:"center center",revealImageSize:"contain",stem:`The portal vein carries blood from the intestines to the liver. <b>Why is it called a portal vein, and can you name another portal system in the body?</b>`,reveal:`<span class="tag">Concept</span><p>A portal vessel connects two capillary beds in series. The gut capillaries drain into the portal vein, then into the hepatic sinusoids before blood returns to the heart.</p><p>The other classic portal system is the <b>hypophyseal portal system</b>, connecting hypothalamus to anterior pituitary.</p><p><b>Portosystemic shunts</b> are collateral channels that let portal blood bypass the liver when resistance rises. This is the anatomy behind varices, caput medusae, splenorenal shunts, and hepatic encephalopathy.</p>`},
+{ch:"title",type:"title",layout:"title-slide",kicker:"Clinical Reasoning",title:"Cirrhosis",sub:"An interactive clinical case.",byline:"For incoming Internal Medicine interns",presenter:"Mohammad Almeqdadi, MD",socialLabel:"X: @mfalmeqdadi",socialUrl:"https://x.com/mfalmeqdadi",artCredit:"Background artwork created with Google Gemini.",hint:"Press Next or the Right Arrow to Begin"},
+{ch:"found",type:"text",layout:"left",section:"Two Ways Cirrhosis Causes Harm",wide:true,body:`<p class="lead">Cirrhosis is diffuse hepatic fibrosis with regenerative nodules. Its complications arise from <span class="hl">two related processes</span>.</p><h3>Loss of hepatic function</h3><p>The liver becomes less effective at bilirubin handling, albumin synthesis, clotting-factor synthesis, ammonia clearance, drug metabolism, and immune surveillance.</p><h3>Portal hypertension</h3><p>Fibrosis and sinusoidal resistance impede portal flow. The resulting pressure produces ascites, varices, splenomegaly, thrombocytopenia, and collateral vessels.</p>`},
+{ch:"found",type:"question-open",layout:"left",section:"The Portal Vein",revealImage:"portal-system-capillary-beds.jpg",revealImagePos:"center center",revealImageSize:"contain",revealImageFade:"sides",revealBg:"#f7f3eb",stem:`The portal vein carries blood from the intestines to the liver. <b>Why is it called a portal vein, and can you name another portal system in the body?</b>`,reveal:`<span class="tag">Concept</span><p>A portal vessel connects two capillary beds in series. The gut capillaries drain into the portal vein, then into the hepatic sinusoids before blood returns to the heart.</p><p>The other classic portal system is the <b>hypophyseal portal system</b>, connecting hypothalamus to anterior pituitary.</p><p><b>Portosystemic shunts</b> are collateral channels that let portal blood bypass the liver when resistance rises. This is the anatomy behind varices, caput medusae, splenorenal shunts, and hepatic encephalopathy.</p>`},
 {ch:"found",type:"text",layout:"right",section:"Early Clues to Cirrhosis",wide:true,body:`<p class="lead">The history, examination, and routine laboratory results may raise concern before imaging or biopsy.</p><ul><li><b>Splenomegaly</b></li><li><b>Thrombocytopenia</b></li><li><b>AST &gt; ALT</b></li><li><b>Scores</b>: FIB-4, ELF, FibroScan, and other noninvasive fibrosis tools help decide who needs the next test.</li><li><b>Examination findings</b>: spiders, palmar erythema, sarcopenia, jaundice, ascites, venous collaterals.</li></ul>`},
-{ch:"found",type:"text",layout:"left",section:"Etiologic Evaluation",wide:true,body:`<p class="lead">Organize the evaluation by major etiologic categories.</p><div class="grid2"><div><h3>Hepatotoxic</h3><ul><li>Alcohol</li><li>Medications and toxins</li></ul></div><div><h3>Inflammatory</h3><ul><li>Hepatitis B and C</li><li>Autoimmune hepatitis</li><li>PBC and PSC</li></ul></div><div><h3>Metabolic</h3><ul><li>MASLD or MASH</li><li>Hemochromatosis</li><li>Wilson disease</li><li>A1AT deficiency</li></ul></div><div><h3>Vascular or cardiac</h3><ul><li>Budd–Chiari</li><li>Congestive hepatopathy</li><li>Cryptogenic after the workup</li></ul></div></div><div class="callout"><span class="lab">Workup principle</span><p>Even when alcohol-associated or metabolic liver disease appears likely, evaluate viral, autoimmune, iron, A1AT, and vascular causes.</p></div>`},
-{ch:"tap",type:"text",layout:"left",section:"Meet Adam",kicker:"Case Presentation",wide:true,body:`<p class="lead">Adam R. is a 54-year-old man at a routine primary-care visit. He has no specific complaint and says he feels well.</p><p>He drinks “a few” most nights and a six-pack on many weekends. He is irritated by the question: <span class="em">“All my friends drink. So what?”</span> His father “had a bad liver” and died in his 60s.</p><p>Medical history: type 2 diabetes and hypertension. Medications: metformin and lisinopril. No prior surgeries.</p><p class="fileflag">Patient’s file · visit 1</p>`},
-{ch:"tap",type:"text",layout:"right",section:"Physical Examination",wide:true,body:`<div class="vitals"><div class="vital"><div class="k">Temp</div><div class="v">36.8 °C</div></div><div class="vital"><div class="k">HR</div><div class="v">74</div></div><div class="vital"><div class="k">BP</div><div class="v">128/78</div></div><div class="vital"><div class="k">SpO₂</div><div class="v">98%</div></div></div><ul><li>Well appearing, BMI 31.</li><li>Sclerae anicteric.</li><li>Abdomen soft, non-tender, no fluid wave.</li><li>No spider angiomata, no palmar erythema, no jaundice.</li><li>Alert, oriented, no asterixis.</li></ul><h3>Labs</h3><div class="vitals"><div class="vital flag"><div class="k">PLT</div><div class="v">145</div></div><div class="vital"><div class="k">BMP</div><div class="v">Normal</div></div><div class="vital flag"><div class="k">AST</div><div class="v">86</div></div><div class="vital"><div class="k">ALT</div><div class="v">54</div></div><div class="vital"><div class="k">INR</div><div class="v">1.1</div></div></div><p>He does not return after this visit.</p>`},
+{ch:"found",type:"text",layout:"left",section:"Etiologic Evaluation",wide:true,body:`<p class="lead">Organize the evaluation by major etiologic categories.</p><div class="grid2"><div><h3>Hepatotoxic</h3><ul><li>Alcohol</li><li>Medications and toxins</li></ul></div><div><h3>Inflammatory</h3><ul><li>Hepatitis B and C</li><li>Autoimmune hepatitis</li><li>PBC and PSC</li></ul></div><div><h3>Metabolic</h3><ul><li>MASLD or MASH</li><li>Hemochromatosis</li><li>Wilson disease</li><li>A1AT deficiency</li></ul></div><div><h3>Vascular or cardiac</h3><ul><li>Budd–Chiari</li><li>Congestive hepatopathy</li><li>Cryptogenic after the workup</li></ul></div></div>`},
+{ch:"tap",type:"text",layout:"left",section:"Meet Adam",kicker:"Case Presentation",wide:true,body:`<p class="lead">Adam R. is a 54-year-old man at a routine primary-care visit. He has no specific complaint and says he feels well.</p><p>He drinks “a few” most nights and a six-pack on many weekends. He is irritated by the question: <span class="em">“All my friends drink. So what?”</span> His father “had a bad liver” and died in his 60s.</p><p>Medical history: type 2 diabetes and hypertension. Medications: metformin and lisinopril. No prior surgeries.</p>`},
+{ch:"tap",type:"text",layout:"right",section:"Physical Examination",wide:true,body:`<div class="vitals"><div class="vital"><div class="k">Temp</div><div class="v">36.8 °C</div></div><div class="vital"><div class="k">HR</div><div class="v">74</div></div><div class="vital"><div class="k">BP</div><div class="v">128/78</div></div><div class="vital"><div class="k">SpO₂</div><div class="v">98%</div></div></div><ul><li>Well appearing, BMI 31.</li><li>Sclerae anicteric.</li><li>Abdomen soft, non-tender, no fluid wave.</li><li>No spider angiomata, no palmar erythema, no jaundice.</li><li>Alert, oriented, no asterixis.</li></ul><h3>Labs</h3><div class="vitals"><div class="vital flag"><div class="k">PLT</div><div class="v">145</div></div><div class="vital"><div class="k">BMP</div><div class="v">Normal</div></div><div class="vital flag"><div class="k">AST</div><div class="v">86</div></div><div class="vital"><div class="k">ALT</div><div class="v">54</div></div><div class="vital"><div class="k">INR</div><div class="v">1.1</div></div></div>`},
 {ch:"tap",type:"text",layout:"left",section:"Two Years Later",body:`<p class="lead">Adam returns to the emergency department. His abdomen has swollen for six weeks. He cannot button his pants, has early satiety, and his ankles are puffy at night.</p><p>He is still drinking. Exam now shows a distended abdomen with fluid wave and shifting dullness, mild scleral icterus, and spider angiomata.</p>`},
 {ch:"tap",type:"question-open",layout:"left",section:"What Comes Next?",stem:`<b>What are the next best steps?</b> Ultrasound will confirm ascites, but that is not the answer this case is testing.`,reveal:`<span class="tag">Recommended action</span><p class="big">Diagnostic paracentesis.</p><p>New-onset ascites should be tapped. In a hospitalized patient with cirrhosis and ascites, do not delay the diagnostic tap just because the abdomen is not tender.</p><div class="callout"><span class="lab">Bedside rule</span><p>Perform diagnostic paracentesis for new ascites and for hospitalized patients with cirrhosis and ascites.</p></div>`},
 {ch:"tap",type:"question-open",layout:"left",section:"Initial Ascitic Fluid Studies",stem:`During diagnostic paracentesis, <b>Which ascitic fluid tests do you send first?</b>`,reveal:`<span class="tag">Tubes</span><ul><li><b>Cell count with differential</b>: the most important test because PMN count drives the SBP decision.</li><li><b>Ascitic albumin</b> plus same-day serum albumin: calculates SAAG.</li><li><b>Total protein</b>: helps with etiology and SBP risk.</li></ul><p>Extra tests such as cytology, amylase, triglycerides, AFB, glucose, and LDH depend on the story.</p>`},
@@ -798,7 +834,44 @@ const SLIDES=[
 {ch:"icu",type:"text",layout:"right",section:"Prognosis",wide:true,body:`<p class="lead">HRS-AKI indicates advanced circulatory dysfunction and carries a poor prognosis.</p><ul><li>Older natural-history cohorts of type 1 HRS showed very short survival without reversal or transplant.</li><li>Modern vasoconstrictors can reverse creatinine in a subset, but transplant-free survival remains poor when ACLF, infection, respiratory failure, or multiorgan failure dominate.</li><li>Dialysis changes potassium, acid, volume, and uremia. It does not fix portal hypertension or liver failure.</li></ul>`},
 {ch:"txp",type:"question-open",layout:"left",section:"A Critical Decision Point",stem:`Adam has HRS-AKI and ACLF grade 3.<br><br><b>So what do you want to do next?</b>`,reveal:`<span class="tag">Priority</span><p class="big">Check transplant candidacy urgently.</p><p>Clarify sobriety and treatment engagement, infection control, cardiopulmonary risk, malignancy screening, social support, frailty, goals of care, and whether the transplant center would consider him a candidate if his kidneys worsen.</p>`},
 {ch:"txp",type:"question-open",layout:"right",section:"When Dialysis Is Appropriate",stem:`His creatinine keeps rising and he becomes oliguric.<br><br><b>Would you start dialysis?</b>`,reveal:`<span class="tag">Role of dialysis</span><p class="big">When it provides a bridge to transplant or recovery from a reversible insult.</p><p>Dialysis can buy time for transplant evaluation, organ offer, or recovery from a reversible insult. If he is not a candidate and liver failure is the driver, dialysis often adds burden without changing the outcome. That should trigger a direct goals-of-care conversation.</p>`},
-{ch:"post",type:"recap",layout:"center",wide:true,finalRecap:true,section:"Take-Home Points",body:`<ol class="takeaway-list"><li>Suspect cirrhosis early → <b>low platelets, splenomegaly, AST &gt; ALT.</b></li><li>New ascites → <b>tap.</b></li><li>Ascitic fluid → <b>PMNs, albumin/SAAG, protein, and culture.</b></li><li>PMN ≥250 → <b>treat as SBP.</b></li><li>SBP → <b>antibiotics + albumin.</b></li><li>SBP response → <b>re-tap at 48 h; PMNs should fall ≥25%.</b></li><li>Prior SBP → <b>secondary antibiotic prophylaxis.</b></li><li>Variceal bleeding → <b>ceftriaxone + octreotide + urgent endoscopy.</b></li><li>High-risk variceal bleeding → <b>pre-emptive TIPS within 24–72 h.</b></li><li>Hepatic encephalopathy → <b>treat clinically; don’t chase ammonia.</b></li><li>Overt HE → <b>lactulose, correct precipitants, then rifaximin.</b></li><li>Refractory HE after TIPS → <b>consider TIPS reduction.</b></li><li>Paracentesis → <b>albumin 6–8 g/L removed.</b></li><li>HRS-AKI → <b>exclude other causes, albumin, vasoconstrictor, transplant evaluation.</b></li></ol>`}
+{ch:"post",type:"text",layout:"left",spiral:true,preserveImage:true,kicker:"Spiral",section:"The Cirrhosis Spiral",image:"cirrhosis-spiral.png",imagePos:"center center",imageSize:"contain",imageFade:"sides",imageBg:"#f7f3eb",body:`<p class="spiral-final-line">Treat the cause. Prevent the next decompensation. Think transplant early.</p>`},
+{ch:"post",type:"recap",layout:"center",wide:true,finalRecap:true,section:"Take-Home Points",qrUrl:"https://qaddodi.github.io/cirrhosis-interactive-case/",qrMatrix:[
+"00000000000000000000000000000000000",
+"01111111000100010111110010011111110",
+"01000001001111001010011000010000010",
+"01011101010011010000011110010111010",
+"01011101011110001001000111010111010",
+"01011101011011011101101110010111010",
+"01000001010111100011011101010000010",
+"01111111010101010101010101011111110",
+"00000000010001000101011000000000000",
+"01011111001010110111010101011111000",
+"01111000001111100111111010011011010",
+"00110101001010111110000101100101100",
+"00110110010101101011001000000111110",
+"00010011011111010100100100100110000",
+"00101100011100001011110010010000110",
+"01101011001000001110011000111111100",
+"00001110010001111001101111110111000",
+"00001101001101101010000001101110010",
+"00100100011000110101111010111011110",
+"01000111111011111101001101101101100",
+"01010000001110100000011100101111110",
+"01000011000000111001010001101110110",
+"01111010101110011110110010110001010",
+"01001001010011110001010100000010100",
+"01001000001111010100001001101101100",
+"01001101101010000010010101111100100",
+"00000000010001110111110001000101010",
+"01111111001010001110011111010101100",
+"01000001010101010111001111000111000",
+"01011101011100010100100101111110010",
+"01011101010011011011111011100110110",
+"01011101011010111110010101011011000",
+"01000001000000011000101100000111000",
+"01111111010010101011000111011000100",
+"00000000000000000000000000000000000"
+],body:`<ol class="takeaway-list"><li>Suspect cirrhosis early → <b>low platelets, splenomegaly, AST &gt; ALT.</b></li><li>New ascites → <b>tap.</b></li><li>Ascitic fluid → <b>PMNs, albumin/SAAG, protein, and culture.</b></li><li>PMN ≥250 → <b>treat as SBP.</b></li><li>SBP → <b>antibiotics + albumin.</b></li><li>SBP response → <b>re-tap at 48 h; PMNs should fall ≥25%.</b></li><li>Prior SBP → <b>secondary antibiotic prophylaxis.</b></li><li>Variceal bleeding → <b>ceftriaxone + octreotide + urgent endoscopy.</b></li><li>High-risk variceal bleeding → <b>pre-emptive TIPS within 24–72 h.</b></li><li>Hepatic encephalopathy → <b>treat clinically; don’t chase ammonia.</b></li><li>Overt HE → <b>lactulose, correct precipitants, then rifaximin.</b></li><li>Refractory HE after TIPS → <b>consider TIPS reduction.</b></li><li>Paracentesis → <b>albumin 6–8 g/L removed.</b></li><li>HRS-AKI → <b>exclude other causes, albumin, vasoconstrictor, transplant evaluation.</b></li></ol>`}
 ];
 const BACKGROUND_IMAGE_BASE_PATH="";
 
@@ -849,9 +922,10 @@ BACKGROUND_RULES.forEach(rule=>{
 });
 
 const CASE_INSERTS=[
-  {after:'The Portal Vein', slide:{ch:"found",type:"text",layout:"left",clinicalFramework:true,section:"Clinical Consequences of Cirrhosis",image:"cirrhosis-two-processes-clinical-manifestations.jpg",imagePos:"center center",imageSize:"contain",body:`<p class="lead">Reduced hepatic function and increased portal pressure develop in parallel.</p><p>Their effects account for the major manifestations of decompensated cirrhosis.</p><p class="framework-link">This distinction will help us interpret each complication in Adam’s case.</p>`}},
+  {after:'The Portal Vein', slide:{ch:"found",type:"text",layout:"left",clinicalFramework:true,section:"Clinical Consequences of Cirrhosis",image:"cirrhosis-two-processes-clinical-manifestations.jpg",imagePos:"center center",imageSize:"contain",imageFade:"sides",imageBg:"#f7f3eb",body:`<p class="lead">Reduced hepatic function and increased portal pressure develop in parallel.</p><p>Their effects account for the major manifestations of decompensated cirrhosis.</p>`}},
   {after:'Physical Examination', slide:{ch:'tap',type:"question-open",layout:'left',section:'Clinical Assessment',stem:`<b>Which findings raise concern for advanced liver disease?</b><br><br><b>What would be the next step in management?</b>`,reveal:`<span class="tag">Discussion</span><p>The platelet count, AST &gt; ALT pattern, alcohol history, metabolic risk, and family history should trigger concern for compensated advanced liver disease.</p><p>Next steps: calculate a fibrosis score, obtain noninvasive fibrosis assessment such as elastography, evaluate common causes, counsel alcohol cessation, and make sure follow-up actually happens.</p>`}},
-  {after:'Initial Ascitic Fluid Studies', slide:{ch:'tap',type:"question-open",layout:'right',section:'Ascitic Fluid Cultures',stem:`<b>Do you send ascitic fluid cultures?</b>`,reveal:`<span class="tag">Answer</span><p class="big">Yes, when results will be interpreted with the PMN count and clinical status.</p><p>A positive culture with PMN below 250 is not the same as SBP. Management then depends on symptoms, repeat tap, and whether the patient is evolving toward neutrocytic infection.</p>`}},
+  {after:'Clinical Assessment', slide:{ch:'tap',type:"text",layout:'center',returnGap:true,hideTitle:true,section:'He Does Not Return',image:'',body:`<p class="return-gap-line">He does not return after this initial visit with you.</p>`}},
+  {after:'Initial Ascitic Fluid Studies', slide:{ch:'tap',type:"question-open",layout:'right',section:'Ascitic Fluid Cultures',stem:`<b>Do you send ascitic fluid cultures?</b>`,reveal:`<span class="tag">Answer</span><p class="big">Yes, but you need to know what to do with them and how to interpret them.</p><p>A positive culture with PMN below 250 is not the same as SBP. Management then depends on symptoms, repeat tap, and whether the patient is evolving toward neutrocytic infection.</p>`}},
   {after:'Protecting the Kidneys', slide:{ch:'sbp',type:"question-open",layout:'left',section:'Is the SBP Responding?',stem:`Adam has received ceftriaxone and albumin for <b>48 hours</b>. His fever and abdominal pain are improving.<br><br>His initial ascitic PMN count was <b>960/mm&sup3;</b>.<br><br><b>What should you do now?</b>`,reveal:`<span class="tag">Re-tap and reassess</span><p>Repeat diagnostic paracentesis and recalculate the ascitic PMN count. A decrease of <b>at least 25%</b> from baseline supports an appropriate antibiotic response.</p><div class="scorebox"><div class="tile"><div class="n">960</div><div class="l">Initial PMN</div></div><div class="tile"><div class="n">&ge;25%</div><div class="l">Expected fall</div></div><div class="tile"><div class="n">&le;720</div><div class="l">Adequate response</div></div></div><p>If the PMN falls by less than 25%, remains unchanged, or rises, reassess cultures and susceptibilities, broaden antibiotics when appropriate, and investigate resistant infection or secondary peritonitis.</p><div class="callout"><span class="lab">Clinical nuance</span><p>The 48-hour re-tap is most valuable when improvement is uncertain, resistance is plausible, or secondary peritonitis is a concern. With clear clinical improvement and an identified susceptible organism, some experts consider it optional.</p></div>`}}
 ];
 CASE_INSERTS.forEach(ins=>{
@@ -877,7 +951,7 @@ DEEP_DIVES.forEach(dd=>{
   if(s.imagePos===undefined) s.imagePos=anchor.imagePos;
   SLIDES.splice(at+1,0,s);
 });
-SLIDES.splice(50,0,{
+SLIDES.splice(51,0,{
   ch:'hrs',
   type:'background-only',
   layout:'wide',
@@ -885,16 +959,18 @@ SLIDES.splice(50,0,{
   image:'terlipressin-albumin-treatment-algorithm.jpg',
   imagePos:'center center',
   imageSize:'contain',
+  imageFade:'sides',
+  imageBg:'#f6eadb',
   backgroundOnly:true
 });
 const NEW_BACKGROUND_RANGES=[
-  {start:33,end:35,image:'tips-procedure-interventional-radiology.jpg',contentSide:'left'},
-  {start:36,end:39,image:'large-volume-paracentesis.jpg',contentSide:'right'},
-  {start:40,end:42,image:'albumin-infusion-after-paracentesis.jpg',contentSide:'left'},
-  {start:43,end:46,image:'hrs-aki-kidney-injury-assessment.jpg',contentSide:'right'},
-  {start:47,end:51,image:'hrs-aki-splanchnic-pooling-cake-analogy.jpg',contentSide:'left'},
-  {start:52,end:54,image:'icu-vasopressor-support.jpg',contentSide:'right'},
-  {start:55,end:55,image:'transplant-and-dialysis-discussion.jpg',contentSide:'left'},
+  {start:34,end:36,image:'tips-procedure-interventional-radiology.jpg',contentSide:'left'},
+  {start:37,end:40,image:'large-volume-paracentesis.jpg',contentSide:'right'},
+  {start:41,end:43,image:'albumin-infusion-after-paracentesis.jpg',contentSide:'left'},
+  {start:44,end:47,image:'hrs-aki-kidney-injury-assessment.jpg',contentSide:'right'},
+  {start:48,end:52,image:'hrs-aki-splanchnic-pooling-cake-analogy.jpg',contentSide:'left'},
+  {start:53,end:55,image:'icu-vasopressor-support.jpg',contentSide:'right'},
+  {start:56,end:56,image:'transplant-and-dialysis-discussion.jpg',contentSide:'left'},
 ];
 let numberedBackgroundSlide=0;
 SLIDES.forEach((s,i)=>{
@@ -908,7 +984,7 @@ SLIDES.forEach((s,i)=>{
     s.layout=background.contentSide;
     delete s.blur;
     s.boost=true;
-  }else{
+  }else if(!s.preserveImage){
     delete s.image;
     delete s.imagePos;
   }
@@ -919,27 +995,27 @@ SLIDES.forEach((s,i)=>{
 ['Endoscopy Findings','The Evidence for Early TIPS'].forEach(sec=>{const i=SLIDES.findIndex(s=>s.section===sec); if(i>-1) SLIDES[i].contrastPanel=true;});
 /* keep the refractory-HE follow-up visually continuous with the preceding HE slide */
 const numberedContentSlides=SLIDES.filter(s=>!s.backgroundOnly);
-if(numberedContentSlides[31]&&numberedContentSlides[32]){
-  numberedContentSlides[32].image=numberedContentSlides[31].image;
-  numberedContentSlides[32].imagePos=numberedContentSlides[31].imagePos;
-  numberedContentSlides[32].ch=numberedContentSlides[31].ch;
-  numberedContentSlides[32].layout='right';
+if(numberedContentSlides[32]&&numberedContentSlides[33]){
+  numberedContentSlides[33].image=numberedContentSlides[32].image;
+  numberedContentSlides[33].imagePos=numberedContentSlides[32].imagePos;
+  numberedContentSlides[33].ch=numberedContentSlides[32].ch;
+  numberedContentSlides[33].layout='right';
   ['boost','blur','contrastPanel','wide','narrow','softThird','compactAnswer','nudgeLeft','cakeTitle','chartLarge'].forEach(prop=>{
-    if(numberedContentSlides[31][prop]===undefined) delete numberedContentSlides[32][prop];
-    else numberedContentSlides[32][prop]=numberedContentSlides[31][prop];
+    if(numberedContentSlides[32][prop]===undefined) delete numberedContentSlides[33][prop];
+    else numberedContentSlides[33][prop]=numberedContentSlides[32][prop];
   });
 }
 /* continue the dark TIPS chapter treatment from slide 34 onto slide 35 */
-if(numberedContentSlides[34]&&numberedContentSlides[35]){
-  numberedContentSlides[35].image=numberedContentSlides[34].image;
-  numberedContentSlides[35].imagePos=numberedContentSlides[34].imagePos;
-  numberedContentSlides[35].layout='left';
+if(numberedContentSlides[35]&&numberedContentSlides[36]){
+  numberedContentSlides[36].image=numberedContentSlides[35].image;
+  numberedContentSlides[36].imagePos=numberedContentSlides[35].imagePos;
+  numberedContentSlides[36].layout='left';
 }
 /* keep the dialysis decision visually continuous with transplant evaluation */
-if(numberedContentSlides[54]&&numberedContentSlides[55]){
-  numberedContentSlides[55].image=numberedContentSlides[54].image;
-  numberedContentSlides[55].imagePos=numberedContentSlides[54].imagePos;
-  numberedContentSlides[55].layout='left';
+if(numberedContentSlides[55]&&numberedContentSlides[56]){
+  numberedContentSlides[56].image=numberedContentSlides[55].image;
+  numberedContentSlides[56].imagePos=numberedContentSlides[55].imagePos;
+  numberedContentSlides[56].layout='left';
 }
 const stage=document.getElementById('stage');
 const bgLayerA=document.getElementById('bgLayerA');
@@ -962,14 +1038,16 @@ let activeBgLayer=bgLayerA;
 let inactiveBgLayer=bgLayerB;
 let bgSwapToken=0;
 let hasAppliedInitialBackground=false;
-const currentBackground={bg:null,image:null,pos:null,size:null};
+const currentBackground={bg:null,image:null,pos:null,size:null,fade:null};
 function meta(s){return CHAPTERS[s.ch]||CHAPTERS.title}
 function visualStateFor(s){
   const useReveal=Boolean(s&&s._done&&s.revealImage);
   return {
     image:useReveal?s.revealImage:(s&&s.image)||'',
     pos:useReveal?(s.revealImagePos||s.imagePos||'center'):(s&&s.imagePos)||'center',
-    size:useReveal?(s.revealImageSize||s.imageSize||'cover'):(s&&s.imageSize)||'cover'
+    size:useReveal?(s.revealImageSize||s.imageSize||'cover'):(s&&s.imageSize)||'cover',
+    fade:useReveal?(s.revealImageFade||s.imageFade||''):(s&&s.imageFade)||'',
+    bg:useReveal?(s.revealBg||s.imageBg||''):(s&&s.imageBg)||''
   };
 }
 function backgroundImageFor(slideIndex){
@@ -985,7 +1063,8 @@ function backgroundSizeFor(slideIndex){
   return visualStateFor(s).size;
 }
 function backgroundKeyFor(slideIndex){
-  return `${backgroundImageFor(slideIndex)}|${backgroundPosFor(slideIndex)}|${backgroundSizeFor(slideIndex)}`;
+  const visual=visualStateFor(SLIDES[slideIndex]);
+  return `${visual.image}|${visual.pos}|${visual.size}|${visual.fade}|${visual.bg}`;
 }
 function preloadBackgroundImages(){
   [...new Set(SLIDES.flatMap(s=>[s.image,s.revealImage]).filter(Boolean))].forEach(src=>{
@@ -1013,32 +1092,35 @@ function waitForBackground(src){
     new Promise(resolve=>setTimeout(()=>resolve(false),1200))
   ]);
 }
-function setLayerBackground(layer,image,pos,size){
+function setLayerBackground(layer,image,pos,size,fade){
   layer.style.backgroundImage=image ? `url("${image}")` : 'linear-gradient(120deg,#e8e1d3,#d5d1c8)';
   layer.style.backgroundPosition=pos||'center';
   layer.style.backgroundSize=size||'cover';
+  layer.classList.toggle('fade-sides',fade==='sides');
 }
 function applyStageBackground(s,c,{instant=false}={}){
-  const {image,pos,size}=visualStateFor(s);
-  if(currentBackground.bg!==c.bg){
-    stage.style.setProperty('--bg',c.bg);
-    currentBackground.bg=c.bg;
+  const {image,pos,size,fade,bg}=visualStateFor(s);
+  const stageBg=bg||c.bg;
+  if(currentBackground.bg!==stageBg){
+    stage.style.setProperty('--bg',stageBg);
+    currentBackground.bg=stageBg;
   }
-  if(hasAppliedInitialBackground&&currentBackground.image===image&&currentBackground.pos===pos&&currentBackground.size===size) return;
+  if(hasAppliedInitialBackground&&currentBackground.image===image&&currentBackground.pos===pos&&currentBackground.size===size&&currentBackground.fade===fade) return;
   const token=++bgSwapToken;
   if(instant||prefersReducedMotion||!hasAppliedInitialBackground){
-    setLayerBackground(activeBgLayer,image,pos,size);
+    setLayerBackground(activeBgLayer,image,pos,size,fade);
     activeBgLayer.classList.add('is-active');
     inactiveBgLayer.classList.remove('is-active');
     currentBackground.image=image;
     currentBackground.pos=pos;
     currentBackground.size=size;
+    currentBackground.fade=fade;
     hasAppliedInitialBackground=true;
     return;
   }
   waitForBackground(image).then(()=>{
     if(token!==bgSwapToken) return;
-    setLayerBackground(inactiveBgLayer,image,pos,size);
+    setLayerBackground(inactiveBgLayer,image,pos,size,fade);
     inactiveBgLayer.classList.remove('is-active');
     inactiveBgLayer.offsetHeight;
     requestAnimationFrame(()=>{
@@ -1051,6 +1133,7 @@ function applyStageBackground(s,c,{instant=false}={}){
       currentBackground.image=image;
       currentBackground.pos=pos;
       currentBackground.size=size;
+      currentBackground.fade=fade;
     });
   });
 }
@@ -1087,8 +1170,8 @@ function render(direction=0){
   slideEl.style.setProperty('--content-bg-image',visual.image?`url("${visual.image}")`:'none');
   slideEl.style.setProperty('--content-bg-position',visual.pos);
   actTag.textContent=c.label;
-  const darkTipsClass=idx>=33&&idx<=35?' tips-dark':'';
-  slideEl.className='slide '+(s.layout||'left')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+darkTipsClass+enterClass;
+  const darkTipsClass=idx>=34&&idx<=36?' tips-dark':'';
+  slideEl.className='slide '+(s.layout||'left')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+darkTipsClass+enterClass;
   slideEl.innerHTML=htmlFor(s);
   wire(s);
   updateChrome();
@@ -1101,12 +1184,33 @@ function render(direction=0){
 }
 function head(s){return `${s.kicker?`<div class="kicker">${s.kicker}</div>`:''}${s.section&&!s.hideTitle?`<h1 class="section">${s.section}</h1>`:''}`}
 function shell(s,inner){const wide=s.wide?' wide':'';const narrow=s.narrow?' narrow':'';const focus=s.focusTable?' focus-shell':'';return `<div class="stack${wide}${narrow}${focus}">${head(s)}${inner}</div>`}
+function titleHTML(s){
+  const credits=s.presenter||s.socialUrl||s.artCredit?`<div class="title-credits">${s.presenter?`<p class="title-presenter">${s.presenter}</p>`:''}${s.socialUrl?`<p class="title-social"><a href="${s.socialUrl}" target="_blank" rel="noopener noreferrer">${s.socialLabel||s.socialUrl}</a></p>`:''}${s.artCredit?`<p class="title-art-credit">${s.artCredit}</p>`:''}</div>`:'';
+  return `<div class="titlebox">${s.kicker?`<div class="kicker">${s.kicker}</div>`:''}<h1>${s.title}</h1>${s.sub?`<p class="sub">${s.sub}</p>`:''}${s.byline?`<p class="byline">${s.byline}</p>`:''}${credits}${s.hint?`<p class="hint">${s.hint}</p>`:''}</div>`;
+}
+function caseQrSVG(matrix){
+  if(!Array.isArray(matrix)||!matrix.length) return '';
+  const size=matrix.length, shapes=[];
+  matrix.forEach((row,y)=>{
+    [...row].forEach((module,x)=>{
+      if(module!=='1') return;
+      const finder=(y<=7&&x<=7)||(y<=7&&x>=size-8)||(y>=size-8&&x<=7);
+      shapes.push(finder?`<rect x="${x}" y="${y}" width="1" height="1"/>`:`<rect x="${x+.04}" y="${y+.04}" width=".92" height=".92" rx=".22"/>`);
+    });
+  });
+  return `<svg class="case-qr-svg" viewBox="-3 -3 ${size+6} ${size+6}" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="-3" y="-3" width="${size+6}" height="${size+6}" rx="1" fill="#f7f3eb"/><g fill="currentColor">${shapes.join('')}</g></svg>`;
+}
+function caseQrCard(s){
+  if(!s.qrUrl||!s.qrMatrix) return '';
+  const label=s.qrUrl.replace(/^https?:\/\//,'');
+  return `<aside class="case-qr-card"><p class="case-qr-kicker">Open the interactive case</p><a class="case-qr-link" href="${s.qrUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open the Cirrhosis interactive clinical case">${caseQrSVG(s.qrMatrix)}<span class="case-qr-label">Scan to open this case</span><span class="case-qr-url">${label}</span></a></aside>`;
+}
 function htmlFor(s){
   if(s.type==='background-only') return `<img class="background-only-image" src="${s.image}" alt="${s.section||'Clinical case diagram'}" draggable="false">`;
-  if(s.type==='title') return `<div class="titlebox">${s.kicker?`<div class="kicker">${s.kicker}</div>`:''}<h1>${s.title}</h1>${s.sub?`<p class="sub">${s.sub}</p>`:''}${s.byline?`<p class="byline">${s.byline}</p>`:''}${s.hint?`<p class="hint">${s.hint}</p>`:''}</div>`;
+  if(s.type==='title') return titleHTML(s);
   if(s.type==='closing') return `<div class="closing-content"><h1>${s.title}</h1><p class="closing-sub">${s.sub}</p><div class="closing-actions">${s.actions.map(a=>`<span>${a}</span>`).join('')}</div></div>`;
   if(s.titleOnly) return shell(s,'');
-  if(s.type==='text'||s.type==='recap') return shell(s,`<div class="panel">${s.body}</div>`);
+  if(s.type==='text'||s.type==='recap') return shell(s,`<div class="panel">${s.finalRecap&&s.qrUrl?`<div class="final-recap-grid"><div>${s.body}</div>${caseQrCard(s)}</div>`:s.body}</div>`);
   if(s.type==='question-open') return shell(s,`<div class="panel"><div class="qstem">${s.stem}</div><button class="reveal-btn" data-act="reveal">Reveal answer</button><div class="answer" data-answer hidden>${s.reveal}</div></div>`);
   if(s.type==='question-mc') return shell(s,`<div class="panel"><div class="qstem">${s.stem}</div><div class="options">${s.options.map((o,i)=>`<button class="opt" data-opt="${i}"><span class="mark">${String.fromCharCode(65+i)}</span><span>${o.t}</span></button>`).join('')}</div><div class="answer" data-answer hidden><span class="tag">${s.answerTag||'Why'}</span>${s.rationale}</div></div>`);
   if(s.type==='table') return shell(s,tableHTML(s));
