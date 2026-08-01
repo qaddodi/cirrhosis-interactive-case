@@ -140,6 +140,9 @@ body{
 .slide.enter-next{transform:translate3d(22px,0,0) scale(.995)}
 .slide.enter-prev{transform:translate3d(-22px,0,0) scale(.995)}
 .slide.enter-fade{transform:translate3d(0,8px,0) scale(.995)}
+.slide.enter-next.is-visible,
+.slide.enter-prev.is-visible,
+.slide.enter-fade.is-visible{transform:translate3d(0,0,0) scale(1);filter:none}
 .slide.leaving-next{opacity:0;transform:translate3d(-24px,0,0) scale(.992);filter:blur(1.2px);pointer-events:none}
 .slide.leaving-prev{opacity:0;transform:translate3d(24px,0,0) scale(.992);filter:blur(1.2px);pointer-events:none}
 .slide.leaving-fade{opacity:0;transform:translate3d(0,8px,0) scale(.992);filter:blur(1.2px);pointer-events:none}
@@ -746,6 +749,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 /* ---- Mobile consistency pass: one content grid and one table system ---- */
 @media (max-width:760px){
   .app{--mobile-gutter:max(24px,calc(env(safe-area-inset-left) + 16px),calc(env(safe-area-inset-right) + 16px))}
+  .stage{overflow-x:hidden}
   .slide,
   .slide.title-slide,
   .slide.title-slide.right,
@@ -754,6 +758,17 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
     padding-left:var(--mobile-gutter);
     padding-right:var(--mobile-gutter);
     scrollbar-gutter:auto;
+  }
+  .slide,
+  .slide.is-visible,
+  .slide.enter-next,
+  .slide.enter-prev,
+  .slide.enter-fade,
+  .slide.leaving-next,
+  .slide.leaving-prev,
+  .slide.leaving-fade{
+    transform:none!important;
+    filter:none!important;
   }
   .slide.title-slide{
     align-items:center;
@@ -807,6 +822,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
     margin-right:0;
     overflow-x:auto;
     overscroll-behavior-x:contain;
+    touch-action:pan-x pan-y;
     -webkit-overflow-scrolling:touch;
   }
   .table-stage{display:block;padding:6px 0 8px;background:transparent}
@@ -1576,7 +1592,7 @@ document.getElementById('reset').addEventListener('click',resetAll);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'){go(1);e.preventDefault()} if(e.key==='ArrowLeft'||e.key==='PageUp'){go(-1);e.preventDefault()}});
 let gestureStart=null;
 stage.addEventListener('touchstart',e=>{
-  if(e.touches.length!==1||e.target.closest('button,a,input,select,textarea,.background-only-image')){gestureStart=null;return}
+  if(e.touches.length!==1||e.target.closest('button,a,input,select,textarea,.background-only-image,.table-stage,.matrix-scroll,.scoretable,.checklist-blur,.chartwrap')){gestureStart=null;return}
   gestureStart={x:e.touches[0].clientX,y:e.touches[0].clientY};
 },{passive:true});
 stage.addEventListener('touchend',e=>{
