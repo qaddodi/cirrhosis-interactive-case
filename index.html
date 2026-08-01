@@ -651,7 +651,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
     padding-right:max(22px,calc(env(safe-area-inset-right) + 12px));
   }
   .slide.title-slide .titlebox{width:100%;max-width:620px;margin:auto}
-  .slide.tips-dark{background:#292746}
+  .slide.mobile-dark{background:#292746}
   .slide.right .stack,.slide.left .stack{margin-left:0;margin-right:0}
   .stack,.stack.wide,.stack.narrow,.slide.chart-large .stack{width:100%;max-width:none}
   .slide.clinical-framework{align-items:flex-start}
@@ -741,6 +741,96 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
   .opt{font-size:15px}
   .navbtn{width:58px}
   .seg.unit-start{margin-left:2px}
+}
+
+/* ---- Mobile consistency pass: one content grid and one table system ---- */
+@media (max-width:760px){
+  .app{--mobile-gutter:max(24px,calc(env(safe-area-inset-left) + 16px),calc(env(safe-area-inset-right) + 16px))}
+  .slide,
+  .slide.title-slide,
+  .slide.title-slide.right,
+  .slide.final-recap,
+  .slide.spiral-slide{
+    padding-left:var(--mobile-gutter);
+    padding-right:var(--mobile-gutter);
+    scrollbar-gutter:auto;
+  }
+  .slide.title-slide{
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .slide .stack,
+  .slide .stack.wide,
+  .slide .stack.narrow,
+  .slide.chart-large .stack,
+  .slide.return-gap .stack,
+  .slide.spiral-slide .stack{
+    width:100%;
+    max-width:100%;
+    margin-left:0;
+    margin-right:0;
+    transform:none;
+  }
+  .slide.title-slide .titlebox{width:100%;max-width:100%;margin:auto;text-align:center}
+  .panel,.qstem,h1.section{max-width:100%}
+
+  .slide.mobile-dark{
+    background:#292746;
+    color:#f5f0e8;
+    --dark-slide-shadow:0 2px 2px rgba(17,20,43,.88),0 0 8px rgba(20,23,51,.72),0 0 18px rgba(24,27,58,.48);
+  }
+  .slide.mobile-dark h1.section{color:#fbf5eb;text-shadow:var(--dark-slide-shadow)!important}
+  .slide.mobile-dark .panel,
+  .slide.mobile-dark .panel p,
+  .slide.mobile-dark .panel .lead,
+  .slide.mobile-dark .qstem,
+  .slide.mobile-dark .answer,
+  .slide.mobile-dark .answer p,
+  .slide.mobile-dark .em,
+  .slide.mobile-dark .soft,
+  .slide.mobile-dark li{color:#f5f0e8;text-shadow:var(--dark-slide-shadow)!important}
+  .slide.mobile-dark .hl,
+  .slide.mobile-dark b,
+  .slide.mobile-dark .points{color:#fff8e9;text-shadow:var(--dark-slide-shadow)!important}
+  .slide.mobile-dark .scoretable{background:rgba(24,27,59,.30);border-color:rgba(255,248,235,.24)}
+  .slide.mobile-dark .scoretable th,
+  .slide.mobile-dark .scoretable td{color:#f5f0e8;border-bottom-color:rgba(255,248,235,.20);text-shadow:var(--dark-slide-shadow)!important}
+
+  .table-stage,
+  .matrix-scroll,
+  .scoretable,
+  .checklist-blur{
+    width:100%;
+    max-width:100%;
+    margin-left:0;
+    margin-right:0;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+  .table-stage{display:block;padding:6px 0 8px;background:transparent}
+  .matrix-scroll{padding:0 0 8px}
+  .gtable{width:640px;min-width:640px;margin:0;border-spacing:4px}
+  .gtable .rowh{width:96px;min-width:96px}
+  .cell{width:156px;min-height:76px;padding:8px}
+  .ascites-matrix{width:720px;min-width:720px}
+  .syndrome-matrix{width:720px;min-width:720px}
+  .matrix-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%;max-width:100%}
+  .matrix-strip .case-chip{min-width:0;padding:7px 6px;text-align:center}
+  .matrix-strip .case-chip .k{font-size:10px}
+  .matrix-strip .case-chip .v{font-size:18px}
+  .matrix-strip .case-chip .s{font-size:11px;overflow-wrap:anywhere}
+
+  .scoretable{display:block;border-spacing:0}
+  .scoretable tbody{display:table;width:100%;min-width:600px;table-layout:fixed}
+  .scoretable th,.scoretable td{padding:9px;font-size:14px;line-height:1.32;overflow-wrap:anywhere}
+  .checklist-blur{border-radius:10px}
+  .checklist-table{display:table;width:680px;min-width:680px;overflow:visible}
+  .checklist-table tbody{display:table-row-group;width:auto;min-width:0}
+  .checklist-table th,.checklist-table td{font-size:14px}
+  .checklist-table th:first-child,.checklist-table td:first-child{font-size:15px}
+  .table-tools{width:100%;margin-top:10px}
 }
 </style>
 </head>
@@ -1041,6 +1131,7 @@ const nextLabel=document.getElementById('nextLabel');
 const nextIcon=document.getElementById('nextIcon');
 const actTag=document.getElementById('actTag');
 const progressCard=document.querySelector('.progress-card');
+const MOBILE_DARK_SECTIONS=new Set(['TIPS Reduction','What Does 3 → 9 Mean?','Portal Pressure Measurements','The Tradeoff']);
 let idx=0;
 let isTransitioning=false;
 let transitionTimer=null;
@@ -1183,7 +1274,8 @@ function render(direction=0){
   slideEl.style.setProperty('--content-bg-position',visual.pos);
   actTag.textContent=c.label;
   const darkTipsClass=idx>=34&&idx<=36?' tips-dark':'';
-  slideEl.className='slide '+(s.layout||'left')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+darkTipsClass+enterClass;
+  const mobileDarkClass=MOBILE_DARK_SECTIONS.has(s.section)?' mobile-dark':'';
+  slideEl.className='slide '+(s.layout||'left')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+darkTipsClass+mobileDarkClass+enterClass;
   slideEl.innerHTML=htmlFor(s);
   wire(s);
   updateChrome();
@@ -1238,7 +1330,7 @@ function tableHTML(s){
 function ascitesMatrixHTML(s){
   const values=s.values?`<div class="case-strip matrix-strip">${s.values.map(v=>`<div class="case-chip"><span class="k">${v.k}</span><span class="v">${v.v}</span><span class="s">${v.s}</span></div>`).join('')}</div>`:'';
   const q='<span class="am-question">?</span>';
-  return `<div class="panel table-focus ascites-panel"><p class="qstem">${s.intro}</p>${values}<div class="ascites-matrix" aria-label="Ascites classification by SAAG and total protein"><div class="am-cell am-ascites">Ascites</div><div class="am-cell am-saag">SAAG</div><div class="am-cell am-side"><span class="am-rot">Total Protein</span></div><div class="am-cell am-protein am-protein-low"><b>&lt; 2.5</b><span>(Pre- &amp; intrahepatic)</span></div><div class="am-cell am-protein am-protein-high"><b>&ge; 2.5</b><span>(Post-hepatic)</span></div><div class="am-cell am-head am-blue"><b>&ge; 1.1</b><span>(Portal hypertension)</span></div><div class="am-cell am-head am-green"><b>&lt; 1.1</b><span>(Non-portal hypertension)</span></div><button class="am-cell am-body am-blue am-target" data-matrix-cell="0-0" data-matrix-target>${q}<span class="am-content"><ul><li><b>Cirrhosis</b></li><li>Portal vein thrombosis</li><li>Late Budd-Chiari</li></ul></span></button><button class="am-cell am-body am-green" data-matrix-cell="0-1">${q}<span class="am-content"><ul><li>Nephrotic syndrome</li></ul></span></button><button class="am-cell am-body am-blue" data-matrix-cell="1-0">${q}<span class="am-content"><ul><li>CHF</li><li>Constrictive pericarditis / tamponade</li><li>IVC obstruction</li><li>Early Budd-Chiari</li></ul></span></button><button class="am-cell am-body am-green" data-matrix-cell="1-1">${q}<span class="am-content"><ul><li>Malignancy</li><li>Peritoneal carcinomatosis</li><li>TB</li><li>Serositis</li><li>Pancreatic ascites</li></ul></span></button><div class="am-cell am-note">Urinary ascites and chylous ascites may also produce a high SAAG.</div></div><div class="answer" data-answer hidden>${s.note}</div></div>`
+  return `<div class="panel table-focus ascites-panel"><p class="qstem">${s.intro}</p>${values}<div class="matrix-scroll"><div class="ascites-matrix" aria-label="Ascites classification by SAAG and total protein"><div class="am-cell am-ascites">Ascites</div><div class="am-cell am-saag">SAAG</div><div class="am-cell am-side"><span class="am-rot">Total Protein</span></div><div class="am-cell am-protein am-protein-low"><b>&lt; 2.5</b><span>(Pre- &amp; intrahepatic)</span></div><div class="am-cell am-protein am-protein-high"><b>&ge; 2.5</b><span>(Post-hepatic)</span></div><div class="am-cell am-head am-blue"><b>&ge; 1.1</b><span>(Portal hypertension)</span></div><div class="am-cell am-head am-green"><b>&lt; 1.1</b><span>(Non-portal hypertension)</span></div><button class="am-cell am-body am-blue am-target" data-matrix-cell="0-0" data-matrix-target>${q}<span class="am-content"><ul><li><b>Cirrhosis</b></li><li>Portal vein thrombosis</li><li>Late Budd-Chiari</li></ul></span></button><button class="am-cell am-body am-green" data-matrix-cell="0-1">${q}<span class="am-content"><ul><li>Nephrotic syndrome</li></ul></span></button><button class="am-cell am-body am-blue" data-matrix-cell="1-0">${q}<span class="am-content"><ul><li>CHF</li><li>Constrictive pericarditis / tamponade</li><li>IVC obstruction</li><li>Early Budd-Chiari</li></ul></span></button><button class="am-cell am-body am-green" data-matrix-cell="1-1">${q}<span class="am-content"><ul><li>Malignancy</li><li>Peritoneal carcinomatosis</li><li>TB</li><li>Serositis</li><li>Pancreatic ascites</li></ul></span></button><div class="am-cell am-note">Urinary ascites and chylous ascites may also produce a high SAAG.</div></div></div><div class="answer" data-answer hidden>${s.note}</div></div>`
 }
 function syndromeMatrixHTML(s){
   const cell=(r,c)=>{
@@ -1247,7 +1339,7 @@ function syndromeMatrixHTML(s){
     const txClass=item.treat===true?'sm-treat':item.treat===false?'sm-no':'sm-if';
     return `<button class="sm-cell sm-body ${txClass}${item.target?' sm-target':''}" data-syndrome-cell="${key}"><span class="sm-q">?</span><span class="sm-content"><span class="sm-name">${item.name}</span><span class="sm-sub">${item.sub}</span><span class="sm-tx">${tx}</span></span></button>`;
   };
-  return `<div class="panel syndrome-panel"><p class="qstem">${s.intro}</p><div class="syndrome-matrix"><div class="sm-cell sm-corner"></div><div class="sm-cell sm-head">${s.cols[0]}</div><div class="sm-cell sm-head">${s.cols[1]}</div><div class="sm-cell sm-rowh">${s.rowLabels[0]}</div>${cell(0,0)}${cell(0,1)}<div class="sm-cell sm-rowh">${s.rowLabels[1]}</div>${cell(1,0)}${cell(1,1)}</div><div class="syndrome-tools"><span class="tx-prompt" data-tx-prompt hidden>Which syndromes need antibiotic treatment?</span><button class="reveal-btn" data-act="showSyndromeTx" hidden>Reveal treatment answer</button></div><div class="answer" data-answer hidden>${s.note}</div></div>`
+  return `<div class="panel syndrome-panel"><p class="qstem">${s.intro}</p><div class="matrix-scroll"><div class="syndrome-matrix"><div class="sm-cell sm-corner"></div><div class="sm-cell sm-head">${s.cols[0]}</div><div class="sm-cell sm-head">${s.cols[1]}</div><div class="sm-cell sm-rowh">${s.rowLabels[0]}</div>${cell(0,0)}${cell(0,1)}<div class="sm-cell sm-rowh">${s.rowLabels[1]}</div>${cell(1,0)}${cell(1,1)}</div></div><div class="syndrome-tools"><span class="tx-prompt" data-tx-prompt hidden>Which syndromes need antibiotic treatment?</span><button class="reveal-btn" data-act="showSyndromeTx" hidden>Reveal treatment answer</button></div><div class="answer" data-answer hidden>${s.note}</div></div>`
 }
 function fillCell(el,cell,labels,tx,isTarget=false){
   el.classList.add('revealed');
