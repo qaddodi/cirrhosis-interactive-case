@@ -1578,15 +1578,17 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
     mask-image:linear-gradient(90deg,#000 0%,#000 60%,rgba(0,0,0,.78) 76%,rgba(0,0,0,.18) 93%,transparent 100%);
   }
   /* Slide 57: keep the artwork fully visible at right; feather only the text side. */
-  .slide.critical-readability.left.clinical-reveal-focus.transplant-left-fade::after{
+  .slide.critical-readability.left.transplant-left-fade::after{
     left:0;
     right:auto;
-    width:74%;
+    width:62%;
     background:linear-gradient(90deg,
-      rgba(249,247,241,1) 0%,
-      rgba(249,247,241,.99) 62%,
-      rgba(249,247,241,.86) 79%,
+      rgba(249,247,241,.72) 0%,
+      rgba(249,247,241,.60) 48%,
+      rgba(249,247,241,.24) 78%,
       rgba(249,247,241,0) 100%);
+    backdrop-filter:blur(12px) saturate(.78) contrast(.94) brightness(1.03);
+    -webkit-backdrop-filter:blur(12px) saturate(.78) contrast(.94) brightness(1.03);
     -webkit-mask-image:none;
     mask-image:none;
   }
@@ -2502,8 +2504,7 @@ if(terlipressinUnsafeSlide){
     .replace('The goal is to restore organ perfusion—not simply normalize the blood pressure.','Titrate vasopressors using MAP, urine output, and creatinine as measures of perfusion.');
 }
 if(transplantPriority){
-  transplantPriority.reveal=transplantPriority.reveal.replace('Check transplant candidacy urgently.','Request urgent transplant evaluation.');
-  transplantPriority.clinicalRevealFocus=true;
+  transplantPriority.reveal=transplantPriority.reveal.replace('Check transplant candidacy urgently.','Request <span class="hl">urgent transplant evaluation</span>.');
   transplantPriority.transplantLeftFade=true;
 }
 const stage=document.getElementById('stage');
