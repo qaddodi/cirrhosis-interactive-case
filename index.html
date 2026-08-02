@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cirrhosis — An Interactive Clinical Case</title>
+<title>Cirrhosis — Longitudinal Clinical Case</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico?v=2" />
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2" />
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-v2-32x32.png?v=2" />
@@ -106,8 +106,20 @@ body{
   transform:scale(1);
 }
 .bg-layer.fade-sides{
-  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.16) 3%,rgba(0,0,0,.62) 8%,#000 14%,#000 86%,rgba(0,0,0,.62) 92%,rgba(0,0,0,.16) 97%,transparent 100%);
-  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.16) 3%,rgba(0,0,0,.62) 8%,#000 14%,#000 86%,rgba(0,0,0,.62) 92%,rgba(0,0,0,.16) 97%,transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,
+    transparent 0,
+    transparent var(--image-left-edge),
+    #000 calc(var(--image-left-edge) + var(--image-edge-fade)),
+    #000 calc(var(--image-right-edge) - var(--image-edge-fade)),
+    transparent var(--image-right-edge),
+    transparent 100%);
+  mask-image:linear-gradient(90deg,
+    transparent 0,
+    transparent var(--image-left-edge),
+    #000 calc(var(--image-left-edge) + var(--image-edge-fade)),
+    #000 calc(var(--image-right-edge) - var(--image-edge-fade)),
+    transparent var(--image-right-edge),
+    transparent 100%);
 }
 .stage::after{
   content:"";
@@ -347,25 +359,30 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .checklist-blur{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(255,255,255,.82);border-radius:14px;background:rgba(249,247,241,.10);backdrop-filter:blur(12px) saturate(.96);-webkit-backdrop-filter:blur(12px) saturate(.96);box-shadow:0 18px 46px rgba(43,37,28,.16),0 1px 0 rgba(255,255,255,.94) inset,0 -1px 0 rgba(255,255,255,.30) inset}.checklist-blur::before{content:"";position:absolute;inset:-36px;z-index:0;pointer-events:none;background-image:var(--checklist-bg-image);background-size:var(--checklist-bg-size);background-position:var(--checklist-bg-position);background-repeat:no-repeat;filter:blur(34px) saturate(.76) contrast(.90);opacity:.98}.checklist-blur::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.48),rgba(249,247,241,.25) 54%,rgba(229,237,239,.22))}.checklist-table{position:relative;z-index:1;margin:0;background:transparent}.checklist-table th:nth-child(1){width:34%}.checklist-table th:nth-child(2){width:54%}.checklist-table th:nth-child(3){width:12%}.checklist-result{padding:0!important}.checklist-result-btn{width:100%;min-height:46px;border:0;background:transparent;color:var(--ink);font:inherit;text-align:left;padding:10px 11px;cursor:pointer;transition:background .18s ease,color .18s ease}.checklist-result-btn:hover:not(.is-revealed),.checklist-result-btn:focus-visible:not(.is-revealed){background:rgba(255,255,255,.34);outline:1px solid rgba(93,83,68,.24);outline-offset:-2px}.checklist-result-btn.is-revealed{cursor:default}.checklist-prompt{font-size:12px;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;color:var(--chapter,#5d6e8c)}.checklist-answer[hidden],.checklist-status[hidden]{display:none}.checklist-status{display:inline-block;animation:checklistPop .28s cubic-bezier(.2,.8,.2,1);font-size:22px;line-height:1;color:var(--green)}.checklist-status.pending{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}@keyframes checklistPop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
 .checklist-table th:first-child{font-size:19px;font-weight:700;letter-spacing:.025em;color:var(--purple2)}.checklist-table td:first-child{border-left:0;padding-left:11px;font-size:19.6px;font-weight:700;line-height:1.18;color:var(--purple2);text-shadow:0 1px 0 rgba(255,255,255,.96),0 0 13px rgba(250,248,241,.96),0 0 24px rgba(250,248,241,.82)}
 .timeline{list-style:none;margin:4px 0 0;padding:0}.timeline li{position:relative;margin:0 0 13px;padding:0 0 0 23px;font-size:18.8px}.timeline li::before{content:"";position:absolute;left:4px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--chapter,#6d7186)}.timeline li::after{content:"";position:absolute;left:8px;top:16px;bottom:-12px;width:1px;background:rgba(93,83,68,.18)}.timeline li:last-child::after{display:none}.pillrow{display:flex;gap:7px;flex-wrap:wrap}.pill{background:rgba(255,255,255,.28);border:1px solid rgba(93,83,68,.17);border-radius:99px;padding:5px 11px;font-size:14px;color:#36332d}.ref{font-size:16.5px;color:#403c37;line-height:1.52}.ref li{font-size:16.5px}
-.slide.final-recap{align-items:center;justify-content:center;padding:20px clamp(38px,4.5vw,82px)}
-.slide.final-recap .stack{width:100%;max-width:1500px;margin:auto}
-.slide.final-recap h1.section{text-align:center;font-size:clamp(3.2rem,4.4vw,4.6rem);line-height:.95;margin:0 0 16px}
+.slide.final-recap{align-items:flex-start;justify-content:flex-start;padding:22px clamp(44px,4vw,74px) 24px;background:radial-gradient(circle at 42% 42%,rgba(255,255,255,.58),rgba(247,243,235,.14) 58%,transparent 80%)}
+.slide.final-recap .stack{width:100%;max-width:1760px;margin:0 auto}
+.slide.final-recap h1.section{text-align:left;font-size:clamp(4rem,4.65vw,5rem);line-height:.92;margin:0 0 14px;color:#37345f;letter-spacing:-.035em}
 .slide.final-recap .panel{width:100%}
-.slide.final-recap .panel .lead{max-width:980px;font-size:18px;line-height:1.28;margin:0 0 8px}
-.slide.final-recap .timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px 24px;margin:0}
-.slide.final-recap .timeline li{margin:0;padding:4px 0 4px 15px;font-size:14.5px;line-height:1.27}
-.slide.final-recap .timeline li::before{left:1px;top:10px;width:6px;height:6px}
-.slide.final-recap .timeline li::after{display:none}
-.slide.final-recap .takeaway-list{column-count:1;width:max-content;max-width:100%;margin:0 auto;padding-left:42px;text-align:left}
-.slide.final-recap .takeaway-list li{font-size:clamp(22px,1.55vw,30px);line-height:1.16;margin:0 0 4px;padding-left:9px}
-.final-recap-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,390px);gap:clamp(28px,3vw,54px);align-items:center}
-.slide.final-recap .final-recap-grid .takeaway-list{width:auto;margin:0;padding-left:38px}
-.slide.final-recap .final-recap-grid .takeaway-list li{font-size:clamp(18px,1.16vw,23px);line-height:1.15;margin-bottom:3px;padding-left:7px}
-.case-qr-card{padding:18px 20px 16px;border:1px solid rgba(75,74,120,.20);border-radius:18px;background:rgba(249,247,241,.78);box-shadow:0 18px 48px rgba(43,37,28,.12),0 1px 0 rgba(255,255,255,.92) inset;text-align:center}
+.final-recap-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(165px,190px);gap:clamp(26px,2.2vw,40px);align-items:start}
+.recap-kicker{margin:0 0 5px;color:#557b8d;font-size:clamp(15px,1.05vw,19px);font-weight:bold;letter-spacing:.20em;text-transform:uppercase}
+.recap-thesis{margin:0 0 18px!important;max-width:none;color:#24213f!important;font-size:clamp(30px,2.18vw,39px)!important;font-weight:bold;line-height:1.13!important;letter-spacing:-.015em}
+.recap-flow{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,1.5vw,27px);list-style:none;margin:0;padding:26px 0 5px}
+.recap-flow::before{content:"";position:absolute;left:0;right:0;top:54px;height:2px;background:linear-gradient(90deg,rgba(85,123,141,.28),rgba(135,105,154,.64),rgba(174,136,69,.56),rgba(62,121,84,.52));box-shadow:0 0 16px rgba(135,105,154,.16)}
+.recap-flow li{position:relative;margin:0;padding:72px 0 0;font-size:inherit;line-height:1.2}
+.recap-number{position:absolute;top:0;left:0;z-index:1;color:#87699a;font-size:clamp(58px,4.3vw,78px);font-weight:normal;line-height:.8;letter-spacing:-.07em;text-shadow:0 1px 0 #fff,0 0 18px rgba(255,255,255,.95)}
+.recap-flow strong{display:block;margin-bottom:8px;color:#25233f;font-size:clamp(25px,1.72vw,31px);line-height:1.04}
+.recap-copy{display:block;color:#47423a;font-size:clamp(19px,1.26vw,23px);line-height:1.28}
+.recap-closing{margin:20px 0 0!important;color:#3e7954!important;font-size:clamp(27px,1.9vw,35px)!important;font-weight:bold;line-height:1.14!important;letter-spacing:-.01em}
+.takeaway-deckline{display:none}
+.takeaway-grid{counter-reset:takeaway;display:grid;grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row;list-style:none;margin:0;padding:0}
+.slide.final-recap .takeaway-grid li{counter-increment:takeaway;position:relative;margin:0;padding:7px 0 7px 52px;border-top:1px solid rgba(93,83,68,.18);color:#37332d;font-size:clamp(22px,1.45vw,28px);line-height:1.14;text-align:left}
+.slide.final-recap .takeaway-grid li::before{content:counter(takeaway,decimal-leading-zero);position:absolute;left:0;top:6px;color:#87699a;font-size:clamp(23px,1.48vw,29px);font-weight:bold;letter-spacing:-.04em}
+.slide.final-recap .takeaway-grid li b{color:#302d59}
+.case-qr-card{padding:8px 0 0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:center}
 .case-qr-kicker{margin:0 0 10px;color:#557b8d;font-size:14px;font-weight:bold;letter-spacing:.17em;text-transform:uppercase}
 .case-qr-link{display:block;color:var(--purple2);text-decoration:none}
-.case-qr-svg{display:block;width:min(34vh,340px);max-width:100%;height:auto;margin:0 auto;color:var(--purple2);background:#f7f3eb;border-radius:10px}
-.case-qr-label{display:block;margin-top:9px;color:#4f4a42;font-size:17px;font-weight:bold}
+.case-qr-svg{display:block;width:min(19vh,178px);max-width:100%;height:auto;margin:0 auto;color:var(--purple2);background:#f7f3eb;border-radius:6px;filter:drop-shadow(0 10px 20px rgba(43,37,28,.10))}
+.case-qr-label{display:block;margin-top:9px;color:#4f4a42;font-size:16px;font-weight:bold}
 .case-qr-url{display:block;margin-top:4px;color:#777166;font-size:11px;letter-spacing:.015em;overflow-wrap:anywhere}
 .nav{
   height:62px;flex:0 0 62px;
@@ -422,7 +439,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
   .topbar{height:56px;flex-basis:56px;padding:0 14px}.case-title{font-size:15px}.act-tag,.topbar-credit{display:none}.topbar-actions{gap:6px}.topbar-btn{height:32px;padding:0 9px;font-size:9.5px}
   .slide{padding:25px 20px 34px}.title-slide{padding-left:25px}.panel{padding:0}.titlebox h1{font-size:clamp(3.25rem,14vw,4.7rem)}.title-slide .titlebox{width:100%;padding:0}.title-slide .kicker{font-size:12px}.title-slide .titlebox h1{font-size:clamp(4.1rem,18vw,5.4rem);margin-bottom:16px}.title-slide .titlebox .sub{font-size:24px}.title-slide .byline{margin-top:20px;font-size:17px}.title-slide .title-credits{gap:5px;margin-top:14px}.title-slide .title-presenter{font-size:21px}.title-slide .title-social{font-size:18px}.title-slide .title-art-credit{font-size:14px}.title-slide .hint{margin-top:21px;font-size:13px}.return-gap-line{font-size:2.6rem!important}.grid2,.grid3,.case-strip{grid-template-columns:1fr}.gtable{font-size:12px}.cell{width:130px;min-height:78px;height:auto}.table-stage{display:block}
   .nav{height:68px;flex-basis:68px;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}.nav-divider,.counter{display:none}.navbtn{width:62px;height:38px;padding:0 6px;font-size:10.5px}.nav-actions{gap:6px}.progress{gap:1px}.seg.unit-start{margin-left:3px}.seg::before{height:5px}.seg.current::before{height:13px}
-  .slide.final-recap{align-items:flex-start;padding:22px 20px 34px}.slide.final-recap h1.section{font-size:2.8rem;margin-bottom:12px}.slide.final-recap .panel .lead{font-size:17px}.slide.final-recap .timeline{grid-template-columns:1fr;gap:2px}.slide.final-recap .timeline li{font-size:14px;padding-top:3px;padding-bottom:3px}.slide.final-recap .takeaway-list{width:auto;padding-left:30px}.slide.final-recap .takeaway-list li{font-size:20px;line-height:1.18;margin-bottom:5px;padding-left:6px}.final-recap-grid{grid-template-columns:1fr}.case-qr-card{width:min(360px,100%);margin:18px auto 0}.case-qr-svg{width:min(70vw,280px)}
+  .slide.final-recap{align-items:flex-start;padding:24px 20px 38px}.slide.final-recap h1.section{font-size:3.25rem;line-height:.92;margin-bottom:18px}.final-recap-grid{grid-template-columns:1fr}.recap-kicker{font-size:13px}.recap-thesis{font-size:27px!important;margin-bottom:9px!important}.recap-flow{grid-template-columns:1fr;padding:10px 0 0;gap:0}.recap-flow::before{left:24px;right:auto;top:17px;bottom:10px;width:2px;height:auto}.recap-flow li{min-height:100px;padding:8px 0 18px 76px}.recap-number{top:8px;left:0;width:48px;font-size:52px;text-align:center}.recap-flow strong{font-size:25px}.recap-copy{font-size:19px}.recap-closing{font-size:25px!important;margin-top:10px!important}.takeaway-deckline{font-size:18px!important;line-height:1.25}.takeaway-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}.slide.final-recap .takeaway-grid li{padding:10px 0 10px 42px;font-size:19px;line-height:1.24}.slide.final-recap .takeaway-grid li::before{font-size:20px}.case-qr-card{width:min(330px,100%);margin:24px auto 0}.case-qr-svg{width:min(64vw,250px)}
   .slide.spiral-slide{align-items:flex-start;padding:32px 20px}.slide.spiral-slide .stack{max-width:92%;transform:none}.slide.spiral-slide h1.section{font-size:2.9rem}.spiral-final-line{font-size:22px!important}
 }
 @media(max-width:430px){.case-title{font-size:13.5px}.topbar-btn{padding:0 7px;font-size:9px}.navbtn{width:56px}.nav-actions{gap:5px}}
@@ -461,10 +478,143 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 @keyframes ddFade{to{opacity:1}}
 @media (prefers-reduced-motion: reduce){.slide .barGrow,.slide .kmline,.slide .fadeIn{animation:none!important;transform:none!important;opacity:1!important;stroke-dashoffset:0!important}}
 /* ---- Legibility boost for content sitting over busy background photos ---- */
+.slide.image-backed:not(.tips-dark) h1.section,
+.slide.image-backed:not(.tips-dark) .kicker,
+.slide.image-backed:not(.tips-dark) .panel p,
+.slide.image-backed:not(.tips-dark) .panel li,
+.slide.image-backed:not(.tips-dark) .qstem{
+  text-shadow:0 1px 0 rgba(255,255,255,.98),0 0 8px rgba(249,247,241,.92),0 0 19px rgba(249,247,241,.76);
+}
 .slide.boost .kicker,.slide.boost h1.section,.slide.boost .panel,.slide.boost .panel p,.slide.boost .panel h3,.slide.boost .qstem,.slide.boost .callout,.slide.boost .callout p,.slide.boost .callout .lab,.slide.boost .answer,.slide.boost .answer .big,.slide.boost .reveal-btn,.slide.boost .trialmeta,.slide.boost .chartwrap .ctitle,.slide.boost .chartwrap .legend,.slide.boost .chartcap,.slide.boost li,.slide.boost .hl,.slide.boost .em,.slide.boost .soft{
   text-shadow:0 1px 0 #f8f6f0, 0 0 9px rgba(249,247,241,1), 0 0 20px rgba(249,247,241,1), 0 0 38px rgba(249,247,241,.97), 0 0 62px rgba(249,247,241,.9) !important;
 }
 .slide.boost .chartwrap svg{filter:drop-shadow(0 0 2px rgba(249,247,241,1)) drop-shadow(0 0 11px rgba(249,247,241,.99)) drop-shadow(0 0 26px rgba(249,247,241,.92)) drop-shadow(0 0 44px rgba(249,247,241,.78))}
+
+/* Full-height, feathered blur where text genuinely intersects detailed artwork. */
+@media (min-width:761px){
+  .slide.artwork-text::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    top:0;
+    bottom:0;
+    width:58%;
+    pointer-events:none;
+    background:rgba(249,247,241,.025);
+    backdrop-filter:blur(20px) saturate(.76) contrast(.93);
+    -webkit-backdrop-filter:blur(20px) saturate(.76) contrast(.93);
+  }
+  .slide.artwork-text.left::before{
+    left:0;
+    -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 68%,rgba(0,0,0,.70) 78%,rgba(0,0,0,.22) 91%,transparent 100%);
+    mask-image:linear-gradient(90deg,#000 0%,#000 68%,rgba(0,0,0,.70) 78%,rgba(0,0,0,.22) 91%,transparent 100%);
+  }
+  .slide.artwork-text.right::before{
+    right:0;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 9%,rgba(0,0,0,.70) 22%,#000 32%,#000 100%);
+    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 9%,rgba(0,0,0,.70) 22%,#000 32%,#000 100%);
+  }
+  .slide.artwork-text .stack{z-index:1}
+  .slide.artwork-text:not(.tips-dark) h1.section,
+  .slide.artwork-text:not(.tips-dark) .panel,
+  .slide.artwork-text:not(.tips-dark) .qstem{
+    text-shadow:0 1px 0 #fff,0 0 9px rgba(255,255,255,.98),0 0 23px rgba(249,247,241,.94),0 0 44px rgba(249,247,241,.74)!important;
+  }
+  .slide.artwork-text.tips-dark::before{
+    background:rgba(17,20,43,.035);
+    backdrop-filter:blur(22px) saturate(.70) brightness(.74);
+    -webkit-backdrop-filter:blur(22px) saturate(.70) brightness(.74);
+  }
+
+  /* Slides 26, 30 and 31: maximum contrast without a text box. */
+  .slide.critical-readability::after{
+    content:"";
+    position:absolute;
+    z-index:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:66%;
+    pointer-events:none;
+    background:linear-gradient(90deg,rgba(249,247,241,0),rgba(249,247,241,.34) 18%,rgba(249,247,241,.76) 43%,rgba(249,247,241,.94) 72%,rgba(249,247,241,.98));
+    backdrop-filter:blur(30px) saturate(.56) contrast(.90) brightness(1.05);
+    -webkit-backdrop-filter:blur(30px) saturate(.56) contrast(.90) brightness(1.05);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.16) 8%,rgba(0,0,0,.72) 25%,#000 43%,#000 100%);
+    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.16) 8%,rgba(0,0,0,.72) 25%,#000 43%,#000 100%);
+  }
+  .slide.critical-readability .stack,
+  .slide.critical-readability .stack.wide{
+    z-index:1;
+    width:min(810px,45vw);
+    max-width:810px;
+    margin-right:0;
+  }
+  .slide.critical-readability h1.section{
+    color:#302d59;
+    font-size:clamp(4.3rem,5.55vw,5.8rem);
+    line-height:.92;
+    margin-bottom:22px;
+    text-shadow:0 1px 0 #fff,0 0 10px #fff,0 0 28px rgba(249,247,241,.98)!important;
+  }
+  .slide.critical-readability .panel p,
+  .slide.critical-readability .qstem{
+    color:#151310;
+    text-shadow:0 1px 0 #fff,0 0 10px #fff,0 0 26px rgba(249,247,241,.98)!important;
+  }
+  .slide.endoscopy-critical .qstem{
+    font-size:clamp(31px,2.18vw,38px);
+    line-height:1.27;
+  }
+  .slide.endoscopy-critical .qstem .bigline{
+    font-size:clamp(44px,3.2vw,55px);
+    margin-bottom:14px;
+  }
+  .slide.endoscopy-critical .answer p{
+    font-size:clamp(24px,1.58vw,28px);
+    line-height:1.3;
+  }
+  .slide.endoscopy-critical .answer .big{
+    font-size:clamp(40px,2.75vw,48px);
+  }
+  .slide.early-tips-hero h1.section{
+    font-size:clamp(3.9rem,4.95vw,5.1rem);
+    margin-bottom:12px;
+  }
+  .slide.early-tips-hero .trialmeta{
+    margin-bottom:18px;
+    font-size:clamp(16px,1.05vw,19px);
+  }
+  .evidence-action{
+    margin:0 0 10px!important;
+    color:#302d59!important;
+    font-size:clamp(35px,2.45vw,43px)!important;
+    font-weight:bold;
+    line-height:1.08!important;
+  }
+  .evidence-who{
+    margin:0 0 21px!important;
+    font-size:clamp(23px,1.55vw,28px)!important;
+    line-height:1.28!important;
+  }
+  .evidence-numbers{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    margin:0 0 18px;
+  }
+  .evidence-stat+ .evidence-stat{border-left:2px solid rgba(135,105,154,.32);padding-left:30px}
+  .evidence-stat .n{
+    display:block;
+    color:#3e7954;
+    font-size:clamp(64px,4.8vw,84px);
+    line-height:.88;
+    letter-spacing:-.055em;
+  }
+  .evidence-stat:nth-child(2) .n{color:#87699a}
+  .evidence-stat strong{display:block;margin-top:10px;color:#25223f;font-size:clamp(23px,1.55vw,28px);line-height:1.05}
+  .evidence-stat small{display:block;margin-top:5px;color:#4b453d;font-size:clamp(18px,1.18vw,22px);line-height:1.2}
+  .evidence-bottom{margin:0!important;color:#302d29!important;font-size:clamp(23px,1.55vw,28px)!important;font-weight:bold;line-height:1.22!important}
+}
 
 /* Dark indigo TIPS background needs light type and a tight dark halo. */
 .slide.tips-dark{
@@ -595,6 +745,754 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
   .slide.boost .chartwrap .ctitle{font-size:17px}
   .slide.boost .chartwrap .legend{font-size:15px}
   .slide.boost .chartcap{font-size:14px}
+
+  /* Slides 38–43: larger projector type kept inside the quiet side of each image. */
+  .slide.ppcd-focus{
+    padding-top:clamp(42px,5vh,64px);
+    padding-left:clamp(58px,4.8vw,96px);
+    padding-right:clamp(58px,4.8vw,96px);
+  }
+  .slide.ppcd-focus .stack,
+  .slide.ppcd-focus .stack.wide{
+    width:min(650px,38vw);
+    max-width:650px;
+    margin-left:0;
+    margin-right:0;
+    transform:none;
+  }
+  .slide.ppcd-focus h1.section{
+    font-size:clamp(4rem,5.7vw,5.6rem);
+    line-height:.94;
+    margin-bottom:24px;
+  }
+  .slide.ppcd-focus .panel p,
+  .slide.ppcd-focus.boost .panel p{
+    font-size:clamp(27px,1.9vw,33px);
+    line-height:1.32;
+    margin-bottom:17px;
+  }
+  .slide.ppcd-focus .panel .lead{
+    font-size:clamp(30px,2.2vw,37px);
+    line-height:1.27;
+  }
+  .slide.ppcd-focus .qstem,
+  .slide.ppcd-focus.boost .qstem{
+    font-size:clamp(30px,2.15vw,37px);
+    line-height:1.32;
+    margin-bottom:20px;
+  }
+  .slide.ppcd-focus .callout p,
+  .slide.ppcd-focus.boost .callout p{
+    font-size:clamp(24px,1.65vw,29px);
+    line-height:1.34;
+  }
+  .slide.ppcd-focus .answer .big{font-size:clamp(38px,2.8vw,48px)}
+  .slide.ppcd-focus .vital .k{font-size:16px}
+  .slide.ppcd-focus .vital .v{font-size:28px}
+  .slide.ppcd-focus .scorebox .tile .n{font-size:38px}
+
+  /* Projector typography: use the available canvas instead of one small scale for every density. */
+  .slide.projector-spacious h1.section{
+    font-size:clamp(3.9rem,5.65vw,5.35rem);
+    line-height:.95;
+    margin-bottom:20px;
+  }
+  .slide.projector-spacious .panel p,
+  .slide.projector-spacious.boost .panel p{
+    font-size:clamp(26px,1.82vw,31px);
+    line-height:1.34;
+    margin-bottom:15px;
+  }
+  .slide.projector-spacious .panel .lead{
+    font-size:clamp(29px,2.08vw,35px);
+    line-height:1.29;
+  }
+  .slide.projector-spacious li{
+    font-size:clamp(24px,1.68vw,29px);
+    line-height:1.34;
+  }
+  .slide.projector-spacious .qstem,
+  .slide.projector-spacious.boost .qstem{
+    font-size:clamp(29px,2.05vw,35px);
+    line-height:1.34;
+  }
+  .slide.projector-spacious .callout p,
+  .slide.projector-spacious.boost .callout p{
+    font-size:clamp(23px,1.58vw,27px);
+  }
+  .slide.projector-roomy h1.section{
+    font-size:clamp(4.25rem,6vw,5.8rem);
+    line-height:.93;
+    margin-bottom:24px;
+  }
+  .slide.projector-roomy .panel p,
+  .slide.projector-roomy.boost .panel p{
+    font-size:clamp(30px,2.08vw,36px);
+    line-height:1.31;
+    margin-bottom:17px;
+  }
+  .slide.projector-roomy .panel .lead{
+    font-size:clamp(33px,2.35vw,40px);
+    line-height:1.25;
+  }
+  .slide.projector-roomy .qstem,
+  .slide.projector-roomy.boost .qstem{
+    font-size:clamp(33px,2.35vw,40px);
+    line-height:1.3;
+  }
+  .slide.projector-roomy li{
+    font-size:clamp(27px,1.88vw,32px);
+    line-height:1.32;
+  }
+  .slide.projector-roomy .callout p,
+  .slide.projector-roomy.boost .callout p{
+    font-size:clamp(25px,1.78vw,30px);
+  }
+  .slide.projector-spacious .answer .big,
+  .slide.projector-roomy .answer .big{font-size:clamp(40px,3vw,52px)}
+
+  /* Data should read from the back of the room, not behave like dashboard chrome. */
+  .slide:not(.projector-dense) .vital{padding:11px 14px}
+  .slide:not(.projector-dense) .vital .k{font-size:15px}
+  .slide:not(.projector-dense) .vital .v{font-size:28px}
+  .slide:not(.projector-dense) .scorebox{gap:12px;margin:14px 0}
+  .slide:not(.projector-dense) .scorebox .tile{
+    padding:13px 15px;
+    background:rgba(255,255,255,.52);
+    border-color:rgba(93,83,68,.25);
+  }
+  .slide:not(.projector-dense) .scorebox .tile .n{font-size:clamp(39px,2.8vw,48px)}
+  .slide:not(.projector-dense) .scorebox .tile .l{font-size:14px;line-height:1.2}
+
+  /* Slide 39: a directional reading veil and a true MELD focal point. */
+  .slide.meld-focus::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:54%;
+    pointer-events:none;
+    background:linear-gradient(90deg,rgba(249,247,241,0),rgba(249,247,241,.12) 20%,rgba(249,247,241,.32) 58%,rgba(249,247,241,.42));
+    backdrop-filter:blur(19px) saturate(.78) contrast(.94);
+    -webkit-backdrop-filter:blur(19px) saturate(.78) contrast(.94);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.24) 10%,#000 30%,#000 100%);
+    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.24) 10%,#000 30%,#000 100%);
+  }
+  .slide.meld-focus .stack,
+  .slide.meld-focus .stack.wide{
+    z-index:1;
+    width:min(720px,42vw);
+    max-width:720px;
+  }
+  .slide.meld-focus .vital{
+    background:rgba(255,255,255,.26);
+    border-color:rgba(75,74,120,.16);
+    box-shadow:none;
+  }
+  .slide.meld-focus .scorebox .tile{
+    flex-basis:100%;
+    padding:17px 20px 15px;
+    background:rgba(255,255,255,.26);
+    border:1px solid rgba(75,74,120,.18);
+    box-shadow:none;
+  }
+  .slide.meld-focus .scorebox .tile .n{
+    color:#292750;
+    font-size:clamp(52px,3.8vw,66px);
+    font-weight:bold;
+    line-height:1;
+  }
+  .slide.meld-focus .scorebox .tile .l{
+    margin-top:5px;
+    color:#34345e;
+    font-size:17px;
+    letter-spacing:.14em;
+  }
+
+  /* Slide 26: keep the emergency text off the bedside illustration. */
+  .slide.bleed-focus::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:58%;
+    pointer-events:none;
+    background:linear-gradient(90deg,rgba(249,247,241,0),rgba(249,247,241,.10) 22%,rgba(249,247,241,.30) 58%,rgba(249,247,241,.40));
+    backdrop-filter:blur(20px) saturate(.76) contrast(.93);
+    -webkit-backdrop-filter:blur(20px) saturate(.76) contrast(.93);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 12%,#000 34%,#000 100%);
+    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 12%,#000 34%,#000 100%);
+  }
+  .slide.bleed-focus .stack,
+  .slide.bleed-focus .stack.wide{
+    z-index:1;
+    width:min(760px,43vw);
+    max-width:760px;
+    margin-right:0;
+  }
+  .slide.bleed-focus h1.section{
+    max-width:760px;
+    font-size:clamp(4rem,5.1vw,5.15rem);
+    line-height:.94;
+    margin-bottom:22px;
+  }
+  .slide.bleed-focus .panel p,
+  .slide.bleed-focus .panel .lead{
+    color:#171512;
+    text-shadow:0 1px 0 #fff,0 0 10px rgba(255,255,255,.98),0 0 24px rgba(255,255,255,.92)!important;
+  }
+  .slide.bleed-focus .vital{
+    background:rgba(255,255,255,.28);
+    border-color:rgba(75,74,120,.18);
+    box-shadow:none;
+  }
+  .slide.bleed-focus .emphasis-q{
+    margin-top:18px!important;
+    padding:7px 0 4px;
+    border:0;
+    background:transparent;
+    color:#292750;
+    font-size:clamp(34px,2.4vw,42px)!important;
+    line-height:1.2!important;
+    box-shadow:none;
+    text-shadow:0 1px 0 #fff,0 0 10px rgba(255,255,255,.98),0 0 28px rgba(249,247,241,.92)!important;
+  }
+
+  /* Slide 32: large question, compact structured answer, no grid collisions. */
+  .slide.he-focus::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:53%;
+    pointer-events:none;
+    background:linear-gradient(90deg,rgba(249,247,241,0),rgba(249,247,241,.10) 20%,rgba(249,247,241,.30) 58%,rgba(249,247,241,.42));
+    backdrop-filter:blur(19px) saturate(.78) contrast(.94);
+    -webkit-backdrop-filter:blur(19px) saturate(.78) contrast(.94);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 11%,#000 32%,#000 100%);
+    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 11%,#000 32%,#000 100%);
+  }
+  .slide.he-focus .stack{
+    z-index:1;
+    width:min(710px,41vw);
+    max-width:710px;
+    margin-right:0;
+  }
+  .slide.he-focus h1.section{
+    font-size:clamp(4rem,4.8vw,4.8rem);
+    line-height:.95;
+    margin-bottom:18px;
+  }
+  .slide.he-focus .qstem,
+  .slide.he-focus.projector-spacious .qstem{
+    font-size:clamp(28px,1.95vw,32px);
+    line-height:1.32;
+    margin-bottom:13px;
+  }
+  .slide.he-focus .qstem .lead{
+    font-size:clamp(29px,2vw,33px);
+    line-height:1.3;
+    margin-bottom:12px;
+  }
+  .slide.he-focus .answer{
+    margin-top:12px;
+    padding-top:11px;
+  }
+  .slide.he-focus .he-answer .tag{
+    margin-bottom:8px;
+    font-size:13px;
+  }
+  .slide.he-focus .he-answer .big{
+    font-size:clamp(35px,2.45vw,41px);
+    line-height:1.08;
+    margin-bottom:11px;
+  }
+  .slide.he-focus .he-answer .he-interpret{
+    margin-bottom:11px;
+    padding:10px 0;
+  }
+  .slide.he-focus .he-answer .he-interpret p{
+    display:grid;
+    grid-template-columns:118px minmax(0,1fr);
+    gap:14px;
+    font-size:clamp(21px,1.42vw,24px);
+    line-height:1.22;
+    margin:0 0 7px;
+  }
+  .slide.he-focus .he-answer .he-action{
+    padding:13px 16px 12px;
+    border:1px solid rgba(255,255,255,.78);
+    border-radius:16px;
+    background:linear-gradient(135deg,rgba(255,255,255,.64),rgba(247,243,235,.43));
+    box-shadow:0 12px 30px rgba(43,37,28,.12),0 0 0 1px rgba(135,105,154,.12) inset,0 1px 0 rgba(255,255,255,.82) inset;
+    backdrop-filter:blur(16px) saturate(.88);
+    -webkit-backdrop-filter:blur(16px) saturate(.88);
+  }
+  .slide.he-focus .he-answer .he-label{
+    margin-bottom:5px;
+    font-size:14px;
+  }
+  .slide.he-focus .he-answer .he-action p,
+  .slide.he-focus.projector-spacious .he-answer .he-action p{
+    font-size:clamp(20px,1.38vw,23px);
+    line-height:1.28;
+    margin:0 0 7px;
+  }
+
+  /* Final specificity pass for the slides explicitly flagged as unreadable. */
+  .slide.critical-readability h1.section{
+    font-size:clamp(4.3rem,5.55vw,5.8rem);
+    line-height:.92;
+    margin-bottom:22px;
+  }
+  .slide.critical-readability.early-tips-hero h1.section{
+    font-size:clamp(3.9rem,4.95vw,5.1rem);
+    margin-bottom:12px;
+  }
+  .slide.critical-readability.bleed-focus .stack,
+  .slide.critical-readability.he-focus .stack,
+  .slide.critical-readability.meld-focus .stack,
+  .slide.critical-readability.ppcd-focus .stack,
+  .slide.critical-readability.ppcd-focus .stack.wide{
+    width:min(850px,48vw);
+    max-width:850px;
+    margin-right:0;
+  }
+  .slide.critical-readability.bleed-focus h1.section,
+  .slide.critical-readability.he-focus h1.section,
+  .slide.critical-readability.meld-focus h1.section{
+    font-size:clamp(4.55rem,5.75vw,5.9rem);
+    line-height:.91;
+  }
+  .slide.critical-readability.bleed-focus .panel .lead{
+    font-size:clamp(31px,2.15vw,38px);
+    line-height:1.26;
+  }
+  .slide.critical-readability.bleed-focus .emphasis-q{
+    font-size:clamp(45px,3.2vw,56px)!important;
+    line-height:1.08!important;
+  }
+  .slide.critical-readability.he-focus .qstem,
+  .slide.critical-readability.he-focus.projector-spacious .qstem{
+    font-size:clamp(30px,2.05vw,36px);
+  }
+  .slide.critical-readability.he-focus .he-answer .he-interpret p{
+    grid-template-columns:125px minmax(0,1fr);
+    font-size:clamp(22px,1.48vw,26px);
+  }
+  .slide.critical-readability.he-focus .he-answer .he-action p,
+  .slide.critical-readability.he-focus.projector-spacious .he-answer .he-action p{
+    font-size:clamp(21px,1.42vw,25px);
+  }
+  .slide.critical-readability.meld-focus .meld-vitals .vital{
+    flex:1 1 calc(33.333% - 8px);
+    min-width:0;
+    padding:14px 16px;
+    background:rgba(255,255,255,.24);
+  }
+  .slide.critical-readability.meld-focus .meld-vitals .vital .k{font-size:17px}
+  .slide.critical-readability.meld-focus .meld-vitals .vital .v{font-size:clamp(30px,2.05vw,36px)}
+  .slide.critical-readability.meld-focus .scorebox .tile .n{font-size:clamp(70px,5vw,88px)}
+  .slide.critical-readability.meld-focus .scorebox .tile .l{font-size:19px}
+  .slide.critical-readability.albumin-challenge-focus .scorebox .tile{
+    padding:18px 17px;
+    background:rgba(255,255,255,.25);
+    box-shadow:none;
+  }
+  .slide.critical-readability.albumin-challenge-focus .scorebox .tile .n{font-size:clamp(48px,3.4vw,60px)}
+  .slide.critical-readability.albumin-challenge-focus .scorebox .tile .l{font-size:16px}
+  .slide.critical-readability.albumin-challenge-focus .panel .em{font-size:clamp(29px,2vw,35px);line-height:1.25}
+  .slide.critical-readability:not(.he-focus):not(.meld-focus):not(.bleed-focus) .qstem{
+    font-size:clamp(32px,2.22vw,39px);
+    line-height:1.27;
+  }
+  .slide.critical-readability:not(.he-focus):not(.meld-focus):not(.bleed-focus) .answer p{
+    font-size:clamp(27px,1.82vw,32px)!important;
+    line-height:1.3;
+  }
+  .slide.critical-readability:not(.he-focus) .answer .big{
+    font-size:clamp(41px,2.85vw,50px)!important;
+    line-height:1.08!important;
+    margin-bottom:12px;
+  }
+  .slide.critical-readability.meld-focus .scorebox .tile{
+    padding:8px 14px;
+    border:0;
+    background:transparent;
+    box-shadow:none;
+  }
+
+  /* Projector rescue: the seven slides repeatedly flagged in live review.
+     This is a feathered canvas treatment, never a card behind the copy. */
+  .slide.critical-readability{
+    align-items:center;
+    overflow:hidden;
+    padding-top:28px;
+    padding-bottom:24px;
+  }
+  .slide.critical-readability::after{
+    width:70%;
+    background:linear-gradient(90deg,
+      rgba(249,247,241,0) 0%,
+      rgba(249,247,241,.32) 9%,
+      rgba(249,247,241,.82) 27%,
+      rgba(249,247,241,.96) 43%,
+      rgba(249,247,241,.99) 100%);
+    backdrop-filter:blur(38px) saturate(.42) contrast(.86) brightness(1.10);
+    -webkit-backdrop-filter:blur(38px) saturate(.42) contrast(.86) brightness(1.10);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 7%,rgba(0,0,0,.78) 24%,#000 40%,#000 100%);
+    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 7%,rgba(0,0,0,.78) 24%,#000 40%,#000 100%);
+  }
+  .slide.critical-readability .stack,
+  .slide.critical-readability .stack.wide,
+  .slide.critical-readability.bleed-focus .stack,
+  .slide.critical-readability.he-focus .stack,
+  .slide.critical-readability.meld-focus .stack,
+  .slide.critical-readability.ppcd-focus .stack,
+  .slide.critical-readability.ppcd-focus .stack.wide{
+    z-index:1;
+    width:min(900px,46vw);
+    max-width:900px;
+    margin-left:0;
+    margin-right:0;
+  }
+  .slide.critical-readability h1.section,
+  .slide.critical-readability.bleed-focus h1.section,
+  .slide.critical-readability.he-focus h1.section,
+  .slide.critical-readability.meld-focus h1.section{
+    color:#282550;
+    font-size:clamp(90px,5.35vw,102px);
+    line-height:.91;
+    margin-bottom:24px;
+    text-shadow:0 2px 0 #fff,0 0 8px #fff,0 0 22px rgba(249,247,241,1),0 0 48px rgba(249,247,241,.98)!important;
+  }
+  .slide.critical-readability .panel,
+  .slide.critical-readability .panel p,
+  .slide.critical-readability .qstem,
+  .slide.critical-readability .answer,
+  .slide.critical-readability .answer p,
+  .slide.critical-readability .vital,
+  .slide.critical-readability .scorebox{
+    color:#11100e;
+    text-shadow:0 2px 0 #fff,0 0 8px #fff,0 0 20px rgba(249,247,241,1),0 0 42px rgba(249,247,241,.96)!important;
+  }
+  .slide.critical-readability .reveal-btn{
+    margin-top:7px;
+    padding:15px 23px;
+    font-size:20px;
+    line-height:1;
+    background:rgba(255,255,255,.28);
+    border-width:2px;
+  }
+  .slide.critical-readability .answer .tag{
+    padding:7px 14px;
+    font-size:16px;
+  }
+
+  /* 26 — the emergency state and the decision must dominate. */
+  .slide.critical-readability.bleed-focus .panel .lead{
+    font-size:clamp(42px,2.35vw,45px);
+    line-height:1.22;
+    margin-bottom:18px;
+  }
+  .slide.critical-readability.bleed-focus .vitals{
+    gap:11px;
+    margin:4px 0 18px;
+  }
+  .slide.critical-readability.bleed-focus .vital{
+    min-width:120px;
+    padding:12px 17px;
+    background:rgba(255,255,255,.22);
+    border-color:rgba(61,55,48,.28);
+  }
+  .slide.critical-readability.bleed-focus .vital .k{font-size:18px}
+  .slide.critical-readability.bleed-focus .vital .v{font-size:clamp(42px,2.25vw,44px)}
+  .slide.critical-readability.bleed-focus .emphasis-q{
+    margin-top:8px!important;
+    font-size:clamp(60px,3.45vw,66px)!important;
+    line-height:1.04!important;
+  }
+
+  /* 30 — show the question large; after reveal, give the answer the canvas. */
+  .slide.critical-readability.endoscopy-critical .qstem{
+    font-size:clamp(44px,2.35vw,45px);
+    line-height:1.22;
+  }
+  .slide.critical-readability.endoscopy-critical .qstem .bigline{
+    font-size:clamp(60px,3.25vw,62px);
+    line-height:1.04;
+    margin-bottom:15px;
+  }
+  .slide.critical-readability.endoscopy-critical.answer-revealed .qstem,
+  .slide.critical-readability.endoscopy-critical.answer-revealed .reveal-btn{
+    display:none;
+  }
+  .slide.critical-readability.endoscopy-critical.answer-revealed .answer{
+    margin-top:0;
+    padding-top:0;
+    border-top:0;
+  }
+  .slide.critical-readability.endoscopy-critical.answer-revealed .answer .big{
+    font-size:clamp(52px,3.2vw,62px)!important;
+    line-height:1.04!important;
+    margin-bottom:17px;
+  }
+  .slide.critical-readability.endoscopy-critical.answer-revealed .answer p{
+    font-size:clamp(36px,2.25vw,43px)!important;
+    line-height:1.22;
+  }
+  .slide.critical-readability.endoscopy-critical.answer-revealed .callout{
+    margin-top:18px;
+  }
+  .slide.critical-readability.endoscopy-critical.answer-revealed .callout .lab{font-size:17px}
+  .slide.critical-readability.endoscopy-critical.answer-revealed .callout p{
+    font-size:clamp(31px,1.95vw,37px)!important;
+  }
+
+  /* 31 — the intervention, population, and effect sizes all read at a glance. */
+  .slide.critical-readability.early-tips-hero h1.section{
+    font-size:clamp(76px,4.75vw,91px);
+    line-height:.91;
+    margin-bottom:13px;
+  }
+  .slide.critical-readability.early-tips-hero .trialmeta{
+    margin-bottom:17px;
+    font-size:clamp(22px,1.2vw,23px);
+    line-height:1.24;
+  }
+  .slide.critical-readability.early-tips-hero .evidence-action{
+    margin-bottom:12px!important;
+    font-size:clamp(52px,2.85vw,55px)!important;
+    line-height:1.03!important;
+  }
+  .slide.critical-readability.early-tips-hero .evidence-who{
+    margin-bottom:24px!important;
+    font-size:clamp(34px,1.8vw,35px)!important;
+    line-height:1.22!important;
+  }
+  .slide.critical-readability.early-tips-hero .evidence-numbers{
+    gap:34px;
+    margin-bottom:22px;
+  }
+  .slide.critical-readability.early-tips-hero .evidence-stat .n{
+    font-size:clamp(96px,5.45vw,104px);
+    line-height:.84;
+  }
+  .slide.critical-readability.early-tips-hero .evidence-stat strong{
+    margin-top:12px;
+    font-size:clamp(30px,1.65vw,32px);
+  }
+  .slide.critical-readability.early-tips-hero .evidence-stat small{
+    margin-top:7px;
+    font-size:clamp(24px,1.3vw,25px);
+  }
+  .slide.critical-readability.early-tips-hero .evidence-bottom{
+    font-size:clamp(34px,1.8vw,35px)!important;
+    line-height:1.18!important;
+  }
+
+  /* 32 — preserve the bottom action pill, but stop stacking it under the prompt. */
+  .slide.critical-readability.he-focus .qstem,
+  .slide.critical-readability.he-focus.projector-spacious .qstem{
+    font-size:clamp(43px,2.35vw,45px);
+    line-height:1.23;
+    margin-bottom:18px;
+  }
+  .slide.critical-readability.he-focus .qstem .lead{
+    font-size:clamp(41px,2.2vw,42px);
+    line-height:1.22;
+    margin-bottom:18px;
+  }
+  .slide.critical-readability.he-focus.answer-revealed{
+    align-items:flex-start;
+    padding-top:30px;
+  }
+  .slide.critical-readability.he-focus.answer-revealed .qstem,
+  .slide.critical-readability.he-focus.answer-revealed .reveal-btn{
+    display:none;
+  }
+  .slide.critical-readability.he-focus.answer-revealed h1.section{
+    font-size:clamp(72px,4.55vw,87px);
+    margin-bottom:16px;
+  }
+  .slide.critical-readability.he-focus.answer-revealed .answer{
+    margin-top:0;
+    padding-top:0;
+    border-top:0;
+  }
+  .slide.critical-readability.he-focus.answer-revealed .he-answer .big{
+    font-size:clamp(49px,3vw,58px);
+    line-height:1.05;
+    margin-bottom:15px;
+  }
+  .slide.critical-readability.he-focus.answer-revealed .he-answer .he-interpret{
+    margin-bottom:14px;
+    padding:11px 0;
+  }
+  .slide.critical-readability.he-focus.answer-revealed .he-answer .he-interpret p{
+    grid-template-columns:145px minmax(0,1fr);
+    gap:17px;
+    font-size:clamp(27px,1.7vw,32px);
+    line-height:1.18;
+    margin-bottom:8px;
+  }
+  .slide.critical-readability.he-focus.answer-revealed .he-answer .he-action{
+    padding:15px 18px 14px;
+  }
+  .slide.critical-readability.he-focus.answer-revealed .he-answer .he-label{font-size:17px}
+  .slide.critical-readability.he-focus.answer-revealed .he-answer .he-action p,
+  .slide.critical-readability.he-focus.answer-revealed.projector-spacious .he-answer .he-action p{
+    font-size:clamp(27px,1.65vw,31px);
+    line-height:1.22;
+    margin-bottom:8px;
+  }
+
+  /* 39 — move MELD off the image and make it the unmistakable focal point. */
+  .slide.critical-readability.meld-focus .panel .lead{
+    font-size:clamp(42px,2.25vw,43px);
+    line-height:1.22;
+    margin-bottom:18px;
+  }
+  .slide.critical-readability.meld-focus .meld-vitals{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:11px;
+    margin:0 0 14px;
+  }
+  .slide.critical-readability.meld-focus .meld-vitals .vital{
+    width:auto;
+    min-width:0;
+    padding:12px 16px;
+    background:rgba(255,255,255,.16);
+    border-color:rgba(61,55,48,.26);
+  }
+  .slide.critical-readability.meld-focus .meld-vitals .vital .k{font-size:22px}
+  .slide.critical-readability.meld-focus .meld-vitals .vital .v{font-size:clamp(46px,2.55vw,49px)}
+  .slide.critical-readability.meld-focus .scorebox{
+    display:flex;
+    justify-content:flex-end;
+    margin:9px 0 0;
+  }
+  .slide.critical-readability.meld-focus .scorebox .tile{
+    display:flex;
+    flex:1 1 100%;
+    flex-direction:row;
+    align-items:baseline;
+    justify-content:flex-end;
+    gap:24px;
+    padding:0 12px 0 0;
+  }
+  .slide.critical-readability.meld-focus .scorebox .tile .n{
+    color:#282550;
+    font-size:clamp(126px,7vw,134px);
+    font-weight:bold;
+    line-height:.78;
+    letter-spacing:-.045em;
+    text-shadow:0 2px 0 #fff,0 0 9px #fff,0 0 24px #fff,0 0 50px rgba(249,247,241,1)!important;
+  }
+  .slide.critical-readability.meld-focus .scorebox .tile .l{
+    margin:0 0 5px;
+    color:#282550;
+    font-size:clamp(28px,1.55vw,30px);
+    letter-spacing:.14em;
+    text-shadow:0 2px 0 #fff,0 0 9px #fff,0 0 24px #fff,0 0 50px rgba(249,247,241,1)!important;
+  }
+
+  /* 47 — the albumin dose, creatinine trend, and failed response are the slide. */
+  .slide.critical-readability.albumin-challenge-focus .panel .lead{
+    font-size:clamp(42px,2.3vw,44px);
+    line-height:1.2;
+    margin-bottom:20px;
+  }
+  .slide.critical-readability.albumin-challenge-focus .scorebox{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:13px;
+    margin:0 0 20px;
+  }
+  .slide.critical-readability.albumin-challenge-focus .scorebox .tile{
+    padding:18px 18px 16px;
+    background:rgba(255,255,255,.17);
+    border-color:rgba(61,55,48,.27);
+  }
+  .slide.critical-readability.albumin-challenge-focus .scorebox .tile .n{
+    font-size:clamp(70px,3.85vw,74px);
+    line-height:.96;
+  }
+  .slide.critical-readability.albumin-challenge-focus .scorebox .tile .l{
+    margin-top:8px;
+    font-size:clamp(22px,1.18vw,23px);
+    line-height:1.16;
+  }
+  .slide.critical-readability.albumin-challenge-focus .panel .em{
+    font-size:clamp(40px,2.2vw,42px);
+    line-height:1.2;
+  }
+
+  /* 54 — the contraindication and ICU alternative should read as two beats. */
+  .slide.critical-readability.pressor-rescue-focus .qstem{
+    font-size:clamp(48px,2.65vw,51px);
+    line-height:1.22;
+  }
+  .slide.critical-readability.pressor-rescue-focus .qstem b{
+    font-size:1.08em;
+  }
+  .slide.critical-readability.pressor-rescue-focus.answer-revealed .qstem,
+  .slide.critical-readability.pressor-rescue-focus.answer-revealed .reveal-btn{
+    display:none;
+  }
+  .slide.critical-readability.pressor-rescue-focus.answer-revealed .answer{
+    margin-top:0;
+    padding-top:0;
+    border-top:0;
+  }
+  .slide.critical-readability.pressor-rescue-focus.answer-revealed .answer .big{
+    font-size:clamp(54px,3.35vw,64px)!important;
+    line-height:1.05!important;
+    margin-bottom:20px;
+  }
+  .slide.critical-readability.pressor-rescue-focus.answer-revealed .answer p{
+    font-size:clamp(38px,2.35vw,45px)!important;
+    line-height:1.22;
+  }
+
+  /* ID specificity keeps legacy density rules from shrinking revealed answers. */
+  #slide.critical-readability.endoscopy-critical.answer-revealed .answer .big{
+    font-size:clamp(60px,3.2vw,62px)!important;
+  }
+  #slide.critical-readability.endoscopy-critical.answer-revealed .answer p{
+    font-size:clamp(42px,2.25vw,43px)!important;
+  }
+  #slide.critical-readability.endoscopy-critical.answer-revealed .callout p{
+    font-size:clamp(36px,1.95vw,37px)!important;
+  }
+  #slide.critical-readability.he-focus.answer-revealed .he-answer .big{
+    font-size:clamp(56px,3vw,58px)!important;
+  }
+  #slide.critical-readability.he-focus.answer-revealed .he-answer .he-interpret p{
+    font-size:clamp(30px,1.7vw,32px)!important;
+  }
+  #slide.critical-readability.he-focus.answer-revealed .he-answer .he-action p{
+    font-size:clamp(30px,1.65vw,31px)!important;
+  }
+  #slide.critical-readability.pressor-rescue-focus.answer-revealed .answer .big{
+    font-size:clamp(62px,3.35vw,64px)!important;
+  }
+  #slide.critical-readability.pressor-rescue-focus.answer-revealed .answer p{
+    font-size:clamp(44px,2.35vw,45px)!important;
+  }
+  #slide.critical-readability.pressor-rescue-focus .qstem{
+    font-size:clamp(48px,2.65vw,51px)!important;
+  }
+  #slide.critical-readability.endoscopy-critical .qstem{
+    font-size:clamp(44px,2.35vw,45px)!important;
+  }
 }
 
 /* ---- Mobile deck: keep the artwork, make every slide usable by touch ---- */
@@ -995,7 +1893,7 @@ const SLIDES=[
 "01000001000000011000101100000111000",
 "01111111010010101011000111011000100",
 "00000000000000000000000000000000000"
-],body:`<ol class="takeaway-list"><li>Suspect cirrhosis early → <b>low platelets, splenomegaly, AST &gt; ALT.</b></li><li>New ascites → <b>tap.</b></li><li>Ascitic fluid → <b>PMNs, albumin/SAAG, protein, and culture.</b></li><li>PMN ≥250 → <b>treat as SBP.</b></li><li>SBP → <b>antibiotics + albumin.</b></li><li>SBP response → <b>re-tap at 48 h; PMNs should fall ≥25%.</b></li><li>Prior SBP → <b>secondary antibiotic prophylaxis.</b></li><li>Variceal bleeding → <b>ceftriaxone + octreotide + urgent endoscopy.</b></li><li>High-risk variceal bleeding → <b>pre-emptive TIPS within 24–72 h.</b></li><li>Hepatic encephalopathy → <b>treat clinically; don’t chase ammonia.</b></li><li>Overt HE → <b>lactulose, correct precipitants, then rifaximin.</b></li><li>Refractory HE after TIPS → <b>consider TIPS reduction.</b></li><li>Paracentesis → <b>albumin 6–8 g/L removed.</b></li><li>HRS-AKI → <b>exclude other causes, albumin, vasoconstrictor, transplant evaluation.</b></li></ol>`}
+],body:`<p class="takeaway-deckline">Fourteen bedside decisions worth carrying forward</p><ol class="takeaway-grid"><li>Suspect cirrhosis early &rarr; <b>low platelets, splenomegaly, AST &gt; ALT.</b></li><li>New ascites &rarr; <b>tap.</b></li><li>Ascitic fluid &rarr; <b>PMNs, albumin/SAAG, protein, and culture.</b></li><li>PMN &ge;250 &rarr; <b>treat as SBP.</b></li><li>SBP &rarr; <b>antibiotics + albumin.</b></li><li>SBP response &rarr; <b>re-tap at 48 h; PMNs should fall &ge;25%.</b></li><li>Prior SBP &rarr; <b>secondary antibiotic prophylaxis.</b></li><li>Variceal bleeding &rarr; <b>ceftriaxone + octreotide + urgent endoscopy.</b></li><li>High-risk variceal bleeding &rarr; <b>pre-emptive TIPS within 24&ndash;72 h.</b></li><li>Hepatic encephalopathy &rarr; <b>treat clinically; don&rsquo;t chase ammonia.</b></li><li>Overt HE &rarr; <b>lactulose, correct precipitants, then rifaximin.</b></li><li>Refractory HE after TIPS &rarr; <b>consider TIPS reduction.</b></li><li>Paracentesis &rarr; <b>albumin 6&ndash;8 g/L removed.</b></li><li>HRS-AKI &rarr; <b>exclude other causes, albumin, vasoconstrictor, transplant evaluation.</b></li></ol>`}
 ];
 const BACKGROUND_IMAGE_BASE_PATH="";
 
@@ -1087,6 +1985,13 @@ SLIDES.splice(51,0,{
   imageBg:'#f6eadb',
   backgroundOnly:true
 });
+/* Show the HRS-AKI physiology first, then return to the failed albumin challenge. */
+const albuminFailureIndex=SLIDES.findIndex(s=>s.section==='The Albumin Challenge Fails');
+const hrsPathophysiologyIndex=SLIDES.findIndex(s=>s.section==='The Pathophysiology of HRS-AKI');
+if(albuminFailureIndex>-1&&hrsPathophysiologyIndex>-1&&albuminFailureIndex<hrsPathophysiologyIndex){
+  const [hrsPathophysiologySlide]=SLIDES.splice(hrsPathophysiologyIndex,1);
+  SLIDES.splice(albuminFailureIndex,0,hrsPathophysiologySlide);
+}
 const NEW_BACKGROUND_RANGES=[
   {start:34,end:36,image:'tips-procedure-interventional-radiology.jpg',contentSide:'left'},
   {start:37,end:40,image:'large-volume-paracentesis.jpg',contentSide:'right'},
@@ -1112,21 +2017,60 @@ SLIDES.forEach((s,i)=>{
     delete s.image;
     delete s.imagePos;
   }
+  if(slideNumber>=38&&slideNumber<=43) s.ppcdFocus=true;
+  if(slideNumber===39) s.meldFocus=true;
 });
 /* boost legibility on originals that sit over busier photos */
 ['Endoscopy Findings'].forEach(sec=>{const i=SLIDES.findIndex(s=>s.section===sec); if(i>-1) SLIDES[i].boost=true;});
-/* solid reading surfaces for the two TIPS slides sharing the illustrated endoscopy background */
-['Endoscopy Findings','The Evidence for Early TIPS'].forEach(sec=>{const i=SLIDES.findIndex(s=>s.section===sec); if(i>-1) SLIDES[i].contrastPanel=true;});
-/* keep the refractory-HE follow-up visually continuous with the preceding HE slide */
+/* Seamless, feathered blur only where copy intersects detailed artwork. */
+['Endoscopy Findings','The Evidence for Early TIPS','TIPS Reduction','What Does 3 → 9 Mean?','Portal Pressure Measurements'].forEach(sec=>{
+  const i=SLIDES.findIndex(s=>s.section===sec);
+  if(i<0) return;
+  SLIDES[i].artworkText=true;
+  SLIDES[i].boost=true;
+  delete SLIDES[i].blur;
+  delete SLIDES[i].contrastPanel;
+});
+/* keep slides 33 and 34 visually continuous with slide 32 */
 const numberedContentSlides=SLIDES.filter(s=>!s.backgroundOnly);
-if(numberedContentSlides[32]&&numberedContentSlides[33]){
-  numberedContentSlides[33].image=numberedContentSlides[32].image;
-  numberedContentSlides[33].imagePos=numberedContentSlides[32].imagePos;
-  numberedContentSlides[33].ch=numberedContentSlides[32].ch;
-  numberedContentSlides[33].layout='right';
-  ['boost','blur','contrastPanel','wide','narrow','softThird','compactAnswer','nudgeLeft','cakeTitle','chartLarge'].forEach(prop=>{
-    if(numberedContentSlides[32][prop]===undefined) delete numberedContentSlides[33][prop];
-    else numberedContentSlides[33][prop]=numberedContentSlides[32][prop];
+[26,30,31,32,39,47].forEach(slideNumber=>{
+  const target=numberedContentSlides[slideNumber-1];
+  if(target) target.criticalReadability=true;
+});
+if(numberedContentSlides[25]){
+  numberedContentSlides[25].body=`<p class="lead">Adam arrives vomiting bright red blood—pale, clammy, and passing melena.</p><div class="vitals"><div class="vital flag"><div class="k">HR</div><div class="v">122</div></div><div class="vital flag"><div class="k">BP</div><div class="v">88/54</div></div><div class="vital flag"><div class="k">Hgb</div><div class="v">6.8</div></div><div class="vital"><div class="k">Lactate</div><div class="v">3.4</div></div></div><p class="qstem emphasis-q"><b>What happens next?</b></p>`;
+}
+if(numberedContentSlides[29]){
+  numberedContentSlides[29].endoscopyCritical=true;
+  numberedContentSlides[29].stem=`<span class="bigline">Urgent endoscopy</span>Active variceal bleeding is controlled with band ligation.<br><br><b>Child–Pugh C, score 11: what must happen before he rebleeds?</b>`;
+  numberedContentSlides[29].reveal=`<span class="tag">Act early</span><p class="big">Pre-emptive TIPS within 24–72 hours.</p><p>Consider it for Child–Pugh C below 14, or Child–Pugh B with active bleeding at endoscopy. In the right patient, early TIPS improves bleeding control and survival.</p><div class="callout"><span class="lab">After placement</span><p>Obtain a baseline Doppler ultrasound for future shunt comparison.</p></div>`;
+}
+if(numberedContentSlides[30]){
+  numberedContentSlides[30].earlyTipsHero=true;
+  numberedContentSlides[30].body=`<div class="trialmeta">Garc&iacute;a-Pag&aacute;n et&nbsp;al. <span class="sep">&middot;</span> N&nbsp;Engl&nbsp;J&nbsp;Med 2010 <span class="sep">&middot;</span> High-risk variceal bleeding</div><p class="evidence-action">Pre-emptive TIPS within 72 hours</p><p class="evidence-who">Child–Pugh C below 14, or Child–Pugh B with active bleeding at endoscopy.</p><div class="evidence-numbers"><div class="evidence-stat"><span class="n">86%</span><strong>1-year survival</strong><small>vs 61% with drugs + banding</small></div><div class="evidence-stat"><span class="n">97%</span><strong>Bleeding controlled</strong><small>vs 50% without early TIPS</small></div></div><p class="evidence-bottom">Place the shunt before the next bleed—not as rescue after failure.</p>`;
+}
+if(numberedContentSlides[38]){
+  numberedContentSlides[38].body=`<p class="lead">He returns with tense ascites and a reducible umbilical hernia.</p><div class="vitals meld-vitals"><div class="vital flag"><div class="k">Hgb</div><div class="v">9.7</div></div><div class="vital flag"><div class="k">PLT</div><div class="v">64</div></div><div class="vital flag"><div class="k">T bili</div><div class="v">4.8</div></div><div class="vital flag"><div class="k">INR</div><div class="v">2.1</div></div><div class="vital flag"><div class="k">Na</div><div class="v">126</div></div><div class="vital"><div class="k">Cr</div><div class="v">0.8</div></div></div><div class="scorebox"><div class="tile"><div class="n">27</div><div class="l">MELD 3.0</div></div></div>`;
+}
+if(numberedContentSlides[46]){
+  numberedContentSlides[46].albuminChallengeFocus=true;
+  numberedContentSlides[46].body=`<p class="lead">After 2 days of albumin at <b>1 g/kg/day</b>, his creatinine continues to rise.</p><div class="scorebox"><div class="tile"><div class="n">2.2</div><div class="l">Cr before</div></div><div class="tile"><div class="n">2.7</div><div class="l">Cr after</div></div><div class="tile"><div class="n">No</div><div class="l">Renal response</div></div></div><p class="em">Progressive renal dysfunction despite volume expansion now supports HRS-AKI.</p>`;
+}
+const terlipressinUnsafeSlide=SLIDES.find(s=>s.section==='When Terlipressin Is Unsafe');
+if(terlipressinUnsafeSlide){
+  terlipressinUnsafeSlide.criticalReadability=true;
+  terlipressinUnsafeSlide.pressorRescueFocus=true;
+  terlipressinUnsafeSlide.stem=`Adam is now <b>ACLF grade 3</b>.<br><br><b>Terlipressin is unsafe. What is the next move?</b>`;
+  terlipressinUnsafeSlide.reveal=`<span class="tag">ICU path</span><p class="big">Norepinephrine, with or without vasopressin.</p><p>Use ICU vasopressor support plus albumin and close monitoring. The goal is to restore organ perfusion—not simply normalize the blood pressure.</p>`;
+}
+if(numberedContentSlides[25]) numberedContentSlides[25].bleedFocus=true;
+if(numberedContentSlides[31]) numberedContentSlides[31].heFocus=true;
+if(numberedContentSlides[31]){
+  [numberedContentSlides[32],numberedContentSlides[33]].filter(Boolean).forEach(target=>{
+    ['image','imagePos','imageSize','imageFade','imageBg','ch','layout','boost','blur','contrastPanel','wide','narrow','softThird','compactAnswer','nudgeLeft','cakeTitle','chartLarge'].forEach(prop=>{
+      if(numberedContentSlides[31][prop]===undefined) delete target[prop];
+      else target[prop]=numberedContentSlides[31][prop];
+    });
   });
 }
 /* continue the dark TIPS chapter treatment from slide 34 onto slide 35 */
@@ -1141,6 +2085,214 @@ if(numberedContentSlides[55]&&numberedContentSlides[56]){
   numberedContentSlides[56].imagePos=numberedContentSlides[55].imagePos;
   numberedContentSlides[56].layout='left';
 }
+
+/* Replace stock presentation language with specific clinical wording. */
+const copySlide=section=>SLIDES.find(slide=>slide.section===section);
+const replaceSlideCopy=(section,field,replacements)=>{
+  const slide=copySlide(section);
+  if(!slide||typeof slide[field]!=='string') return;
+  replacements.forEach(([from,to])=>{slide[field]=slide[field].replace(from,to);});
+};
+const titleSlide=SLIDES.find(slide=>slide.type==='title');
+if(titleSlide){titleSlide.kicker='';titleSlide.sub='A case of recurrent decompensated cirrhosis.';}
+
+const initialPresentation=copySlide('Meet Adam');
+if(initialPresentation){initialPresentation.section='Initial Presentation';initialPresentation.kicker='Primary Care';}
+
+const ascitesAction=copySlide('Abdominal Distension');
+if(ascitesAction){
+  ascitesAction.stem='<b>What is the immediate diagnostic step?</b>';
+  ascitesAction.reveal=ascitesAction.reveal.replace('Recommended action','Management').replace('Bedside rule','Indication');
+}
+replaceSlideCopy('Initial Ascitic Fluid Studies','reveal',[[
+  'depend on the story.',
+  'depend on the suspected etiology.'
+]]);
+replaceSlideCopy('Ascitic Fluid Cultures','reveal',[[
+  'Yes, but you need to know what to do with them and how to interpret them.',
+  'Yes. Interpret the culture with the PMN count and the patient’s symptoms.'
+]]);
+replaceSlideCopy('Where Does Adam’s Ascites Fit?','note',[[
+  'Adam lands in the high-SAAG, low-protein quadrant: cirrhotic ascites from portal hypertension. The low protein also flags higher SBP risk.',
+  'Adam’s results are in the high-SAAG, low-protein quadrant: cirrhotic ascites from portal hypertension. Low protein is also associated with higher SBP risk.'
+]]);
+replaceSlideCopy('Primary Prophylaxis','reveal',[[
+  'Low protein alone is a risk flag, not the same as prior SBP.',
+  'Low protein alone is a risk marker; it is not equivalent to prior SBP.'
+]]);
+replaceSlideCopy('Protecting the Kidneys','rationale',[[
+  'In the landmark trial,',
+  'In the randomized trial,'
+]]);
+
+const sbpDischarge=copySlide('Before He Leaves');
+if(sbpDischarge) sbpDischarge.section='Discharge After SBP';
+
+const bleedPresentation=numberedContentSlides[25];
+if(bleedPresentation) bleedPresentation.body=bleedPresentation.body.replace('What happens next?','What is the immediate management?');
+
+const antibioticEvidence=copySlide('Why Antibiotics Matter');
+if(antibioticEvidence){
+  antibioticEvidence.section='Antibiotic Prophylaxis in Variceal Bleeding';
+  antibioticEvidence.kicker='Systematic Review';
+  antibioticEvidence.body=antibioticEvidence.body
+    .replace('At the bedside','Treatment')
+    .replace('Give it up front, not after cultures return.','Start antibiotics at presentation, before culture results return.');
+}
+const octreotideSlide=copySlide('How Does Octreotide Help?');
+if(octreotideSlide) octreotideSlide.section='Octreotide and Portal Inflow';
+replaceSlideCopy('Endoscopy Findings','reveal',[['Act early','Timing'],['The landmark trial showed','The randomized trial showed']]);
+
+const albuminEvidence=copySlide('Why Albumin Matters');
+if(albuminEvidence){
+  albuminEvidence.section='Albumin Reduces Renal Injury and Mortality';
+  albuminEvidence.kicker='Sort et al., 1999';
+  albuminEvidence.body=albuminEvidence.body
+    .replace('Why it works','Mechanism')
+    .replace('SBP collapses effective arterial blood volume, firing the renin&ndash;angiotensin system and starving the kidney.','SBP reduces effective arterial blood volume, activates the renin&ndash;angiotensin system, and decreases renal perfusion.')
+    .replace('renin ran higher in the antibiotic-only arm, and those patients had the worst kidneys.','renin levels were higher in the antibiotic-only arm, which also had more renal impairment.')
+    .replace('That is why the dose is weight-based, not a flat 25&nbsp;g.','The regimen is weight-based rather than a flat 25&nbsp;g dose.');
+}
+const earlyTipsEvidence=copySlide('The Evidence for Early TIPS');
+if(earlyTipsEvidence){
+  earlyTipsEvidence.section='Early TIPS Improves One-Year Survival';
+  earlyTipsEvidence.kicker='García-Pagán et al., 2010';
+  earlyTipsEvidence.body=earlyTipsEvidence.body.replace(
+    'Place the shunt before the next bleed—not as rescue after failure.',
+    'For eligible patients, place the shunt within 72 hours rather than waiting for recurrent bleeding or treatment failure.'
+  );
+}
+
+replaceSlideCopy('Adam Is Not Himself','reveal',[
+  ['Bottom line','Interpretation'],
+  ['Act in parallel','Evaluate precipitants'],
+  ['Recent TIPS is a strong clue—but still look for reversible triggers.','Recent TIPS is an important precipitant, but reversible triggers still require evaluation.']
+]);
+const overtHeTreatment=copySlide('How Do You Treat This?');
+if(overtHeTreatment) overtHeTreatment.section='Treating Overt Hepatic Encephalopathy';
+const refractoryHe=copySlide('Hepatic Encephalopathy');
+if(refractoryHe) refractoryHe.stem='He remains confused despite lactulose, rifaximin, infection workup, electrolyte correction, and medication review.<br><br><b>What intervention should be considered for refractory post-TIPS HE?</b>';
+
+const tipsConsequence=copySlide('The Tradeoff');
+if(tipsConsequence){
+  tipsConsequence.section='Encephalopathy Improves, Ascites Returns';
+  tipsConsequence.body=tipsConsequence.body.replace(
+    'The TIPS reduction solved one pressure problem by recreating another.',
+    'TIPS reduction improved encephalopathy but increased portal pressure, allowing ascites to recur.'
+  );
+}
+replaceSlideCopy('Blood Pressure Recovers','body',[['But watch the kidneys','Renal injury may persist']]);
+const suspectedHrs=copySlide('What Is Happening to His Kidneys?');
+if(suspectedHrs){
+  suspectedHrs.section='Suspected HRS-AKI';
+  suspectedHrs.stem='His creatinine rises from <b>0.8 to 2.2</b> after the paracentesis episode.<br><br><b>Does this meet the working diagnosis of HRS-AKI?</b>';
+}
+const albuminNonresponse=copySlide('The Albumin Challenge Fails');
+if(albuminNonresponse) albuminNonresponse.section='No Response to Albumin';
+const hrsMechanism=copySlide('The Pathophysiology of HRS-AKI');
+if(hrsMechanism){
+  hrsMechanism.body=hrsMechanism.body
+    .replace('Splanchnic vasodilation steals effective arterial blood volume from the kidney, brain, and systemic circulation. The kidney clamps down, sodium and water retention accelerate, and creatinine rises even though the kidney tissue may look bland.','Splanchnic vasodilation further reduces effective arterial blood volume available to the kidney, brain, and systemic circulation. Renal vasoconstriction increases, sodium and water retention accelerate, and creatinine rises despite little structural injury.')
+    .replace('It squeezes the splanchnic bed, trying to return effective perfusion pressure to the kidney.','It constricts the splanchnic vascular bed to improve renal perfusion pressure.');
+}
+const confirmOutcomes=copySlide('What Did CONFIRM Show?');
+if(confirmOutcomes){
+  confirmOutcomes.section='CONFIRM: Renal Benefit and Respiratory Risk';
+  confirmOutcomes.body=confirmOutcomes.body.replace(
+    'but the safety signal is real: respiratory failure was more frequent, especially in very sick or volume-overloaded patients.',
+    'but respiratory failure was more frequent, especially in very sick or volume-overloaded patients.'
+  );
+}
+replaceSlideCopy('What MAP Should You Target?','body',[['Working goal','Initial target']]);
+if(terlipressinUnsafeSlide) terlipressinUnsafeSlide.stem='Adam is now <b>ACLF grade 3</b>.<br><br><b>Terlipressin is unsafe. Which vasopressor strategy should be used?</b>';
+
+const transplantPriority=copySlide('A Critical Decision Point');
+if(transplantPriority){
+  transplantPriority.section='Urgent Transplant Evaluation';
+  transplantPriority.stem='Adam has HRS-AKI and ACLF grade 3.<br><br><b>What is the next management priority?</b>';
+}
+replaceSlideCopy('When Dialysis Is Appropriate','reveal',[[
+  'Dialysis can buy time for transplant evaluation, organ offer, or recovery from a reversible insult.',
+  'Dialysis may provide time for transplant evaluation, an organ offer, or recovery from a reversible insult.'
+]]);
+const decompensationSlide=copySlide('The Cirrhosis Spiral');
+if(decompensationSlide){
+  decompensationSlide.section='Recurrent Decompensation';
+  decompensationSlide.kicker='';
+  decompensationSlide.body='<p class="spiral-final-line">Treat the underlying cause, prevent recurrent decompensation, and refer for transplant evaluation after decompensation.</p>';
+}
+const managementSummary=copySlide('Take-Home Points');
+if(managementSummary){
+  managementSummary.section='Cirrhosis Management';
+  managementSummary.body=managementSummary.body.replace(/<p class="takeaway-deckline">[\s\S]*?<\/p>/,'');
+}
+
+/* Second-pass audit: remove generic labels and narrative flourishes. */
+replaceSlideCopy('The Portal Vein','reveal',[["<span class=\"tag\">Concept</span>",'']]);
+replaceSlideCopy('Clinical Assessment','reveal',[['Discussion','Findings and plan']]);
+replaceSlideCopy('Ascitic Fluid Results','reveal',[['>Answer<','>Interpretation<']]);
+replaceSlideCopy('Ascitic Fluid Cultures','reveal',[['>Answer<','>Culture interpretation<']]);
+replaceSlideCopy('The Culture Turns Positive','reveal',[['Next step','Repeat paracentesis']]);
+
+const renalProtection=copySlide('Protecting the Kidneys');
+if(renalProtection) renalProtection.section='Albumin in SBP';
+replaceSlideCopy('Is the SBP Responding?','reveal',[['Clinical nuance','When to repeat paracentesis']]);
+replaceSlideCopy('Discharge After SBP','reveal',[['Checklist','Discharge plan']]);
+if(albuminEvidence){
+  albuminEvidence.body=albuminEvidence.body.replace(
+    'This trial established the evidence for albumin in SBP.',
+    'In 126 patients with SBP, albumin plus cefotaxime reduced renal impairment and mortality.'
+  );
+}
+if(antibioticEvidence){
+  antibioticEvidence.section='Antibiotic Prophylaxis Reduces Mortality';
+  antibioticEvidence.kicker='Cochrane Review, 2011';
+  antibioticEvidence.body=antibioticEvidence.body
+    .replace('Pooled across a dozen trials, every outcome favors treatment.','Across 12 trials, prophylaxis reduced mortality, infection, rebleeding, and SBP.')
+    .replace('All-cause mortality RR&nbsp;0.79; the entire forest sits left of the no-effect line.','Antibiotic prophylaxis reduced all-cause mortality (RR&nbsp;0.79).');
+}
+if(octreotideSlide) octreotideSlide.section='Octreotide Reduces Splanchnic Inflow';
+replaceSlideCopy('Endoscopy Findings','reveal',[
+  ['>Timing<','>Recommendation<'],
+  ['In the right patient, early TIPS improves bleeding control and survival.','In eligible high-risk patients, early TIPS improves bleeding control and survival.']
+]);
+const confusionAfterTips=copySlide('Adam Is Not Himself');
+if(confusionAfterTips){
+  confusionAfterTips.section='Confusion After TIPS';
+  confusionAfterTips.reveal=confusionAfterTips.reveal.replace('>Interpretation<','>Ammonia testing<');
+}
+replaceSlideCopy('Hepatic Encephalopathy','reveal',[['Call IR','TIPS reduction']]);
+
+const largeVolumeTap=copySlide('Large-Volume Paracentesis');
+if(largeVolumeTap){
+  largeVolumeTap.body=largeVolumeTap.body
+    .replace('Relief</div><div class="l">At first','Relief</div><div class="l">Initial response')
+    .replace('He breathes easier. The hernia is softer. Then, minutes later, the nurse calls you back into the room.','He breathes easier and the hernia softens. Minutes later, he develops lightheadedness and diaphoresis.');
+}
+const picdPrevention=copySlide('Could This Have Been Prevented?');
+if(picdPrevention) picdPrevention.section='Albumin Prevents PICD After Large-Volume Paracentesis';
+replaceSlideCopy('Blood Pressure Recovers','body',[['Renal injury may persist','Renal function may still worsen']]);
+replaceSlideCopy('The Next Morning','body',[['The next morning, the creatinine is no longer reassuring.','The next morning, creatinine has risen from 0.8 to 2.2 mg/dL.']]);
+if(suspectedHrs) suspectedHrs.section='Acute Kidney Injury After Paracentesis';
+
+const terlipressinSelection=copySlide('Is Terlipressin Safe for Everyone?');
+if(terlipressinSelection) terlipressinSelection.section='Terlipressin Contraindications and Stopping Criteria';
+if(confirmOutcomes){
+  confirmOutcomes.body=confirmOutcomes.body
+    .replace('Black box</div><div class="l">Respiratory failure','Respiratory risk</div><div class="l">FDA warning')
+    .replace('Label logic','Patient selection')
+    .replace('where risk rises and benefit falls.','because respiratory risk is higher and response is less likely.');
+}
+const aclfAssessment=copySlide('How Sick Is Adam Now?');
+if(aclfAssessment) aclfAssessment.section='Adam Meets ACLF Grade 3 Criteria';
+if(terlipressinUnsafeSlide){
+  terlipressinUnsafeSlide.reveal=terlipressinUnsafeSlide.reveal
+    .replace('ICU path','Alternative vasoconstrictor')
+    .replace('The goal is to restore organ perfusion—not simply normalize the blood pressure.','Titrate vasopressors using MAP, urine output, and creatinine as measures of perfusion.');
+}
+if(transplantPriority){
+  transplantPriority.reveal=transplantPriority.reveal.replace('Check transplant candidacy urgently.','Request urgent transplant evaluation.');
+}
 const stage=document.getElementById('stage');
 const bgLayerA=document.getElementById('bgLayerA');
 const bgLayerB=document.getElementById('bgLayerB');
@@ -1153,7 +2305,7 @@ const nextLabel=document.getElementById('nextLabel');
 const nextIcon=document.getElementById('nextIcon');
 const actTag=document.getElementById('actTag');
 const progressCard=document.querySelector('.progress-card');
-const MOBILE_DARK_SECTIONS=new Set(['TIPS Reduction','What Does 3 → 9 Mean?','Portal Pressure Measurements','The Tradeoff']);
+const MOBILE_DARK_SECTIONS=new Set(['TIPS Reduction','What Does 3 → 9 Mean?','Portal Pressure Measurements','Encephalopathy Improves, Ascites Returns']);
 let idx=0;
 let isTransitioning=false;
 let transitionTimer=null;
@@ -1217,11 +2369,63 @@ function waitForBackground(src){
     new Promise(resolve=>setTimeout(()=>resolve(false),1200))
   ]);
 }
+function clearLayerImageEdgeFade(layer){
+  layer.classList.remove('fade-sides');
+  layer.style.removeProperty('-webkit-mask-image');
+  layer.style.removeProperty('mask-image');
+  layer.style.removeProperty('--image-left-edge');
+  layer.style.removeProperty('--image-right-edge');
+  layer.style.removeProperty('--image-edge-fade');
+}
+function updateLayerImageEdgeFade(layer){
+  clearLayerImageEdgeFade(layer);
+  const image=layer.dataset.visualImage||'';
+  const size=layer.dataset.visualSize||'cover';
+  const fade=layer.dataset.visualFade||'';
+  if(!image||fade!=='sides'||size!=='contain') return;
+  const record=loadedBackgrounds.get(image);
+  const imageWidth=record&&record.img.naturalWidth;
+  const imageHeight=record&&record.img.naturalHeight;
+  const stageWidth=stage.clientWidth;
+  const stageHeight=stage.clientHeight;
+  if(!imageWidth||!imageHeight||!stageWidth||!stageHeight) return;
+  const scale=Math.min(stageWidth/imageWidth,stageHeight/imageHeight);
+  const renderedWidth=imageWidth*scale;
+  const remaining=Math.max(0,stageWidth-renderedWidth);
+  if(remaining<=4) return;
+  const position=(layer.dataset.visualPos||'center').toLowerCase();
+  const imageLeft=position.includes('left')?0:position.includes('right')?remaining:remaining/2;
+  const imageRight=imageLeft+renderedWidth;
+  const rightGap=stageWidth-imageRight;
+  const edgeFade=Math.min(96,Math.max(38,renderedWidth*.055),renderedWidth*.16);
+  const stops=[];
+  if(imageLeft>4) stops.push('transparent 0',`transparent ${imageLeft}px`,`#000 ${imageLeft+edgeFade}px`);
+  else stops.push('#000 0');
+  if(rightGap>4) stops.push(`#000 ${imageRight-edgeFade}px`,`transparent ${imageRight}px`,'transparent 100%');
+  else stops.push('#000 100%');
+  const mask=`linear-gradient(90deg,${stops.join(',')})`;
+  layer.style.setProperty('--image-left-edge',`${imageLeft}px`);
+  layer.style.setProperty('--image-right-edge',`${imageRight}px`);
+  layer.style.setProperty('--image-edge-fade',`${edgeFade}px`);
+  layer.style.setProperty('-webkit-mask-image',mask);
+  layer.style.setProperty('mask-image',mask);
+  layer.classList.add('fade-sides');
+}
 function setLayerBackground(layer,image,pos,size,fade){
   layer.style.backgroundImage=image ? `url("${image}")` : 'linear-gradient(120deg,#e8e1d3,#d5d1c8)';
   layer.style.backgroundPosition=pos||'center';
   layer.style.backgroundSize=size||'cover';
-  layer.classList.toggle('fade-sides',fade==='sides');
+  const visualKey=`${image}|${pos}|${size}|${fade}`;
+  layer.dataset.visualKey=visualKey;
+  layer.dataset.visualImage=image||'';
+  layer.dataset.visualPos=pos||'center';
+  layer.dataset.visualSize=size||'cover';
+  layer.dataset.visualFade=fade||'';
+  updateLayerImageEdgeFade(layer);
+  const record=image&&loadedBackgrounds.get(image);
+  if(record&&!record.loaded){
+    record.promise.then(()=>{if(layer.dataset.visualKey===visualKey) updateLayerImageEdgeFade(layer)});
+  }
 }
 function applyStageBackground(s,c,{instant=false}={}){
   const {image,pos,size,fade,bg}=visualStateFor(s);
@@ -1285,6 +2489,16 @@ function syncChecklistBackdrop(s){
   glass.style.setProperty('--checklist-bg-size',`${renderedWidth}px ${renderedHeight}px`);
   glass.style.setProperty('--checklist-bg-position',`${positionX}px ${positionY}px`);
 }
+function projectorDensityClass(s){
+  if(!s||s.backgroundOnly||s.type==='title'||s.type==='closing'||s.finalRecap||s.spiral||s.cakeTitle) return '';
+  const denseMarkup=[s.body,s.stem,s.reveal,s.rationale,s.intro,s.note].filter(Boolean).join(' ');
+  const denseLayout=s.type==='table'||s.compactAnswer||s.chartLarge||s.focusTable||s.syndromeTable||denseMarkup.includes('chartwrap')||denseMarkup.includes('checklist-table')||denseMarkup.includes('scoretable');
+  if(denseLayout) return ' projector-dense';
+  const plain=denseMarkup.replace(/<[^>]*>/g,' ').replace(/&[^;]+;/g,' ').replace(/\s+/g,' ').trim();
+  if(plain.length<=360) return ' projector-roomy';
+  if(plain.length<=760) return ' projector-spacious';
+  return ' projector-dense';
+}
 function render(direction=0){
   const s=SLIDES[idx], c=meta(s);
   const visual=visualStateFor(s);
@@ -1299,7 +2513,7 @@ function render(direction=0){
   const darkTipsClass=idx>=34&&idx<=36?' tips-dark':'';
   const mobileDarkClass=MOBILE_DARK_SECTIONS.has(s.section)?' mobile-dark':'';
   stage.classList.toggle('mobile-dark-stage',Boolean(mobileDarkClass));
-  slideEl.className='slide '+(s.layout||'left')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+darkTipsClass+mobileDarkClass+enterClass;
+  slideEl.className='slide '+(s.layout||'left')+(visual.image?' image-backed':'')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.artworkText?' artwork-text':'')+(s.criticalReadability?' critical-readability':'')+(s.endoscopyCritical?' endoscopy-critical':'')+(s.earlyTipsHero?' early-tips-hero':'')+(s.albuminChallengeFocus?' albumin-challenge-focus':'')+(s.pressorRescueFocus?' pressor-rescue-focus':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.ppcdFocus?' ppcd-focus':'')+(s.meldFocus?' meld-focus':'')+(s.bleedFocus?' bleed-focus':'')+(s.heFocus?' he-focus':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+(s._done?' answer-revealed':'')+projectorDensityClass(s)+darkTipsClass+mobileDarkClass+enterClass;
   slideEl.innerHTML=htmlFor(s);
   wire(s);
   updateChrome();
@@ -1391,6 +2605,7 @@ function wire(s){
     slideEl.querySelector('[data-answer]').hidden=false;
     rb.style.display='none';
     s._done=true;
+    slideEl.classList.add('answer-revealed');
     if(s.revealImage){
       const visual=visualStateFor(s);
       applyStageBackground(s,meta(s));
@@ -1611,7 +2826,11 @@ stage.addEventListener('touchend',e=>{
   gestureStart=null;
   if(Math.abs(dx)>64&&Math.abs(dx)>Math.abs(dy)*1.25)go(dx<0?1:-1);
 },{passive:true});
-window.addEventListener('resize',()=>syncChecklistBackdrop(SLIDES[idx]));
+window.addEventListener('resize',()=>{
+  syncChecklistBackdrop(SLIDES[idx]);
+  updateLayerImageEdgeFade(activeBgLayer);
+  updateLayerImageEdgeFade(inactiveBgLayer);
+});
 slideEl.addEventListener('scroll',()=>syncChecklistBackdrop(SLIDES[idx]));
 preloadBackgroundImages();
 render(0);
