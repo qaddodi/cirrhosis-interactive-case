@@ -363,7 +363,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .slide.final-recap .stack{width:100%;max-width:1760px;margin:0 auto}
 .slide.final-recap h1.section{text-align:left;font-size:clamp(4rem,4.65vw,5rem);line-height:.92;margin:0 0 14px;color:#37345f;letter-spacing:-.035em}
 .slide.final-recap .panel{width:100%}
-.final-recap-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(165px,190px);gap:clamp(26px,2.2vw,40px);align-items:start}
+.final-recap-grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(250px,17vw,330px);gap:clamp(28px,2.2vw,42px);align-items:start}
 .recap-kicker{margin:0 0 5px;color:#557b8d;font-size:clamp(15px,1.05vw,19px);font-weight:bold;letter-spacing:.20em;text-transform:uppercase}
 .recap-thesis{margin:0 0 18px!important;max-width:none;color:#24213f!important;font-size:clamp(30px,2.18vw,39px)!important;font-weight:bold;line-height:1.13!important;letter-spacing:-.015em}
 .recap-flow{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,1.5vw,27px);list-style:none;margin:0;padding:26px 0 5px}
@@ -378,12 +378,12 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .slide.final-recap .takeaway-grid li{counter-increment:takeaway;position:relative;margin:0;padding:7px 0 7px 52px;border-top:1px solid rgba(93,83,68,.18);color:#37332d;font-size:clamp(22px,1.45vw,28px);line-height:1.14;text-align:left}
 .slide.final-recap .takeaway-grid li::before{content:counter(takeaway,decimal-leading-zero);position:absolute;left:0;top:6px;color:#87699a;font-size:clamp(23px,1.48vw,29px);font-weight:bold;letter-spacing:-.04em}
 .slide.final-recap .takeaway-grid li b{color:#302d59}
-.case-qr-card{padding:8px 0 0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:center}
-.case-qr-kicker{margin:0 0 10px;color:#557b8d;font-size:14px;font-weight:bold;letter-spacing:.17em;text-transform:uppercase}
+.case-qr-card{padding:6px 0 0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:center}
+.case-qr-kicker{margin:0 0 14px;color:#557b8d;font-size:clamp(16px,1.05vw,20px);font-weight:bold;line-height:1.25;letter-spacing:.15em;text-transform:uppercase}
 .case-qr-link{display:block;color:var(--purple2);text-decoration:none}
-.case-qr-svg{display:block;width:min(19vh,178px);max-width:100%;height:auto;margin:0 auto;color:var(--purple2);background:#f7f3eb;border-radius:6px;filter:drop-shadow(0 10px 20px rgba(43,37,28,.10))}
-.case-qr-label{display:block;margin-top:9px;color:#4f4a42;font-size:16px;font-weight:bold}
-.case-qr-url{display:block;margin-top:4px;color:#777166;font-size:11px;letter-spacing:.015em;overflow-wrap:anywhere}
+.case-qr-svg{display:block;width:min(32vh,320px);max-width:100%;height:auto;margin:0 auto;color:var(--purple2);background:#f7f3eb;border-radius:8px;filter:drop-shadow(0 14px 28px rgba(43,37,28,.14))}
+.case-qr-label{display:block;margin-top:13px;color:#4f4a42;font-size:clamp(18px,1.15vw,22px);font-weight:bold}
+.case-qr-url{display:block;margin-top:6px;color:#6d675e;font-size:clamp(12px,.72vw,14px);line-height:1.25;letter-spacing:.015em;overflow-wrap:anywhere}
 .nav{
   height:62px;flex:0 0 62px;
   background:#fff;
@@ -2217,7 +2217,6 @@ replaceSlideCopy('When Dialysis Is Appropriate','reveal',[[
 ]]);
 const decompensationSlide=copySlide('The Cirrhosis Spiral');
 if(decompensationSlide){
-  decompensationSlide.section='Recurrent Decompensation';
   decompensationSlide.kicker='';
   decompensationSlide.body='<p class="spiral-final-line">Treat the underlying cause, prevent recurrent decompensation, and refer for transplant evaluation after decompensation.</p>';
 }
