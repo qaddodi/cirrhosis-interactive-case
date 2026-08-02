@@ -2520,6 +2520,21 @@ const actTag=document.getElementById('actTag');
 const progressCard=document.querySelector('.progress-card');
 const MOBILE_DARK_SECTIONS=new Set(['TIPS Reduction','What Does 3 → 9 Mean?','Portal Pressure Measurements','Encephalopathy Improves, Ascites Returns']);
 let idx=0;
+function slideIndexFromHash(){
+  const match=location.hash.match(/^#(?:slide-)?(\d+)$/i);
+  if(!match) return null;
+  const slideIndex=Number(match[1])-1;
+  return slideIndex>=0&&slideIndex<SLIDES.length?slideIndex:null;
+}
+function syncSlideHash(){
+  const nextHash=`#slide-${idx+1}`;
+  if(location.hash===nextHash) return;
+  try{
+    history.replaceState(null,'',nextHash);
+  }catch(error){
+    location.hash=nextHash;
+  }
+}
 let isTransitioning=false;
 let transitionTimer=null;
 const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2729,6 +2744,7 @@ function projectorDensityClass(s){
 }
 function render(direction=0){
   const s=SLIDES[idx], c=meta(s);
+  syncSlideHash();
   const visual=visualStateFor(s);
   const isMobileView=window.matchMedia('(max-width:760px)').matches;
   const enterClass=isMobileView?'':direction>0?' enter-next':direction<0?' enter-prev':' enter-fade';
@@ -3042,6 +3058,11 @@ function resetAll(){
 }
 document.getElementById('reset').addEventListener('click',resetAll);
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'){go(1);e.preventDefault()} if(e.key==='ArrowLeft'||e.key==='PageUp'){go(-1);e.preventDefault()}});
+window.addEventListener('hashchange',()=>{
+  const target=slideIndexFromHash();
+  if(target===null||target===idx) return;
+  transitionTo(target,target-idx);
+});
 let gestureStart=null;
 stage.addEventListener('touchstart',e=>{
   if(e.touches.length!==1||e.target.closest('button,a,input,select,textarea,.background-only-image,.table-stage,.matrix-scroll,.scoretable,.checklist-blur,.chartwrap')){gestureStart=null;return}
@@ -3061,6 +3082,7 @@ window.addEventListener('resize',()=>{
 });
 slideEl.addEventListener('scroll',()=>syncChecklistBackdrop(SLIDES[idx]));
 preloadBackgroundImages();
+idx=slideIndexFromHash()??0;
 render(0);
 </script>
 </body>
