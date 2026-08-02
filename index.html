@@ -1435,6 +1435,192 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
     line-height:1.2;
   }
 
+  /* Projector treatment extended to the requested clinical sequence. */
+  .slide.critical-readability.clinical-reveal-focus .qstem{
+    font-size:clamp(43px,2.45vw,47px)!important;
+    line-height:1.22!important;
+    margin-bottom:20px;
+  }
+  .slide.critical-readability.clinical-reveal-focus.answer-revealed{
+    align-items:flex-start;
+    padding-top:34px;
+  }
+  .slide.critical-readability.clinical-reveal-focus.answer-revealed .qstem,
+  .slide.critical-readability.clinical-reveal-focus.answer-revealed .reveal-btn{
+    display:none;
+  }
+  .slide.critical-readability.clinical-reveal-focus.answer-revealed h1.section{
+    font-size:clamp(72px,4.5vw,86px);
+    margin-bottom:18px;
+  }
+  .slide.critical-readability.clinical-reveal-focus.answer-revealed .answer{
+    margin-top:0;
+    padding-top:0;
+    border-top:0;
+  }
+  .slide.critical-readability.clinical-reveal-focus.answer-revealed .answer .big{
+    font-size:clamp(54px,3.15vw,61px)!important;
+    line-height:1.06!important;
+    margin-bottom:18px;
+  }
+  .slide.critical-readability.clinical-reveal-focus.answer-revealed .answer p,
+  .slide.critical-readability.clinical-reveal-focus.answer-revealed .answer li{
+    font-size:clamp(30px,1.86vw,36px)!important;
+    line-height:1.24!important;
+  }
+
+  .slide.critical-readability.projector-data-focus .panel .lead{
+    font-size:clamp(38px,2.15vw,41px);
+    line-height:1.2;
+    margin-bottom:20px;
+  }
+  .slide.critical-readability.projector-data-focus .scorebox{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:13px;
+    margin:0 0 20px;
+  }
+  .slide.critical-readability.projector-data-focus .scorebox .tile{
+    padding:17px 16px 15px;
+    background:rgba(255,255,255,.17);
+    border-color:rgba(61,55,48,.27);
+  }
+  .slide.critical-readability.projector-data-focus .scorebox .tile .n{
+    font-size:clamp(64px,3.55vw,69px);
+    line-height:.96;
+  }
+  .slide.critical-readability.projector-data-focus .scorebox .tile .l{
+    margin-top:8px;
+    font-size:clamp(21px,1.15vw,22px);
+    line-height:1.16;
+  }
+  .slide.critical-readability.projector-data-focus .vitals{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;
+    margin-bottom:20px;
+  }
+  .slide.critical-readability.projector-data-focus .vital{
+    width:auto;
+    min-width:0;
+    padding:13px 15px;
+    background:rgba(255,255,255,.17);
+    border-color:rgba(61,55,48,.27);
+  }
+  .slide.critical-readability.projector-data-focus .vital .k{font-size:20px}
+  .slide.critical-readability.projector-data-focus .vital .v{font-size:clamp(42px,2.4vw,46px)}
+  .slide.critical-readability.projector-data-focus .panel > p:not(.lead):not(.em),
+  .slide.critical-readability.projector-data-focus .panel li{
+    font-size:clamp(30px,1.75vw,34px);
+    line-height:1.24;
+  }
+  .slide.critical-readability.projector-data-focus .panel .em{
+    font-size:clamp(37px,2.1vw,40px);
+    line-height:1.2;
+  }
+
+  .slide.critical-readability.evidence-focus .trialmeta{
+    margin-bottom:18px;
+    font-size:clamp(21px,1.18vw,23px);
+    line-height:1.24;
+  }
+  .slide.critical-readability.evidence-focus .panel > p{
+    font-size:clamp(31px,1.78vw,34px);
+    line-height:1.25;
+    margin-bottom:20px;
+  }
+  .slide.critical-readability.evidence-focus .scorebox{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:13px;
+    margin-bottom:20px;
+  }
+  .slide.critical-readability.evidence-focus .scorebox .tile{
+    padding:17px 14px 15px;
+    background:rgba(255,255,255,.17);
+    border-color:rgba(61,55,48,.27);
+  }
+  .slide.critical-readability.evidence-focus .scorebox .tile .n{
+    font-size:clamp(64px,3.6vw,70px);
+    line-height:.94;
+  }
+  .slide.critical-readability.evidence-focus .scorebox .tile .l{
+    margin-top:9px;
+    font-size:clamp(20px,1.1vw,22px);
+    line-height:1.16;
+  }
+  .slide.critical-readability.evidence-focus .callout p{
+    font-size:clamp(27px,1.55vw,30px)!important;
+    line-height:1.22!important;
+  }
+  .slide.critical-readability.left.evidence-focus::after{
+    left:0;
+    right:auto;
+    background:linear-gradient(90deg,
+      rgba(249,247,241,.99) 0%,
+      rgba(249,247,241,.96) 57%,
+      rgba(249,247,241,.82) 73%,
+      rgba(249,247,241,.32) 91%,
+      rgba(249,247,241,0) 100%);
+    -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 60%,rgba(0,0,0,.78) 76%,rgba(0,0,0,.18) 93%,transparent 100%);
+    mask-image:linear-gradient(90deg,#000 0%,#000 60%,rgba(0,0,0,.78) 76%,rgba(0,0,0,.18) 93%,transparent 100%);
+  }
+  .slide.critical-readability.left.clinical-reveal-focus::after{
+    left:0;
+    right:auto;
+    background:linear-gradient(90deg,
+      rgba(249,247,241,.99) 0%,
+      rgba(249,247,241,.96) 57%,
+      rgba(249,247,241,.82) 73%,
+      rgba(249,247,241,.32) 91%,
+      rgba(249,247,241,0) 100%);
+    -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 60%,rgba(0,0,0,.78) 76%,rgba(0,0,0,.18) 93%,transparent 100%);
+    mask-image:linear-gradient(90deg,#000 0%,#000 60%,rgba(0,0,0,.78) 76%,rgba(0,0,0,.18) 93%,transparent 100%);
+  }
+  /* Slide 57: keep the artwork fully visible at right; feather only the text side. */
+  .slide.critical-readability.left.clinical-reveal-focus.transplant-left-fade::after{
+    left:0;
+    right:auto;
+    width:74%;
+    background:linear-gradient(90deg,
+      rgba(249,247,241,1) 0%,
+      rgba(249,247,241,.99) 62%,
+      rgba(249,247,241,.86) 79%,
+      rgba(249,247,241,0) 100%);
+    -webkit-mask-image:none;
+    mask-image:none;
+  }
+
+  .slide.critical-readability.aclf-focus .scoretable{
+    font-size:clamp(23px,1.35vw,26px);
+    line-height:1.18;
+    margin-bottom:17px;
+  }
+  .slide.critical-readability.aclf-focus .scoretable th,
+  .slide.critical-readability.aclf-focus .scoretable td{padding:11px 13px}
+  .slide.critical-readability.aclf-focus .scorebox{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+    margin-bottom:17px;
+  }
+  .slide.critical-readability.aclf-focus .scorebox .tile .n{
+    font-size:clamp(70px,4vw,77px);
+    line-height:.94;
+  }
+  .slide.critical-readability.aclf-focus .scorebox .tile .l{font-size:22px}
+
+  .slide.critical-readability.summary-focus .panel .lead{
+    font-size:clamp(40px,2.25vw,43px);
+    line-height:1.2;
+    margin-bottom:21px;
+  }
+  .slide.critical-readability.summary-focus .panel li{
+    font-size:clamp(30px,1.72vw,33px);
+    line-height:1.25;
+    margin-bottom:15px;
+  }
+
   /* 54 — the contraindication and ICU alternative should read as two beats. */
   .slide.critical-readability.pressor-rescue-focus .qstem{
     font-size:clamp(48px,2.65vw,51px);
@@ -2056,6 +2242,24 @@ if(numberedContentSlides[46]){
   numberedContentSlides[46].albuminChallengeFocus=true;
   numberedContentSlides[46].body=`<p class="lead">After 2 days of albumin at <b>1 g/kg/day</b>, his creatinine continues to rise.</p><div class="scorebox"><div class="tile"><div class="n">2.2</div><div class="l">Cr before</div></div><div class="tile"><div class="n">2.7</div><div class="l">Cr after</div></div><div class="tile"><div class="n">No</div><div class="l">Renal response</div></div></div><p class="em">Progressive renal dysfunction despite volume expansion now supports HRS-AKI.</p>`;
 }
+
+/* Extend the projector-readable visual language from slides 31, 32, and 47. */
+[38,40,44,45,51,53,55,56,57].forEach(slideNumber=>{
+  const target=numberedContentSlides[slideNumber-1];
+  if(target) target.criticalReadability=true;
+});
+[45,57].forEach(slideNumber=>{
+  const target=numberedContentSlides[slideNumber-1];
+  if(target) target.clinicalRevealFocus=true;
+});
+[38,40,44,55].forEach(slideNumber=>{
+  const target=numberedContentSlides[slideNumber-1];
+  if(target) target.projectorDataFocus=true;
+});
+if(numberedContentSlides[50]) numberedContentSlides[50].evidenceFocus=true;
+if(numberedContentSlides[52]) numberedContentSlides[52].aclfFocus=true;
+if(numberedContentSlides[55]) numberedContentSlides[55].summaryFocus=true;
+
 const terlipressinUnsafeSlide=SLIDES.find(s=>s.section==='When Terlipressin Is Unsafe');
 if(terlipressinUnsafeSlide){
   terlipressinUnsafeSlide.criticalReadability=true;
@@ -2204,6 +2408,10 @@ if(confirmOutcomes){
   );
 }
 replaceSlideCopy('What MAP Should You Target?','body',[['Working goal','Initial target']]);
+replaceSlideCopy('He Becomes Hypotensive','stem',[
+  ['78/44','80/55'],
+  ['>55<','>63<']
+]);
 if(terlipressinUnsafeSlide) terlipressinUnsafeSlide.stem='Adam is now <b>ACLF grade 3</b>.<br><br><b>Terlipressin is unsafe. Which vasopressor strategy should be used?</b>';
 
 const transplantPriority=copySlide('A Critical Decision Point');
@@ -2281,6 +2489,10 @@ if(confirmOutcomes){
     .replace('Black box</div><div class="l">Respiratory failure','Respiratory risk</div><div class="l">FDA warning')
     .replace('Label logic','Patient selection')
     .replace('where risk rises and benefit falls.','because respiratory risk is higher and response is less likely.');
+  confirmOutcomes.body=confirmOutcomes.body.replace(
+    /<div class="tile"><div class="n">Respiratory risk<\/div><div class="l">FDA warning<\/div><\/div>/,
+    ''
+  );
 }
 const aclfAssessment=copySlide('How Sick Is Adam Now?');
 if(aclfAssessment) aclfAssessment.section='Adam Meets ACLF Grade 3 Criteria';
@@ -2291,6 +2503,8 @@ if(terlipressinUnsafeSlide){
 }
 if(transplantPriority){
   transplantPriority.reveal=transplantPriority.reveal.replace('Check transplant candidacy urgently.','Request urgent transplant evaluation.');
+  transplantPriority.clinicalRevealFocus=true;
+  transplantPriority.transplantLeftFade=true;
 }
 const stage=document.getElementById('stage');
 const bgLayerA=document.getElementById('bgLayerA');
@@ -2381,7 +2595,22 @@ function updateLayerImageEdgeFade(layer){
   const image=layer.dataset.visualImage||'';
   const size=layer.dataset.visualSize||'cover';
   const fade=layer.dataset.visualFade||'';
-  if(!image||fade!=='sides'||size!=='contain') return;
+  if(!image||!['left','right','sides'].includes(fade)) return;
+  if(fade==='left'){
+    const mask='linear-gradient(90deg,transparent 0,transparent 12%,#000 52%,#000 100%)';
+    layer.style.setProperty('-webkit-mask-image',mask);
+    layer.style.setProperty('mask-image',mask);
+    layer.classList.add('fade-sides');
+    return;
+  }
+  if(fade==='right'){
+    const mask='linear-gradient(90deg,#000 0,#000 48%,transparent 88%,transparent 100%)';
+    layer.style.setProperty('-webkit-mask-image',mask);
+    layer.style.setProperty('mask-image',mask);
+    layer.classList.add('fade-sides');
+    return;
+  }
+  if(size!=='contain') return;
   const record=loadedBackgrounds.get(image);
   const imageWidth=record&&record.img.naturalWidth;
   const imageHeight=record&&record.img.naturalHeight;
@@ -2512,7 +2741,7 @@ function render(direction=0){
   const darkTipsClass=idx>=34&&idx<=36?' tips-dark':'';
   const mobileDarkClass=MOBILE_DARK_SECTIONS.has(s.section)?' mobile-dark':'';
   stage.classList.toggle('mobile-dark-stage',Boolean(mobileDarkClass));
-  slideEl.className='slide '+(s.layout||'left')+(visual.image?' image-backed':'')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.artworkText?' artwork-text':'')+(s.criticalReadability?' critical-readability':'')+(s.endoscopyCritical?' endoscopy-critical':'')+(s.earlyTipsHero?' early-tips-hero':'')+(s.albuminChallengeFocus?' albumin-challenge-focus':'')+(s.pressorRescueFocus?' pressor-rescue-focus':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.ppcdFocus?' ppcd-focus':'')+(s.meldFocus?' meld-focus':'')+(s.bleedFocus?' bleed-focus':'')+(s.heFocus?' he-focus':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+(s._done?' answer-revealed':'')+projectorDensityClass(s)+darkTipsClass+mobileDarkClass+enterClass;
+  slideEl.className='slide '+(s.layout||'left')+(visual.image?' image-backed':'')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.artworkText?' artwork-text':'')+(s.criticalReadability?' critical-readability':'')+(s.endoscopyCritical?' endoscopy-critical':'')+(s.earlyTipsHero?' early-tips-hero':'')+(s.albuminChallengeFocus?' albumin-challenge-focus':'')+(s.clinicalRevealFocus?' clinical-reveal-focus':'')+(s.transplantLeftFade?' transplant-left-fade':'')+(s.projectorDataFocus?' projector-data-focus':'')+(s.evidenceFocus?' evidence-focus':'')+(s.aclfFocus?' aclf-focus':'')+(s.summaryFocus?' summary-focus':'')+(s.pressorRescueFocus?' pressor-rescue-focus':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.ppcdFocus?' ppcd-focus':'')+(s.meldFocus?' meld-focus':'')+(s.bleedFocus?' bleed-focus':'')+(s.heFocus?' he-focus':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+(s._done?' answer-revealed':'')+projectorDensityClass(s)+darkTipsClass+mobileDarkClass+enterClass;
   slideEl.innerHTML=htmlFor(s);
   wire(s);
   updateChrome();
