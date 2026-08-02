@@ -489,6 +489,20 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
   text-shadow:0 1px 0 #f8f6f0, 0 0 9px rgba(249,247,241,1), 0 0 20px rgba(249,247,241,1), 0 0 38px rgba(249,247,241,.97), 0 0 62px rgba(249,247,241,.9) !important;
 }
 .slide.boost .chartwrap svg{filter:drop-shadow(0 0 2px rgba(249,247,241,1)) drop-shadow(0 0 11px rgba(249,247,241,.99)) drop-shadow(0 0 26px rgba(249,247,241,.92)) drop-shadow(0 0 44px rgba(249,247,241,.78))}
+/* Keep photo-led slides fully visible while giving the copy a soft reading halo. */
+.slide.copy-glow h1.section,
+.slide.copy-glow .kicker,
+.slide.copy-glow .panel,
+.slide.copy-glow .panel p,
+.slide.copy-glow .panel li,
+.slide.copy-glow .qstem,
+.slide.copy-glow .answer,
+.slide.copy-glow .answer p,
+.slide.copy-glow .callout,
+.slide.copy-glow .callout p,
+.slide.copy-glow .callout .lab{
+  text-shadow:0 1px 0 rgba(255,255,255,.98),0 0 10px rgba(249,247,241,.98),0 0 24px rgba(249,247,241,.94),0 0 46px rgba(249,247,241,.80)!important;
+}
 
 /* Full-height, feathered blur where text genuinely intersects detailed artwork. */
 @media (min-width:761px){
@@ -2250,7 +2264,9 @@ if(numberedContentSlides[46]){
   const target=numberedContentSlides[slideNumber-1];
   if(target) target.criticalReadability=true;
 });
-[45,57].forEach(slideNumber=>{
+/* Keep slide 45's reveal in the standard flow; the full-slide answer emphasis
+   is reserved for the transplant decision on slide 57. */
+[57].forEach(slideNumber=>{
   const target=numberedContentSlides[slideNumber-1];
   if(target) target.clinicalRevealFocus=true;
 });
@@ -2270,6 +2286,16 @@ if(terlipressinUnsafeSlide){
   terlipressinUnsafeSlide.reveal=`<span class="tag">ICU path</span><p class="big">Norepinephrine, with or without vasopressin.</p><p>Use ICU vasopressor support plus albumin and close monitoring. The goal is to restore organ perfusion—not simply normalize the blood pressure.</p>`;
 }
 if(numberedContentSlides[25]) numberedContentSlides[25].bleedFocus=true;
+/* Slides 27–28 retain the unfiltered photo; only their copy receives a halo. */
+[27,28].forEach(slideNumber=>{
+  const target=numberedContentSlides[slideNumber-1];
+  if(!target) return;
+  target.copyGlow=true;
+  delete target.bleedFocus;
+  delete target.artworkText;
+  delete target.blur;
+  delete target.contrastPanel;
+});
 if(numberedContentSlides[31]) numberedContentSlides[31].heFocus=true;
 if(numberedContentSlides[31]){
   [numberedContentSlides[32],numberedContentSlides[33]].filter(Boolean).forEach(target=>{
@@ -2391,7 +2417,7 @@ replaceSlideCopy('Blood Pressure Recovers','body',[['But watch the kidneys','Ren
 const suspectedHrs=copySlide('What Is Happening to His Kidneys?');
 if(suspectedHrs){
   suspectedHrs.section='Suspected HRS-AKI';
-  suspectedHrs.stem='His creatinine rises from <b>0.8 to 2.2</b> after the paracentesis episode.<br><br><b>Does this meet the working diagnosis of HRS-AKI?</b>';
+  suspectedHrs.stem='His creatinine rises from <b>0.8 to 2.2</b> after the paracentesis episode.<br><br><b>What do you think is happening?</b>';
 }
 const albuminNonresponse=copySlide('The Albumin Challenge Fails');
 if(albuminNonresponse) albuminNonresponse.section='No Response to Albumin';
@@ -2479,7 +2505,7 @@ if(largeVolumeTap){
     .replace('He breathes easier. The hernia is softer. Then, minutes later, the nurse calls you back into the room.','He breathes easier and the hernia softens. Minutes later, he develops lightheadedness and diaphoresis.');
 }
 const picdPrevention=copySlide('Could This Have Been Prevented?');
-if(picdPrevention) picdPrevention.section='Albumin Prevents PICD After Large-Volume Paracentesis';
+if(picdPrevention) picdPrevention.section='PICD Treatment';
 replaceSlideCopy('Blood Pressure Recovers','body',[['Renal injury may persist','Renal function may still worsen']]);
 replaceSlideCopy('The Next Morning','body',[['The next morning, the creatinine is no longer reassuring.','The next morning, creatinine has risen from 0.8 to 2.2 mg/dL.']]);
 if(suspectedHrs) suspectedHrs.section='Acute Kidney Injury After Paracentesis';
@@ -2763,7 +2789,7 @@ function render(direction=0){
   const darkTipsClass=idx>=34&&idx<=36?' tips-dark':'';
   const mobileDarkClass=MOBILE_DARK_SECTIONS.has(s.section)?' mobile-dark':'';
   stage.classList.toggle('mobile-dark-stage',Boolean(mobileDarkClass));
-  slideEl.className='slide '+(s.layout||'left')+(visual.image?' image-backed':'')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.artworkText?' artwork-text':'')+(s.criticalReadability?' critical-readability':'')+(s.endoscopyCritical?' endoscopy-critical':'')+(s.earlyTipsHero?' early-tips-hero':'')+(s.albuminChallengeFocus?' albumin-challenge-focus':'')+(s.clinicalRevealFocus?' clinical-reveal-focus':'')+(s.transplantLeftFade?' transplant-left-fade':'')+(s.projectorDataFocus?' projector-data-focus':'')+(s.evidenceFocus?' evidence-focus':'')+(s.aclfFocus?' aclf-focus':'')+(s.summaryFocus?' summary-focus':'')+(s.pressorRescueFocus?' pressor-rescue-focus':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.ppcdFocus?' ppcd-focus':'')+(s.meldFocus?' meld-focus':'')+(s.bleedFocus?' bleed-focus':'')+(s.heFocus?' he-focus':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+(s._done?' answer-revealed':'')+projectorDensityClass(s)+darkTipsClass+mobileDarkClass+enterClass;
+  slideEl.className='slide '+(s.layout||'left')+(visual.image?' image-backed':'')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.artworkText?' artwork-text':'')+(s.criticalReadability?' critical-readability':'')+(s.endoscopyCritical?' endoscopy-critical':'')+(s.earlyTipsHero?' early-tips-hero':'')+(s.albuminChallengeFocus?' albumin-challenge-focus':'')+(s.clinicalRevealFocus?' clinical-reveal-focus':'')+(s.transplantLeftFade?' transplant-left-fade':'')+(s.projectorDataFocus?' projector-data-focus':'')+(s.evidenceFocus?' evidence-focus':'')+(s.aclfFocus?' aclf-focus':'')+(s.summaryFocus?' summary-focus':'')+(s.pressorRescueFocus?' pressor-rescue-focus':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.ppcdFocus?' ppcd-focus':'')+(s.meldFocus?' meld-focus':'')+(s.bleedFocus?' bleed-focus':'')+(s.copyGlow?' copy-glow':'')+(s.heFocus?' he-focus':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+(s._done?' answer-revealed':'')+projectorDensityClass(s)+darkTipsClass+mobileDarkClass+enterClass;
   slideEl.innerHTML=htmlFor(s);
   wire(s);
   updateChrome();
