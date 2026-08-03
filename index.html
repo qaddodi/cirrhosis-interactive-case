@@ -406,6 +406,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .renal-trend svg{display:block;width:100%;height:auto;max-height:330px;overflow:visible}
 .renal-trend text{font-family:Georgia,"Times New Roman",Times,serif;fill:#4d4841;text-shadow:none!important}
 .renal-trend .axis-label{font-size:16px;font-weight:bold}.renal-trend .day-label{font-size:15px}.renal-trend .value-label{font-size:17px;font-weight:bold}.renal-trend .legend-label{font-size:16px;font-weight:bold}
+.renal-trend .cr-value{fill:#34345e;paint-order:stroke;stroke:#f8f5ed;stroke-width:5px;stroke-linejoin:round}.renal-trend .urine-value{fill:#76551f;paint-order:stroke;stroke:#f8f5ed;stroke-width:4px;stroke-linejoin:round}
 .renal-trend-question{margin:10px 0 0!important;color:#292750;font-size:clamp(28px,2vw,36px)!important;line-height:1.18!important;font-weight:bold}
 .slide.tips-dark .reveal-btn[data-act="reveal"]{background:#34345e;color:#fff;border:2px solid #f7f3eb;text-shadow:none;box-shadow:0 8px 24px rgba(0,0,0,.26)}
 .slide.tips-dark .reveal-btn[data-act="reveal"]:hover,.slide.tips-dark .reveal-btn[data-act="reveal"]:focus-visible,.slide.tips-dark .reveal-btn[data-act="reveal"]:active{background:#f7f3eb;color:#34345e;border-color:#34345e}
@@ -2914,11 +2915,26 @@ if(slide57){
 const slide58=requestedSlide(58);
 if(slide58){
   slide58.dialysisTrendFocus=true;
-  slide58.stem=`<div class="renal-trend"><svg viewBox="0 0 780 290" role="img" aria-labelledby="renalTrendTitle renalTrendDesc" xmlns="http://www.w3.org/2000/svg"><title id="renalTrendTitle">Creatinine and urine output over four days</title><desc id="renalTrendDesc">Creatinine rises from 2.7 to 4.8 milligrams per deciliter while daily urine output falls from 700 to 120 milliliters.</desc><line x1="92" y1="232" x2="738" y2="232" stroke="#8a8478" stroke-width="1.5"/><line x1="92" y1="42" x2="92" y2="232" stroke="#8a8478" stroke-width="1.5"/><line x1="738" y1="42" x2="738" y2="232" stroke="#8a8478" stroke-width="1.5"/><line x1="92" y1="137" x2="738" y2="137" stroke="rgba(93,83,68,.18)" stroke-width="1"/><text class="axis-label" x="18" y="35">Cr</text><text class="axis-label" x="18" y="54">mg/dL</text><text class="axis-label" x="760" y="35" text-anchor="end">Urine</text><text class="axis-label" x="760" y="54" text-anchor="end">mL/day</text><line x1="280" y1="24" x2="318" y2="24" stroke="#4b4a78" stroke-width="5"/><text class="legend-label" x="327" y="30">Creatinine</text><line x1="452" y1="24" x2="490" y2="24" stroke="#ae8845" stroke-width="5"/><text class="legend-label" x="499" y="30">Urine output</text><polyline points="112,174 314,151 516,113 718,72" fill="none" stroke="#4b4a78" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="112,65 314,125 516,184 718,213" fill="none" stroke="#ae8845" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><g fill="#4b4a78"><circle cx="112" cy="174" r="7"/><circle cx="314" cy="151" r="7"/><circle cx="516" cy="113" r="7"/><circle cx="718" cy="72" r="7"/></g><g fill="#ae8845"><circle cx="112" cy="65" r="7"/><circle cx="314" cy="125" r="7"/><circle cx="516" cy="184" r="7"/><circle cx="718" cy="213" r="7"/></g><text class="value-label" x="112" y="194" text-anchor="middle">2.7</text><text class="value-label" x="314" y="171" text-anchor="middle">3.2</text><text class="value-label" x="516" y="103" text-anchor="middle">4.0</text><text class="value-label" x="718" y="62" text-anchor="middle">4.8</text><text class="value-label" x="112" y="56" text-anchor="middle">700</text><text class="value-label" x="314" y="116" text-anchor="middle">450</text><text class="value-label" x="516" y="205" text-anchor="middle">250</text><text class="value-label" x="718" y="205" text-anchor="middle">120</text><text class="day-label" x="112" y="258" text-anchor="middle">Day 1</text><text class="day-label" x="314" y="258" text-anchor="middle">Day 2</text><text class="day-label" x="516" y="258" text-anchor="middle">Day 3</text><text class="day-label" x="718" y="258" text-anchor="middle">Day 4</text></svg></div><p class="renal-trend-question">Would you start dialysis?</p>`;
-  slide58.stem=slide58.stem.replace(
-    `<text class="axis-label" x="760" y="35" text-anchor="end">Urine</text><text class="axis-label" x="760" y="54" text-anchor="end">mL/day</text>`,
-    `<text class="axis-label" x="765" y="137" text-anchor="middle" transform="rotate(-90 765 137)">Urine output (mL/day)</text>`
-  );
+  slide58.stem=`<div class="renal-trend"><svg viewBox="0 0 780 290" role="img" aria-labelledby="renalTrendTitle renalTrendDesc" xmlns="http://www.w3.org/2000/svg">
+    <title id="renalTrendTitle">Creatinine line and urine output bars over four days</title>
+    <desc id="renalTrendDesc">Creatinine rises from 2.7 to 4.8 milligrams per deciliter as daily urine output bars fall from 700 to 120 milliliters.</desc>
+    <line x1="70" y1="232" x2="738" y2="232" stroke="#8a8478" stroke-width="1.5"/>
+    <line x1="174" y1="24" x2="212" y2="24" stroke="#4b4a78" stroke-width="5"/>
+    <text class="legend-label" x="221" y="30">Creatinine (mg/dL)</text>
+    <rect x="436" y="16" width="38" height="15" rx="3" fill="#ae8845" fill-opacity=".72" stroke="#8d6a2f" stroke-width="1"/>
+    <text class="legend-label" x="483" y="30">Urine output (mL/day)</text>
+    <g class="urine-bars" fill="#ae8845" fill-opacity=".72" stroke="#8d6a2f" stroke-width="1">
+      <rect x="85" y="65" width="54" height="167" rx="5"/>
+      <rect x="287" y="125" width="54" height="107" rx="5"/>
+      <rect x="489" y="184" width="54" height="48" rx="5"/>
+      <rect x="653" y="213" width="54" height="19" rx="5"/>
+    </g>
+    <polyline points="112,174 314,151 516,113 718,72" fill="none" stroke="#4b4a78" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#4b4a78"><circle cx="112" cy="174" r="7"/><circle cx="314" cy="151" r="7"/><circle cx="516" cy="113" r="7"/><circle cx="718" cy="72" r="7"/></g>
+    <text class="value-label cr-value" x="112" y="194" text-anchor="middle">2.7</text><text class="value-label cr-value" x="314" y="171" text-anchor="middle">3.2</text><text class="value-label cr-value" x="516" y="103" text-anchor="middle">4.0</text><text class="value-label cr-value" x="718" y="62" text-anchor="middle">4.8</text>
+    <text class="value-label urine-value" x="112" y="56" text-anchor="middle">700</text><text class="value-label urine-value" x="314" y="116" text-anchor="middle">450</text><text class="value-label urine-value" x="516" y="176" text-anchor="middle">250</text><text class="value-label urine-value" x="718" y="205" text-anchor="middle">120</text>
+    <text class="day-label" x="112" y="258" text-anchor="middle">Day 1</text><text class="day-label" x="314" y="258" text-anchor="middle">Day 2</text><text class="day-label" x="516" y="258" text-anchor="middle">Day 3</text><text class="day-label" x="718" y="258" text-anchor="middle">Day 4</text>
+  </svg></div><p class="renal-trend-question">Would you start dialysis?</p>`;
   slide58.stem=slide58.stem.replaceAll('718','680');
   slide58.reveal=`<span class="tag">Role of dialysis</span><p class="big emphasis-pill">When it provides a bridge to transplant or recovery from a reversible insult.</p><p>Dialysis may provide time for transplant evaluation, an organ offer, or recovery from a reversible insult. If he is not a candidate and liver failure is the driver, dialysis often adds burden without changing the outcome. That should trigger a direct goals-of-care conversation.</p>`;
 }
