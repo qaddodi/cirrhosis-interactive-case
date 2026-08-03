@@ -364,7 +364,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .slide.final-recap .stack{width:100%;max-width:1760px;margin:0 auto}
 .slide.final-recap h1.section{text-align:left;font-size:clamp(4rem,4.65vw,5rem);line-height:.92;margin:0 0 14px;color:#37345f;letter-spacing:-.035em}
 .slide.final-recap .panel{width:100%}
-.final-recap-grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(250px,17vw,330px);gap:clamp(28px,2.2vw,42px);align-items:start}
+.final-recap-grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,22vw,420px);gap:clamp(28px,2.2vw,42px);align-items:start}
 .recap-kicker{margin:0 0 5px;color:#557b8d;font-size:clamp(15px,1.05vw,19px);font-weight:bold;letter-spacing:.20em;text-transform:uppercase}
 .recap-thesis{margin:0 0 18px!important;max-width:none;color:#24213f!important;font-size:clamp(30px,2.18vw,39px)!important;font-weight:bold;line-height:1.13!important;letter-spacing:-.015em}
 .recap-flow{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,1.5vw,27px);list-style:none;margin:0;padding:26px 0 5px}
@@ -380,9 +380,8 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .slide.final-recap .takeaway-grid li::before{content:counter(takeaway,decimal-leading-zero);position:absolute;left:0;top:6px;color:#87699a;font-size:clamp(23px,1.48vw,29px);font-weight:bold;letter-spacing:-.04em}
 .slide.final-recap .takeaway-grid li b{color:#302d59}
 .case-qr-card{padding:6px 0 0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:center}
-.case-qr-kicker{margin:0 0 14px;color:#557b8d;font-size:clamp(16px,1.05vw,20px);font-weight:bold;line-height:1.25;letter-spacing:.15em;text-transform:uppercase}
 .case-qr-link{display:block;color:var(--purple2);text-decoration:none}
-.case-qr-svg{display:block;width:min(32vh,320px);max-width:100%;height:auto;margin:0 auto;color:var(--purple2);background:#f7f3eb;border-radius:8px;filter:drop-shadow(0 14px 28px rgba(43,37,28,.14))}
+.case-qr-svg{display:block;width:min(40vh,400px);max-width:100%;height:auto;margin:0 auto;color:var(--purple2);background:#f7f3eb;border-radius:8px;filter:drop-shadow(0 14px 28px rgba(43,37,28,.14))}
 .case-qr-label{display:block;margin-top:13px;color:#4f4a42;font-size:clamp(18px,1.15vw,22px);font-weight:bold}
 .case-qr-url{display:block;margin-top:6px;color:#6d675e;font-size:clamp(12px,.72vw,14px);line-height:1.25;letter-spacing:.015em;overflow-wrap:anywhere}
 .nav{
@@ -436,6 +435,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .navbtn:focus-visible,.topbar-btn:focus-visible,.seg:focus-visible,.reveal-btn:focus-visible,.opt:focus-visible,.cell:focus-visible,.am-body:focus-visible,.sm-body:focus-visible{outline:2px solid var(--chapter,#777b97);outline-offset:2px}
 .nav-icon{display:inline;font-size:16px;font-weight:400;letter-spacing:0}
 .background-only-image{display:none}
+.mobile-full-bleed-image{display:none}
 @media(max-width:760px){
   .topbar{height:56px;flex-basis:56px;padding:0 14px}.case-title{font-size:15px}.act-tag,.topbar-credit{display:none}.topbar-actions{gap:6px}.topbar-btn{height:32px;padding:0 9px;font-size:9.5px}
   .slide{padding:25px 20px 34px}.title-slide{padding-left:25px}.panel{padding:0}.titlebox h1{font-size:clamp(3.25rem,14vw,4.7rem)}.title-slide .titlebox{width:100%;padding:0}.title-slide .kicker{font-size:12px}.title-slide .titlebox h1{font-size:clamp(4.1rem,18vw,5.4rem);margin-bottom:16px}.title-slide .titlebox .sub{font-size:24px}.title-slide .byline{margin-top:20px;font-size:17px}.title-slide .title-credits{gap:5px;margin-top:14px}.title-slide .title-presenter{font-size:21px}.title-slide .title-social{font-size:18px}.title-slide .title-art-credit{font-size:14px}.title-slide .hint{margin-top:21px;font-size:13px}.return-gap-line{font-size:2.6rem!important}.grid2,.grid3,.case-strip{grid-template-columns:1fr}.gtable{font-size:12px}.cell{width:130px;min-height:78px;height:auto}.table-stage{display:block}
@@ -641,6 +641,24 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .slide.spiral-slide h1.section{max-width:600px;margin:0 0 22px;color:var(--purple2);font-size:clamp(3.9rem,5.25vw,5.4rem);line-height:.96}
 .slide.spiral-slide .panel{max-width:580px}
 .spiral-final-line{margin:0;color:#302d45;font-size:clamp(25px,1.8vw,32px)!important;font-weight:bold;line-height:1.32!important;text-shadow:0 1px 0 rgba(255,255,255,.96),0 0 12px rgba(250,248,241,.98),0 0 28px rgba(250,248,241,.92)}
+.slide.east-vibes{align-items:center;justify-content:flex-start;isolation:isolate;padding:24px 24px 24px clamp(44px,5vw,92px);background:#f7f3eb url("east-vibes-cirrhosis-assessment.jpg") center/cover no-repeat}
+.east-vibes-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:70% center;pointer-events:none;user-select:none}
+.slide.east-vibes::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:rgba(249,247,241,.04)}
+.slide.east-vibes .stack{box-sizing:border-box;z-index:2;width:min(900px,50vw);max-width:none;margin:0;padding:18px clamp(14px,1.7vw,28px) 22px;border:1px solid rgba(255,255,255,.84);border-radius:18px;background:rgba(249,247,241,.68);backdrop-filter:blur(2px) saturate(.92);-webkit-backdrop-filter:blur(2px) saturate(.92);box-shadow:0 18px 48px rgba(43,37,28,.16),0 1px 0 rgba(255,255,255,.92) inset}
+.slide.east-vibes h1.section{margin:0 0 12px;color:var(--purple2);font-size:clamp(3rem,4.2vw,4.45rem);line-height:.94;letter-spacing:-.025em;text-align:center}
+.slide.east-vibes .panel{width:100%}
+.east-vibes-list{list-style:none;margin:0;padding:0;border-top:1px solid rgba(93,83,68,.24)}
+.east-vibes-list li{display:grid;grid-template-columns:12% 31% 57%;align-items:center;margin:0;padding:7px 2px;border-bottom:1px solid rgba(93,83,68,.20);color:#39342f;font-size:clamp(12px,1vw,19px);line-height:1.15;text-align:center}
+.east-vibes-list li>span{min-width:0;padding:0 6px;white-space:nowrap}
+.east-vibes-list li.east-vibes-break{margin-top:14px;border-top:3px solid rgba(135,105,154,.46)}
+.east-vibes-initial,.east-vibes-term{color:#87699a;font:700 1em/1.15 Georgia,"Times New Roman",Times,serif;letter-spacing:0}
+.east-vibes-initial{font-size:1.14em}.east-vibes-description{color:#302d29}
+@media (min-width:761px) and (max-width:1100px){
+  .slide.east-vibes{padding-left:28px}
+  .slide.east-vibes .stack{width:min(620px,72vw)}
+  .slide.east-vibes h1.section{font-size:clamp(2.7rem,6vw,3.7rem)}
+  .east-vibes-list li{font-size:clamp(10px,1.35vw,14px)}
+}
 .slide.tips-dark h1.section{
   color:#fbf5eb;
   text-shadow:0 2px 2px rgba(15,17,39,.94),0 0 10px rgba(18,21,48,.78),0 0 24px rgba(25,28,62,.58)!important;
@@ -1740,6 +1758,25 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
     -webkit-user-select:none;
     -webkit-touch-callout:none;
   }
+  .slide.mobile-full-bleed{
+    inset:0!important;
+    padding:0!important;
+    overflow:hidden;
+    align-items:stretch;
+    justify-content:stretch;
+    background:var(--paper);
+  }
+  .slide.mobile-full-bleed .stack{display:none}
+  .mobile-full-bleed-image{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    background:var(--paper);
+    user-select:none;
+    -webkit-user-select:none;
+  }
   .slide,
   .slide.title-slide.right{
     align-items:flex-start;
@@ -1955,6 +1992,124 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
   .checklist-table th:first-child,.checklist-table td:first-child{font-size:15px}
   .table-tools{width:100%;margin-top:10px}
 }
+
+/* Mobile tables stay within the slide width.  Dense content can grow downward,
+   but never requires a horizontal swipe. */
+@media (max-width:760px){
+  .table-stage,
+  .matrix-scroll,
+  .scoretable,
+  .checklist-blur{
+    overflow-x:visible;
+    touch-action:pan-y;
+  }
+
+  .gtable{
+    width:100%;
+    min-width:0;
+    table-layout:fixed;
+    border-spacing:3px;
+  }
+  .gtable .rowh{width:26%;min-width:0;padding:4px 2px;font-size:10px}
+  .gtable th{padding:4px 2px;font-size:10px;overflow-wrap:anywhere}
+  .gtable td{padding:0}
+  .cell{width:auto;min-width:0;min-height:68px;padding:6px 4px}
+  .cell .name{font-size:12px;line-height:1.1;overflow-wrap:anywhere}
+  .cell .sub{font-size:10px;line-height:1.15;overflow-wrap:anywhere}
+  .cell .tx{font-size:9px;letter-spacing:.07em}
+
+  .ascites-matrix{
+    width:100%;
+    min-width:0;
+    grid-template-columns:14% 20% minmax(0,1fr) minmax(0,1fr);
+    grid-template-rows:28px 42px minmax(112px,auto) minmax(128px,auto) auto;
+  }
+  .am-cell{min-width:0;padding:5px 3px;overflow-wrap:anywhere}
+  .am-ascites{font-size:16px}.am-saag{font-size:16px}.am-side{font-size:12px}
+  .am-protein{font-size:13px;gap:2px}.am-protein span{font-size:10px}
+  .am-head{font-size:14px;gap:2px}.am-head span{font-size:10px}
+  .am-body{font-size:11px}.am-body li{font-size:10.5px;line-height:1.12;margin-bottom:2px}
+  .am-body .am-question{width:32px;height:32px;font-size:18px}
+  .am-note{font-size:10px;line-height:1.15;padding:5px}
+  .am-target.is-highlighted::after{right:3px;top:3px;font-size:7px;padding:2px 3px}
+
+  .syndrome-matrix{
+    width:100%;
+    min-width:0;
+    grid-template-columns:25% minmax(0,1fr) minmax(0,1fr);
+    grid-template-rows:42px minmax(118px,auto) minmax(118px,auto);
+  }
+  .sm-cell{min-width:0;padding:6px 4px;overflow-wrap:anywhere}
+  .sm-head{font-size:13px}.sm-rowh{font-size:12px}.sm-name{font-size:14px}.sm-sub{font-size:10px;line-height:1.12}
+  .sm-q{width:34px;height:34px;font-size:18px}.sm-tx{font-size:8px;letter-spacing:.06em;margin-top:4px}
+  .sm-target.is-revealed::after{right:3px;top:3px;font-size:7px;padding:2px 3px}
+
+  .scoretable,
+  .checklist-table,
+  .terlipressin-safety table{
+    display:table;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    table-layout:fixed;
+  }
+  .scoretable tbody,.checklist-table tbody{display:table-row-group;width:auto;min-width:0}
+  .scoretable th,.scoretable td{padding:7px 6px;font-size:12px;line-height:1.25;overflow-wrap:anywhere;word-break:normal}
+  .checklist-table th:nth-child(1),.checklist-table td:nth-child(1){width:35%;font-size:12px}
+  .checklist-table th:nth-child(2),.checklist-table td:nth-child(2){width:53%}
+  .checklist-table th:nth-child(3),.checklist-table td:nth-child(3){width:12%;text-align:center}
+  .checklist-result-btn{min-height:42px;padding:7px 5px;font-size:12px;overflow-wrap:anywhere}
+  .checklist-prompt{font-size:9px;letter-spacing:.08em}.checklist-status{font-size:17px}
+  .terlipressin-safety th{padding:9px 8px;font-size:11px;letter-spacing:.08em}
+  .terlipressin-safety td{padding:9px 8px}
+  .terlipressin-safety li{font-size:13px;line-height:1.22;margin-bottom:7px}
+}
+
+/* The final recap is a reading slide on phones: keep every point in one
+   vertical stream and reserve the entire slide for scrolling through it. */
+@media (max-width:760px){
+  .slide.final-recap{
+    align-items:flex-start;
+    justify-content:flex-start;
+    padding-top:20px;
+    padding-bottom:34px;
+    overflow-y:auto;
+    overscroll-behavior-y:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+  .slide.final-recap h1.section{
+    font-size:clamp(2.15rem,10vw,2.8rem);
+    line-height:1;
+    margin-bottom:10px;
+  }
+  .slide.final-recap .final-recap-grid{display:block}
+  .slide.final-recap .case-qr-card{display:none}
+  .slide.final-recap .takeaway-deckline{
+    display:block;
+    margin:0 0 9px;
+    color:#625b53;
+    font-size:14px!important;
+    line-height:1.25;
+  }
+  .slide.final-recap .takeaway-grid{display:block}
+  .slide.final-recap .takeaway-grid li{
+    padding:7px 0 7px 37px;
+    font-size:15.5px;
+    line-height:1.27;
+  }
+  .slide.final-recap .takeaway-grid li::before{
+    top:7px;
+    font-size:17px;
+  }
+  .slide.east-vibes{align-items:center;justify-content:center;padding:14px var(--mobile-gutter) 24px;background:#f7f3eb}
+  .slide.east-vibes::after{display:none}
+  .east-vibes-bg{display:none}
+  .slide.east-vibes .stack{width:100%;max-width:100%;margin:0;padding:12px 6px 14px;border-radius:12px;background:rgba(249,247,241,.70)}
+  .slide.east-vibes h1.section{font-size:clamp(2rem,10vw,2.8rem);margin-bottom:8px;text-align:center}
+  .east-vibes-list li{grid-template-columns:14% 30% 56%;padding:5px 0;font-size:clamp(8px,2.65vw,12px);line-height:1.1;text-align:center}
+  .east-vibes-list li>span{padding:0 2px;white-space:nowrap}
+  .east-vibes-list li.east-vibes-break{margin-top:8px;border-top-width:2px}
+}
 </style>
 </head>
 <body>
@@ -2059,7 +2214,8 @@ const SLIDES=[
 {ch:"icu",type:"text",layout:"right",section:"Prognosis",wide:true,body:`<p class="lead">HRS-AKI indicates advanced circulatory dysfunction and carries a poor prognosis.</p><ul><li>Older natural-history cohorts of type 1 HRS showed very short survival without reversal or transplant.</li><li>Modern vasoconstrictors can reverse creatinine in a subset, but transplant-free survival remains poor when ACLF, infection, respiratory failure, or multiorgan failure dominate.</li><li>Dialysis changes potassium, acid, volume, and uremia. It does not fix portal hypertension or liver failure.</li></ul>`},
 {ch:"txp",type:"question-open",layout:"left",section:"A Critical Decision Point",stem:`Adam has HRS-AKI and ACLF grade 3.<br><br><b>So what do you want to do next?</b>`,reveal:`<span class="tag">Priority</span><p class="big">Check transplant candidacy urgently.</p><p>Clarify sobriety and treatment engagement, infection control, cardiopulmonary risk, malignancy screening, social support, frailty, goals of care, and whether the transplant center would consider him a candidate if his kidneys worsen.</p>`},
 {ch:"txp",type:"question-open",layout:"right",section:"When Dialysis Is Appropriate",stem:`His creatinine keeps rising and he becomes oliguric.<br><br><b>Would you start dialysis?</b>`,reveal:`<span class="tag">Role of dialysis</span><p class="big">When it provides a bridge to transplant or recovery from a reversible insult.</p><p>Dialysis can buy time for transplant evaluation, organ offer, or recovery from a reversible insult. If he is not a candidate and liver failure is the driver, dialysis often adds burden without changing the outcome. That should trigger a direct goals-of-care conversation.</p>`},
-{ch:"post",type:"text",layout:"left",spiral:true,preserveImage:true,kicker:"Spiral",section:"The Cirrhosis Spiral",image:"cirrhosis-spiral.png",imagePos:"center center",imageSize:"contain",imageFade:"sides",imageBg:"#f7f3eb",body:`<p class="spiral-final-line">Treat the cause. Prevent the next decompensation. Think transplant early.</p>`},
+{ch:"post",type:"text",layout:"left",spiral:true,preserveImage:true,mobileFullBleedImage:"cirrhosis-complications-algorithm.png",kicker:"Spiral",section:"The Cirrhosis Spiral",image:"cirrhosis-spiral.png",imagePos:"center center",imageSize:"contain",imageFade:"sides",imageBg:"#f7f3eb",body:`<p class="spiral-final-line">Treat the cause. Prevent the next decompensation. Think transplant early.</p>`},
+{ch:"post",type:"text",layout:"left",eastVibes:true,section:"EAST-VIBES",image:"east-vibes-cirrhosis-assessment.jpg",imagePos:"center center",imageSize:"cover",imageFade:"sides",imageBg:"#f7f3eb",body:`<ol class="east-vibes-list"><li><span class="east-vibes-initial">E</span><span class="east-vibes-term">Etiology</span><span class="east-vibes-description">Cause + completed workup</span></li><li><span class="east-vibes-initial">A</span><span class="east-vibes-term">Activity</span><span class="east-vibes-description">Ongoing injury + disease control</span></li><li><span class="east-vibes-initial">S</span><span class="east-vibes-term">Severity</span><span class="east-vibes-description">MELD 3.0 + decompensations</span></li><li><span class="east-vibes-initial">T</span><span class="east-vibes-term">Transplant</span><span class="east-vibes-description">Indication + candidacy</span></li><li class="east-vibes-break"><span class="east-vibes-initial">V</span><span class="east-vibes-term">Volume</span><span class="east-vibes-description">Ascites, edema, HRS</span></li><li><span class="east-vibes-initial">I</span><span class="east-vibes-term">Infection</span><span class="east-vibes-description">Active infection, SBP/SBE</span></li><li><span class="east-vibes-initial">B</span><span class="east-vibes-term">Bleeding</span><span class="east-vibes-description">Source + prophylaxis</span></li><li><span class="east-vibes-initial">E</span><span class="east-vibes-term">Encephalopathy</span><span class="east-vibes-description">Grade, triggers, treatment</span></li><li><span class="east-vibes-initial">S</span><span class="east-vibes-term">Screening</span><span class="east-vibes-description">Imaging + AFP every 6 months</span></li></ol>`},
 {ch:"post",type:"recap",layout:"center",wide:true,finalRecap:true,section:"Take-Home Points",qrUrl:"https://qaddodi.github.io/cirrhosis-interactive-case/",qrMatrix:[
 "00000000000000000000000000000000000",
 "01111111000100010111110010011111110",
@@ -2816,7 +2972,7 @@ function render(direction=0){
   const darkTipsClass=idx>=34&&idx<=36?' tips-dark':'';
   const mobileDarkClass=MOBILE_DARK_SECTIONS.has(s.section)?' mobile-dark':'';
   stage.classList.toggle('mobile-dark-stage',Boolean(mobileDarkClass));
-  slideEl.className='slide '+(s.layout||'left')+(visual.image?' image-backed':'')+(s.backgroundOnly?' background-only':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.artworkText?' artwork-text':'')+(s.criticalReadability?' critical-readability':'')+(s.endoscopyCritical?' endoscopy-critical':'')+(s.earlyTipsHero?' early-tips-hero':'')+(s.albuminChallengeFocus?' albumin-challenge-focus':'')+(s.clinicalRevealFocus?' clinical-reveal-focus':'')+(s.transplantLeftFade?' transplant-left-fade':'')+(s.projectorDataFocus?' projector-data-focus':'')+(s.evidenceFocus?' evidence-focus':'')+(s.aclfFocus?' aclf-focus':'')+(s.summaryFocus?' summary-focus':'')+(s.pressorRescueFocus?' pressor-rescue-focus':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.ppcdFocus?' ppcd-focus':'')+(s.meldFocus?' meld-focus':'')+(s.bleedFocus?' bleed-focus':'')+(s.copyGlow?' copy-glow':'')+(s.heFocus?' he-focus':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+(s._done?' answer-revealed':'')+projectorDensityClass(s)+darkTipsClass+mobileDarkClass+enterClass;
+  slideEl.className='slide '+(s.layout||'left')+(visual.image?' image-backed':'')+(s.backgroundOnly?' background-only':'')+(s.mobileFullBleedImage?' mobile-full-bleed':'')+(s.eastVibes?' east-vibes':'')+(s.boost?' boost':'')+(s.blur?' blur-bg':'')+(s.contrastPanel?' contrast-panel':'')+(s.artworkText?' artwork-text':'')+(s.criticalReadability?' critical-readability':'')+(s.endoscopyCritical?' endoscopy-critical':'')+(s.earlyTipsHero?' early-tips-hero':'')+(s.albuminChallengeFocus?' albumin-challenge-focus':'')+(s.clinicalRevealFocus?' clinical-reveal-focus':'')+(s.transplantLeftFade?' transplant-left-fade':'')+(s.projectorDataFocus?' projector-data-focus':'')+(s.evidenceFocus?' evidence-focus':'')+(s.aclfFocus?' aclf-focus':'')+(s.summaryFocus?' summary-focus':'')+(s.pressorRescueFocus?' pressor-rescue-focus':'')+(s.chartLarge?' chart-large':'')+(s.softThird?' soft-third':'')+(s.compactAnswer?' compact-answer':'')+(s.nudgeLeft?' nudge-left':'')+(s.cakeTitle?' cake-title':'')+(s.clinicalFramework?' clinical-framework':'')+(s.ppcdFocus?' ppcd-focus':'')+(s.meldFocus?' meld-focus':'')+(s.bleedFocus?' bleed-focus':'')+(s.copyGlow?' copy-glow':'')+(s.heFocus?' he-focus':'')+(s.returnGap?' return-gap':'')+(s.spiral?' spiral-slide':'')+(s.finalRecap?' final-recap':'')+(s.closing?' closing-slide':'')+(s._done?' answer-revealed':'')+projectorDensityClass(s)+darkTipsClass+mobileDarkClass+enterClass;
   slideEl.innerHTML=htmlFor(s);
   wire(s);
   syncTerlipressinSafetyBackdrop(s);
@@ -2850,14 +3006,15 @@ function caseQrSVG(matrix){
 function caseQrCard(s){
   if(!s.qrUrl||!s.qrMatrix) return '';
   const label=s.qrUrl.replace(/^https?:\/\//,'');
-  return `<aside class="case-qr-card"><p class="case-qr-kicker">Open the interactive case</p><a class="case-qr-link" href="${s.qrUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open the Cirrhosis interactive clinical case">${caseQrSVG(s.qrMatrix)}<span class="case-qr-label">Scan to open this case</span><span class="case-qr-url">${label}</span></a></aside>`;
+  return `<aside class="case-qr-card"><a class="case-qr-link" href="${s.qrUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open the Cirrhosis interactive clinical case">${caseQrSVG(s.qrMatrix)}<span class="case-qr-label">Scan to open this case</span><span class="case-qr-url">${label}</span></a></aside>`;
 }
 function htmlFor(s){
   if(s.type==='background-only') return `<img class="background-only-image" src="${s.image}" alt="${s.section||'Clinical case diagram'}" draggable="false">`;
   if(s.type==='title') return titleHTML(s);
   if(s.type==='closing') return `<div class="closing-content"><h1>${s.title}</h1><p class="closing-sub">${s.sub}</p><div class="closing-actions">${s.actions.map(a=>`<span>${a}</span>`).join('')}</div></div>`;
   if(s.titleOnly) return shell(s,'');
-  if(s.type==='text'||s.type==='recap') return shell(s,`<div class="panel">${s.finalRecap&&s.qrUrl?`<div class="final-recap-grid"><div>${s.body}</div>${caseQrCard(s)}</div>`:s.body}</div>`);
+  if(s.eastVibes) return `<img class="east-vibes-bg" src="${s.image}" alt="" aria-hidden="true" draggable="false">${shell(s,`<div class="panel">${s.body}</div>`)}`;
+  if(s.type==='text'||s.type==='recap') return `${s.mobileFullBleedImage?`<img class="mobile-full-bleed-image" src="${s.mobileFullBleedImage}" alt="Cirrhosis complications and treatment pathway" draggable="false">`:''}${shell(s,`<div class="panel">${s.finalRecap&&s.qrUrl?`<div class="final-recap-grid"><div>${s.body}</div>${caseQrCard(s)}</div>`:s.body}</div>`)}`;
   if(s.type==='question-open') return shell(s,`<div class="panel"><div class="qstem">${s.stem}</div><button class="reveal-btn" data-act="reveal">Reveal answer</button><div class="answer" data-answer hidden>${s.reveal}</div></div>`);
   if(s.type==='question-mc') return shell(s,`<div class="panel"><div class="qstem">${s.stem}</div><div class="options">${s.options.map((o,i)=>`<button class="opt" data-opt="${i}"><span class="mark">${String.fromCharCode(65+i)}</span><span>${o.t}</span></button>`).join('')}</div><div class="answer" data-answer hidden><span class="tag">${s.answerTag||'Why'}</span>${s.rationale}</div></div>`);
   if(s.type==='table') return shell(s,tableHTML(s));
