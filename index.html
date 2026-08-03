@@ -2246,7 +2246,8 @@ const NAV_GROUPS=[
   {start:32,end:37,label:"Hepatic Encephalopathy",color:"#87699a"},
   {start:38,end:43,label:"PPCD",color:"#7a8084"},
   {start:44,end:58,label:"HRS-AKI",color:"#61724c"},
-  {start:59,end:60,label:"Conclusion",color:"#6a6b71"}
+  {start:59,end:60,label:"Conclusion",color:"#6a6b71"},
+  {start:61,end:61,label:"Take-Home Points",color:"#6a6b71"}
 ];
 function navGroupFor(slideIndex){
   const slideNumber=slideIndex+1;
@@ -3236,7 +3237,7 @@ function htmlFor(s){
   if(s.type==='title') return titleHTML(s);
   if(s.type==='closing') return `<div class="closing-content"><h1>${s.title}</h1><p class="closing-sub">${s.sub}</p><div class="closing-actions">${s.actions.map(a=>`<span>${a}</span>`).join('')}</div></div>`;
   if(s.titleOnly) return shell(s,'');
-  if(s.eastVibes) return `<img class="east-vibes-bg" src="${s.image}" alt="" aria-hidden="true" draggable="false">${shell(s,`<div class="panel">${s.body}</div>`)}`;
+  if(s.eastVibes) return shell(s,`<div class="panel">${s.body}</div>`);
   if(s.type==='text'||s.type==='recap') return `${s.mobileFullBleedImage?`<img class="mobile-full-bleed-image" src="${s.mobileFullBleedImage}" alt="Cirrhosis complications and treatment pathway" draggable="false">`:''}${shell(s,`<div class="panel">${s.finalRecap&&s.qrUrl?`<div class="final-recap-grid"><div>${s.body}</div>${caseQrCard(s)}</div>`:s.body}</div>`)}`;
   if(s.type==='question-open') return shell(s,`<div class="panel"><div class="qstem">${s.stem}</div>${s.openQuestionOnly?'':`<button class="reveal-btn" data-act="reveal">Reveal answer</button><div class="answer" data-answer hidden>${s.reveal}</div>`}</div>`);
   if(s.type==='question-mc') return shell(s,`<div class="panel"><div class="qstem">${s.stem}</div><div class="options">${s.options.map((o,i)=>`<button class="opt" data-opt="${i}"><span class="mark">${String.fromCharCode(65+i)}</span><span>${o.t}</span></button>`).join('')}</div><div class="answer" data-answer hidden><span class="tag">${s.answerTag||'Why'}</span>${s.rationale}</div></div>`);
