@@ -481,7 +481,8 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .nav-actions{display:flex;align-items:center;gap:8px}
 .navbtn{width:96px;padding:0 14px;font-size:13px}
 .navbtn:disabled{opacity:.35;cursor:default;transform:none}
-.navbtn-next.is-complete{background:#fff;border-color:#d6d5d2;color:#111;opacity:.55}
+.navbtn-next.is-complete{background:#ebe8e2;border-color:#d2cec6;color:#8b867d;opacity:1}
+.navbtn-next.is-complete .nav-icon{display:none}
 .navbtn:focus-visible,.topbar-btn:focus-visible,.seg:focus-visible,.reveal-btn:focus-visible,.opt:focus-visible,.cell:focus-visible,.am-body:focus-visible,.sm-body:focus-visible{outline:2px solid var(--chapter,#777b97);outline-offset:2px}
 .nav-icon{display:inline;font-size:16px;font-weight:400;letter-spacing:0}
 .background-only-image{display:none}
@@ -3450,7 +3451,7 @@ function updateChrome(){
   const next=document.getElementById('next');
   next.disabled=isTransitioning||atEnd;
   next.classList.toggle('is-complete',atEnd);
-  nextLabel.textContent=atEnd?'Complete':'Next';
+  nextLabel.textContent=atEnd?'Done':'Next';
   nextIcon.textContent=atEnd?'✓':'›';
   next.setAttribute('aria-label',atEnd?'Case complete':'Next slide');
   progress.innerHTML='';
