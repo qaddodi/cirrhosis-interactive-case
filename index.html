@@ -2831,6 +2831,11 @@ if(slide21){
   slide21.body=slide21.body.replace(/<p>You tap immediately\.[\s\S]*?<\/p>/,'<p>You tap immediately.</p>');
 }
 
+const slide23=requestedSlide(23);
+if(slide23){
+  slide23.body=slide23.body.replace(`<div class="chartcap">Renal impairment fell by roughly two thirds, and in-hospital mortality dropped from 29% to 10%.</div>`,``);
+}
+
 const slide24=requestedSlide(24);
 if(slide24){
   slide24.reveal=`<span class="tag">Re-tap and reassess</span><p>Repeat diagnostic paracentesis and recalculate the ascitic PMN count. A decrease of <b>at least 25%</b> from baseline supports an appropriate antibiotic response.</p><div class="scorebox"><div class="tile"><div class="n">960</div><div class="l">Initial PMN</div></div><div class="tile"><div class="n">&ge;25%</div><div class="l">Expected fall</div></div><div class="tile"><div class="n">&le;720</div><div class="l">Adequate response</div></div></div><p>If the PMN falls by less than 25%, remains unchanged, or rises, reassess cultures and susceptibilities, broaden antibiotics when appropriate, and investigate resistant infection or secondary peritonitis.</p><div class="emphasis-pill-block"><span class="pill-label">When to repeat paracentesis</span><p>With clear clinical improvement and an identified susceptible organism, some experts consider it optional.</p></div>`;
