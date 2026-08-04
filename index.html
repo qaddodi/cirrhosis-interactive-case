@@ -267,7 +267,7 @@ ul{margin:0 0 8px 24px;padding:0}li{font-size:19.2px;line-height:1.48;margin:0 0
 .title-slide .title-presenter{color:#302e40;font-size:27px;font-weight:bold;text-shadow:0 1px 0 rgba(255,255,255,.98),0 0 7px rgba(250,248,241,1),0 0 20px rgba(250,248,241,.98),0 0 36px rgba(250,248,241,.92)}
 .title-slide .title-social{font-size:23px}
 .title-slide .title-social a{color:#302d6b;font-weight:bold;text-shadow:0 1px 0 rgba(255,255,255,.98),0 0 7px rgba(250,248,241,1),0 0 20px rgba(250,248,241,.98),0 0 36px rgba(250,248,241,.92)}
-.title-slide .title-art-credit{color:#48443e;font-size:18px;font-weight:bold;text-shadow:0 1px 0 rgba(255,255,255,.98),0 0 7px rgba(250,248,241,1),0 0 20px rgba(250,248,241,.98),0 0 36px rgba(250,248,241,.92)}
+.title-slide .title-art-credit{color:#48443e;font-size:18px;font-weight:normal;font-style:italic;margin-top:12px;text-shadow:0 1px 0 rgba(255,255,255,.98),0 0 7px rgba(250,248,241,1),0 0 20px rgba(250,248,241,.98),0 0 36px rgba(250,248,241,.92)}
 .title-slide .hint{display:block;margin-top:28px;padding:0;border-radius:0;background:none;color:#395f70;font-size:18px;line-height:1.35;text-shadow:0 1px 0 rgba(255,255,255,.98),0 0 7px rgba(250,248,241,1),0 0 20px rgba(250,248,241,.98),0 0 36px rgba(250,248,241,.92);box-shadow:none}
 .slide.return-gap{align-items:center;justify-content:flex-start;text-align:left}
 .slide.return-gap .stack{max-width:760px;margin-left:clamp(4px,1.2vw,20px);margin-right:auto}
@@ -2256,7 +2256,7 @@ function navGroupFor(slideIndex){
   return NAV_GROUPS.find(group=>slideNumber>=group.start&&slideNumber<=group.end)||NAV_GROUPS[0];
 }
 const SLIDES=[
-{ch:"title",type:"title",layout:"title-slide",kicker:"Clinical Reasoning",title:"Cirrhosis",sub:"An interactive clinical case.",byline:"For incoming Internal Medicine interns",presenter:"Mohammad Almeqdadi, MD",socialLabel:"X: @mfalmeqdadi",socialUrl:"https://x.com/mfalmeqdadi",artCredit:"Background artwork created with Google Gemini.",hint:"Press Next or the Right Arrow to Begin"},
+{ch:"title",type:"title",layout:"title-slide",kicker:"Clinical Reasoning",title:"Cirrhosis",sub:"An interactive case of progressive liver disease",presenter:"Mohammad Almeqdadi, MD",socialLabel:"X: @mfalmeqdadi",socialUrl:"https://x.com/mfalmeqdadi",artCredit:"Background artwork created with Google Gemini."},
 {ch:"found",type:"text",layout:"left",section:"Two Ways Cirrhosis Causes Harm",wide:true,body:`<p class="lead">Cirrhosis is diffuse hepatic fibrosis with regenerative nodules. Its complications arise from <span class="hl">two related processes</span>.</p><h3>Loss of hepatic function</h3><p>The liver becomes less effective at bilirubin handling, albumin synthesis, clotting-factor synthesis, ammonia clearance, drug metabolism, and immune surveillance.</p><h3>Portal hypertension</h3><p>Fibrosis and sinusoidal resistance impede portal flow. The resulting pressure produces ascites, varices, splenomegaly, thrombocytopenia, and collateral vessels.</p>`},
 {ch:"found",type:"question-open",layout:"left",section:"The Portal Vein",revealImage:"portal-system-capillary-beds.jpg",revealImagePos:"center center",revealImageSize:"contain",revealImageFade:"sides",revealBg:"#f7f3eb",stem:`The portal vein carries blood from the intestines to the liver. <b>Why is it called a portal vein, and can you name another portal system in the body?</b>`,reveal:`<span class="tag">Concept</span><p>A portal vessel connects two capillary beds in series. The gut capillaries drain into the portal vein, then into the hepatic sinusoids before blood returns to the heart.</p><p>The other classic portal system is the <b>hypophyseal portal system</b>, connecting hypothalamus to anterior pituitary.</p><p><b>Portosystemic shunts</b> are collateral channels that let portal blood bypass the liver when resistance rises. This is the anatomy behind varices, caput medusae, splenorenal shunts, and hepatic encephalopathy.</p>`},
 {ch:"found",type:"text",layout:"right",section:"Early Clues to Cirrhosis",wide:true,body:`<p class="lead">The history, examination, and routine laboratory results may raise concern before imaging or biopsy.</p><ul><li><b>Splenomegaly</b></li><li><b>Thrombocytopenia</b></li><li><b>AST &gt; ALT</b></li><li><b>Scores</b>: FIB-4, ELF, FibroScan, and other noninvasive fibrosis tools help decide who needs the next test.</li><li><b>Examination findings</b>: spiders, palmar erythema, sarcopenia, jaundice, ascites, venous collaterals.</li></ul>`},
@@ -2574,7 +2574,7 @@ const replaceSlideCopy=(section,field,replacements)=>{
   replacements.forEach(([from,to])=>{slide[field]=slide[field].replace(from,to);});
 };
 const titleSlide=SLIDES.find(slide=>slide.type==='title');
-if(titleSlide){titleSlide.kicker='';titleSlide.sub='A case of recurrent decompensated cirrhosis.';}
+if(titleSlide){titleSlide.kicker='';}
 
 const initialPresentation=copySlide('Meet Adam');
 if(initialPresentation){initialPresentation.section='Initial Presentation';initialPresentation.kicker='Primary Care';}
